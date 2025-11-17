@@ -1,15 +1,21 @@
-# curso-ia-upr
+# Introducción a la Inteligencia Artificial
+Universidad de Pinar del Río "Hermanos Saíz Montes de OCa"
 
 ## recursos 
 
-https://aima.cs.berkeley.edu/
+- https://aima.cs.berkeley.edu/
 
-https://github.com/udlbook
+- https://github.com/udlbook
 
-https://mlu-explain.github.io/
-https://d2l.ai/
-https://bbycroft.net/llm
-https://poloclub.github.io/transformer-explainer/
-https://poloclub.github.io/
-https://cs231n.stanford.edu/
+- https://mlu-explain.github.io/
+
+- https://d2l.ai/
+
+- https://bbycroft.net/llm
+
+- https://poloclub.github.io/transformer-explainer/
+
+- https://poloclub.github.io/
+
+- https://cs231n.stanford.edu/
 
