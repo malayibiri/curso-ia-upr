@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paisaje del Aprendizaje Automático</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Warm Neutral with Soft Blue -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 280px;
+            max-height: 300px;
+            margin: 1rem auto 0;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 350px;
+            }
+        }
+
+        .tab-active {
+            background-color: white;
+            color: #2563eb; /* text-blue-600 */
+            border-bottom: 3px solid #2563eb;
+            font-weight: 600;
+        }
+        .tab-inactive {
+            color: #4b5563; /* text-gray-600 */
+            border-bottom: 3px solid transparent;
+        }
+        .tab-inactive:hover {
+            background-color: #f3f4f6; /* hover:bg-gray-100 */
+            color: #1f2937; /* hover:text-gray-800 */
+        }
+
+        .section-content {
+            background-color: white;
+            border-radius: 0 0.5rem 0.5rem 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .process-step {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .process-step:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .process-step-active {
+            border-color: #2563eb;
+            background-color: #dbeafe; /* blue-100 */
+            color: #1e40af; /* blue-800 */
+        }
+        
+        .tool-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .tool-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Estilo para las tarjetas de Algoritmos */
+        .algo-card {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s;
+        }
+        .algo-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <div class="container mx-auto max-w-6xl px-4 py-8 md:py-12">
+        
+        <!-- Header -->
+        <header class="text-center mb-8 md:mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-blue-700">El Paisaje del Aprendizaje Automático</h1>
+            <p class="text-lg md:text-xl text-gray-600 mt-2">Una introducción interactiva a los métodos, problemas y tecnologías.</p>
+        </header>
+
+        <!-- Tab Navigation -->
+        <nav class="flex flex-wrap border-b border-gray-200">
+            <button id="nav-inicio" class="nav-tab py-3 px-5 md:px-6 text-sm md:text-base font-medium text-center rounded-t-lg tab-active" data-content="content-inicio">Inicio</button>
+            <button id="nav-metodos" class="nav-tab py-3 px-5 md:px-6 text-sm md:text-base font-medium text-center rounded-t-lg tab-inactive" data-content="content-metodos">Métodos</button>
+            <button id="nav-algoritmos" class="nav-tab py-3 px-5 md:px-6 text-sm md:text-base font-medium text-center rounded-t-lg tab-inactive" data-content="content-algoritmos">Algoritmos</button>
+            <button id="nav-proceso" class="nav-tab py-3 px-5 md:px-6 text-sm md:text-base font-medium text-center rounded-t-lg tab-inactive" data-content="content-proceso">Proceso</button>
+            <button id="nav-herramientas" class="nav-tab py-3 px-5 md:px-6 text-sm md:text-base font-medium text-center rounded-t-lg tab-inactive" data-content="content-herramientas">Herramientas</button>
+            <button id="nav-aplicaciones" class="nav-tab py-3 px-5 md:px-6 text-sm md:text-base font-medium text-center rounded-t-lg tab-inactive" data-content="content-aplicaciones">Aplicaciones</button>
+        </nav>
+
+        <!-- Content Area -->
+        <main>
+            <!-- ========================== -->
+            <!-- ====== Inicio ====== -->
+            <!-- ========================== -->
+            <section id="content-inicio" class="section-content p-6 md:p-10">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">¿Qué es el Aprendizaje Automático?</h2>
+                <p class="text-gray-700 mb-6 text-base md:text-lg">
+                    Bienvenido a esta introducción al Aprendizaje Automático (Machine Learning o ML). Esta sección define los conceptos básicos y su relación. El ML es un campo de la informática que da a las computadoras la habilidad de aprender sin ser explícitamente programadas. Es un subconjunto de la Inteligencia Artificial (IA).
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <p class="text-gray-700 mb-4">
+                            <strong class="text-blue-600">Inteligencia Artificial (IA):</strong> Es el concepto más amplio de máquinas que pueden simular la inteligencia humana, abarcando desde la lógica simple hasta tareas complejas.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            <strong class="text-blue-600">Aprendizaje Automático (ML):</strong> Es el subconjunto principal de la IA. Se enfoca en crear algoritmos que "aprenden" de los datos. En lugar de reglas codificadas, el modelo encuentra patrones en los datos para hacer predicciones.
+                        </p>
+                        <p class="text-gray-700">
+                            <strong class="text-blue-600">Aprendizaje Profundo (Deep Learning):</strong> Es un subconjunto más especializado del ML que utiliza redes neuronales artificiales con múltiples capas para resolver problemas complejos, como el reconocimiento de imágenes y el procesamiento del lenguaje natural.
+                        </p>
+                    </div>
+                    <!-- Diagrama de Cajas Anidadas (HTML/Tailwind) -->
+                    <div class="w-full max-w-md mx-auto p-6 bg-blue-50 rounded-xl text-center shadow-inner">
+                        <h3 class="text-xl font-semibold text-blue-800">Inteligencia Artificial</h3>
+                        <div class="mt-4 p-6 bg-blue-100 rounded-lg text-center">
+                            <h3 class="text-lg font-semibold text-blue-700">Aprendizaje Automático</h3>
+                            <div class="mt-4 p-6 bg-blue-200 rounded-md text-center">
+                                <h3 class="text-base font-semibold text-blue-600">Aprendizaje Profundo</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 1: Asistente de Definiciones con Gemini API -->
+                <div class="mt-10 pt-6 border-t border-gray-200">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        Asistente de Definiciones ✨
+                    </h3>
+                    <p class="text-gray-600 mb-4">¿Tienes una duda rápida? Pide a Gemini que te explique cualquier concepto de ML de forma concisa (ej: "qué es el sobreajuste" o "explícame el ROC curve").</p>
+                    
+                    <div class="flex flex-col md:flex-row gap-3">
+                        <input type="text" id="definition-query" placeholder="Escribe tu concepto de ML aquí..." class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        <button id="generate-definition-btn" class="flex-shrink-0 bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition duration-150 flex items-center justify-center">
+                            <span id="definition-btn-text">Generar Definición</span>
+                            <div id="definition-loader" class="loader hidden ml-2"></div>
+                        </button>
+                    </div>
+
+                    <div id="definition-output" class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg text-gray-800 min-h-[50px] italic">
+                        El resultado de la definición aparecerá aquí.
+                    </div>
+                </div>
+                
+            </section>
+
+            <!-- ========================== -->
+            <!-- ====== Métodos ====== -->
+            <!-- ========================== -->
+            <section id="content-metodos" class="section-content p-6 md:p-10 hidden">
+                <h2 class="text-2xl md::text-3xl font-bold text-gray-900 mb-4">Métodos de Aprendizaje</h2>
+                <p class="text-gray-700 mb-8 text-base md::text-lg">
+                    El Aprendizaje Automático se divide principalmente en tres grandes categorías, definidas por cómo el algoritmo "aprende" de los datos. Explore cada método para entender sus diferencias, tareas comunes y ver un desglose conceptual de sus problemas típicas en el gráfico.
+                </p>
+                
+                <div class="flex justify-center flex-wrap gap-2 mb-8">
+                    <button class="method-btn py-2 px-4 rounded-full font-semibold bg-blue-600 text-white shadow-md" data-method="supervisado">Aprendizaje Supervisado</button>
+                    <button class="method-btn py-2 px-4 rounded-full font-semibold bg-gray-200 text-gray-700" data-method="no-supervisado">Aprendizaje No Supervisado</button>
+                    <button class="method-btn py-2 px-4 rounded-full font-semibold bg-gray-200 text-gray-700" data-method="reforzado">Aprendizaje por Refuerzo</button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div id="method-details">
+                        <!-- Contenido dinámico aquí -->
+                        <h3 id="method-title" class="text-xl md:text-2xl font-bold text-blue-700 mb-3">Aprendizaje Supervisado</h3>
+                        <p id="method-desc" class="text-gray-700 mb-4">
+                            En el aprendizaje supervisado, el algoritmo aprende de un conjunto de datos "etiquetados". Cada dato de entrada tiene una "respuesta correcta" o etiqueta. El objetivo es aprender una regla que mapee las entradas a las salidas.
+                        </p>
+                        <h4 class="font-semibold text-gray-800 mb-2">Algoritmos Comunes:</h4>
+                        <ul id="method-algos" class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Regresión Lineal</li>
+                            <li>Máquinas de Vectores de Soporte (SVM)</li>
+                            <li>Árboles de Decisión</li>
+                            <li>Redes Neuronales (básicas)</li>
+                        </ul>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="metodosChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Generador de Escenarios de Refuerzo con Gemini API -->
+                <div id="rl-scenario-generator" class="mt-10 pt-6 border-t border-gray-200 hidden">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        Generador de Escenarios RL ✨
+                    </h3>
+                    <p class="text-gray-600 mb-4">
+                        El Aprendizaje por Refuerzo (RL) es complejo. Usa el poder del LLM para generar un escenario RL que se ajuste a tus intereses. Define el entorno para obtener un Agente, un Entorno, Acciones y Recompensas claras.
+                    </p>
+                    
+                    <div class="flex flex-col md:flex-row gap-3">
+                        <input type="text" id="rl-query" placeholder="Ej: Un coche autónomo que aprende a aparcar" class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        <button id="generate-rl-btn" class="flex-shrink-0 bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition duration-150 flex items-center justify-center">
+                            <span id="rl-btn-text">Crear Escenario RL</span>
+                            <div id="rl-loader" class="loader hidden ml-2"></div>
+                        </button>
+                    </div>
+
+                    <div id="rl-output" class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg text-gray-800 min-h-[50px]">
+                        <p class="font-semibold text-blue-700">Escenario Generado:</p>
+                        <p id="rl-scenario-text">El resultado del escenario aparecerá aquí una vez lo generes.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ========================== -->
+            <!-- ====== Algoritmos ====== -->
+            <!-- ========================== -->
+            <section id="content-algoritmos" class="section-content p-6 md:p-10 hidden">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Algoritmos Fundamentales</h2>
+                <p class="text-gray-700 mb-8 text-base md:text-lg">
+                    Estos son algunos de los algoritmos más utilizados y que sirven como base para la mayoría de las soluciones de Machine Learning.
+                </p>
+
+                <div class="space-y-8">
+                    <!-- Algoritmos Supervisados -->
+                    <div class="border-b pb-4">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">Aprendizaje Supervisado (Clasificación y Regresión)</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="algo-card p-5">
+                                <h4 class="text-lg font-semibold text-gray-900">🎯 Regresión Logística</h4>
+                                <p class="text-sm text-gray-600 mt-2">Un algoritmo de clasificación (a pesar de su nombre) que estima la probabilidad de que una instancia pertenezca a una clase. Ideal para problemas de Sí/No (binarios).</p>
+                            </div>
+                            <div class="algo-card p-5">
+                                <h4 class="text-lg font-semibold text-gray-900">🌲 Árboles de Decisión</h4>
+                                <p class="text-sm text-gray-600 mt-2">Un modelo intuitivo que toma decisiones secuenciales, dividiendo los datos en ramas. Es la base de modelos ensemble más potentes como Random Forests.</p>
+                            </div>
+                            <div class="algo-card p-5">
+                                <h4 class="text-lg font-semibold text-gray-900">👫 K-Nearest Neighbors (K-NN)</h4>
+                                <p class="text-sm text-gray-600 mt-2">Clasifica un punto de datos contando a qué clase pertenecen la mayoría de sus $K$ vecinos más cercanos. Es simple, no paramétrico y no requiere una fase de entrenamiento explícita.</p>
+                            </div>
+                            <div class="algo-card p-5">
+                                <h4 class="text-lg font-semibold text-gray-900">📐 Máquinas de Vectores de Soporte (SVM)</h4>
+                                <p class="text-sm text-gray-600 mt-2">Busca el "hiperplano" (línea o plano de decisión) que maximiza el margen entre las clases. Funciona bien con datos de alta dimensión y se utiliza principalmente para clasificación.</p>
+                            </div>
+                            <div class="algo-card p-5">
+                                <h4 class="text-lg font-semibold text-gray-900">🌳 Random Forest</h4>
+                                <p class="text-sm text-gray-600 mt-2">Un método ensemble que construye múltiples árboles de decisión y combina sus resultados para mejorar la precisión y evitar el sobreajuste. Muy robusto y popular.</p>
+                            </div>
+                            <div class="algo-card p-5">
+                                <h4 class="text-lg font-semibold text-gray-900">✉️ Naive Bayes</h4>
+                                <p class="text-sm text-gray-600 mt-2">Un algoritmo simple de clasificación basado en el Teorema de Bayes. Es muy rápido, escalable y excelente para la clasificación de texto (como filtros de spam).</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Algoritmos Ensemble y Boosting -->
+                    <div class="border-b pb-4">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">Métodos Ensemble y Boosting</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="algo-card p-5">
+                                <h4 class="text-lg font-semibold text-gray-900">🚀 Gradient Boosting (XGBoost)</h4>
+                                <p class="text-sm text-gray-600 mt-2">Un potente método ensemble que construye árboles de manera secuencial, donde cada nuevo árbol corrige los errores cometidos por los árboles anteriores. Lidera muchas competiciones de datos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Algoritmos No Supervisados -->
+                    <div class="border-b pb-4">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">Aprendizaje No Supervisado (Clustering y Reducción)</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="algo-card p-5">
+                                <h4 class="text-lg font-semibold text-gray-900">🍇 K-Means</h4>
+                                <p class="text-sm text-gray-600 mt-2">El algoritmo de clustering más popular. Agrupa los puntos de datos en $K$ grupos (clusters) distintos basándose en la proximidad al centroide de cada grupo.</p>
+                            </div>
+                            <div class="algo-card p-5">
+                                <h4 class="text-lg font-semibold text-gray-900">📉 Análisis de Componentes Principales (PCA)</h4>
+                                <p class="text-sm text-gray-600 mt-2">Una técnica de reducción de dimensionalidad que transforma el conjunto de datos a un nuevo sistema de coordenadas para capturar la mayor varianza posible con menos variables.</p>
+                            </div>
+                             <div class="algo-card p-5">
+                                <h4 class="text-lg font-semibold text-gray-900">🌌 DBSCAN</h4>
+                                <p class="text-sm text-gray-600 mt-2">Un algoritmo de clustering basado en densidad. Identifica clusters como áreas de alta densidad de datos separadas por regiones de baja densidad. Es ideal para formas de cluster irregulares.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Algoritmos de Deep Learning y Refuerzo -->
+                    <div>
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">Deep Learning y Aprendizaje por Refuerzo</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="algo-card p-5">
+                                <h4 class="text-lg font-semibold text-gray-900">🖼️ Redes Neuronales Convolucionales (CNN)</h4>
+                                <p class="text-sm text-gray-600 mt-2">Especializadas en el procesamiento de imágenes (datos con estructura de cuadrícula). Usan capas de convolución para extraer características espaciales y jerárquicas.</p>
+                            </div>
+                            <div class="algo-card p-5">
+                                <h4 class="text-lg font-semibold text-gray-900">📜 Redes Neuronales Recurrentes (RNN)</h4>
+                                <p class="text-sm text-gray-600 mt-2">Diseñadas para manejar datos secuenciales (series de tiempo, texto). Mantienen un "estado interno" o memoria que les permite procesar secuencias de entradas.</p>
+                            </div>
+                             <div class="algo-card p-5">
+                                <h4 class="text-lg font-semibold text-gray-900">💡 Autoencoders</h4>
+                                <p class="text-sm text-gray-600 mt-2">Un tipo de red neuronal no supervisada que aprende a codificar eficientemente los datos de entrada para luego reconstruirlos. Usado en reducción de ruido y dimensionalidad.</p>
+                            </div>
+                            <div class="algo-card p-5">
+                                <h4 class="text-lg font-semibold text-gray-900">🎮 Q-Learning</h4>
+                                <p class="text-sm text-gray-600 mt-2">Un algoritmo fundamental de Aprendizaje por Refuerzo (RL) que enseña a un agente a tomar la mejor acción en un estado dado para maximizar la recompensa futura.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ========================== -->
+            <!-- ====== Proceso ====== -->
+            <!-- ========================== -->
+            <section id="content-proceso" class="section-content p-6 md:p-10 hidden">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">El Proceso del ML</h2>
+                <p class="text-gray-700 mb-8 text-base md:text-lg">
+                    Desarrollar un modelo de ML no es un solo paso, sino un ciclo de vida. Este proceso iterativo asegura que el modelo sea robusto, preciso y útil. Haga clic en cada paso del flujo para obtener más detalles sobre lo que implica.
+                </p>
+                
+                <!-- Diagrama de Flujo (HTML/Tailwind) -->
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-2 text-center text-sm font-medium">
+                    <div id="step-1" class="process-step p-4 border-2 border-gray-300 rounded-lg w-full md:w-1/5 bg-white">1. Recolección de Datos</div>
+                    <div class="text-2xl text-gray-400 hidden md:block">→</div>
+                    <div id="step-2" class="process-step p-4 border-2 border-gray-300 rounded-lg w-full md:w-1/5 bg-white">2. Preparación de Datos</div>
+                    <div class="text-2xl text-gray-400 hidden md:block">→</div>
+                    <div id="step-3" class="process-step p-4 border-2 border-gray-300 rounded-lg w-full md:w-1/5 bg-white">3. Entrenamiento del Modelo</div>
+                    <div class="text-2xl text-gray-400 hidden md:block">→</div>
+                    <div id="step-4" class="process-step p-4 border-2 border-gray-300 rounded-lg w-full md:w-1/5 bg-white">4. Evaluación del Modelo</div>
+                    <div class="text-2xl text-gray-400 hidden md:block">→</div>
+                    <div id="step-5" class="process-step p-4 border-2 border-gray-300 rounded-lg w-full md:w-1/5 bg-white">5. Despliegue e Inferencia</div>
+                </div>
+
+                <!-- Panel de Detalles del Proceso -->
+                <div id="process-details" class="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200 min-h-[150px]">
+                    <h3 id="process-title" class="text-xl font-bold text-blue-700 mb-2">Haga clic en un paso</h3>
+                    <p id="process-desc" class="text-gray-700">Seleccione un paso del proceso anterior para ver su descripción detallada aquí.</p>
+                </div>
+            </section>
+
+            <!-- ========================== -->
+            <!-- ====== Herramientas ====== -->
+            <!-- ========================== -->
+            <section id="content-herramientas" class="section-content p-6 md:p-10 hidden">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Tecnologías y Herramientas</h2>
+                <p class="text-gray-700 mb-8 text-base md:text-lg">
+                    El ecosistema de ML está lleno de potentes herramientas, lenguajes y bibliotecas que facilitan el desarrollo. Aquí hay una selección de las más influyentes. Haga clic en cualquier tarjeta para obtener más información sobre esa herramienta.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Tarjeta de Herramienta -->
+                    <div class="tool-card p-5 bg-white rounded-lg shadow-md border border-gray-200" data-tool="python">
+                        <h3 class="text-xl font-semibold text-blue-700">Python</h3>
+                        <p class="text-sm text-gray-500 mt-1">Lenguaje de Programación</p>
+                    </div>
+                    <!-- Tarjeta de Herramienta -->
+                    <div class="tool-card p-5 bg-white rounded-lg shadow-md border border-gray-200" data-tool="scikit">
+                        <h3 class="text-xl font-semibold text-blue-700">Scikit-learn</h3>
+                        <p class="text-sm text-gray-500 mt-1">Biblioteca de ML Clásico</p>
+                    </div>
+                    <!-- Tarjeta de Herramienta -->
+                    <div class="tool-card p-5 bg-white rounded-lg shadow-md border border-gray-200" data-tool="tensorflow">
+                        <h3 class="text-xl font-semibold text-blue-700">TensorFlow</h3>
+                        <p class="text-sm text-gray-500 mt-1">Biblioteca de Deep Learning</p>
+                    </div>
+                    <!-- Tarjeta de Herramienta -->
+                    <div class="tool-card p-5 bg-white rounded-lg shadow-md border border-gray-200" data-tool="pytorch">
+                        <h3 class="text-xl font-semibold text-blue-700">PyTorch</h3>
+                        <p class="text-sm text-gray-500 mt-1">Biblioteca de Deep Learning</p>
+                    </div>
+                    <!-- Tarjeta de Herramienta -->
+                    <div class="tool-card p-5 bg-white rounded-lg shadow-md border border-gray-200" data-tool="pandas">
+                        <h3 class="text-xl font-semibold text-blue-700">Pandas</h3>
+                        <p class="text-sm text-gray-500 mt-1">Manipulación de Datos</p>
+                    </div>
+                    <!-- Tarjeta de Herramienta -->
+                    <div class="tool-card p-5 bg-white rounded-lg shadow-md border border-gray-200" data-tool="jupyter">
+                        <h3 class="text-xl font-semibold text-blue-700">Jupyter</h3>
+                        <p class="text-sm text-gray-500 mt-1">Entorno Interactivo</p>
+                    </div>
+                    <!-- Tarjeta de Herramienta -->
+                    <div class="tool-card p-5 bg-white rounded-lg shadow-md border border-gray-200" data-tool="r">
+                        <h3 class="text-xl font-semibold text-blue-700">R</h3>
+                        <p class="text-sm text-gray-500 mt-1">Lenguaje Estadístico</p>
+                    </div>
+                    <!-- Tarjeta de Herramienta -->
+                    <div class="tool-card p-5 bg-white rounded-lg shadow-md border border-gray-200" data-tool="aws">
+                        <h3 class="text-xl font-semibold text-blue-700">Cloud AI</h3>
+                        <p class="text-sm text-gray-500 mt-1">Plataformas en la Nube</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================== -->
+            <!-- ====== Aplicaciones ====== -->
+            <!-- ========================== -->
+            <section id="content-aplicaciones" class="section-content p-6 md:p-10 hidden">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Aplicaciones en el Mundo Real</h2>
+                <p class="text-gray-700 mb-8 text-base md:text-lg">
+                    El ML ya está transformando nuestro mundo. Desde cómo compramos hasta cómo nos comunicamos. Explore algunas aplicaciones comunes filtrando por categoría para ver cómo estas tecnologías impactan en la vida diaria.
+                </p>
+
+                <!-- Filtros de Aplicaciones -->
+                <div class="flex justify-center flex-wrap gap-2 mb-8">
+                    <button class="app-filter-btn py-2 px-4 rounded-full font-semibold bg-blue-600 text-white" data-filter="all">Todas</button>
+                    <button class="app-filter-btn py-2 px-4 rounded-full font-semibold bg-gray-200 text-gray-700" data-filter="vision">Visión por Computadora</button>
+                    <button class="app-filter-btn py-2 px-4 rounded-full font-semibold bg-gray-200 text-gray-700" data-filter="nlp">Lenguaje (NLP)</button>
+                    <button class="app-filter-btn py-2 px-4 rounded-full font-semibold bg-gray-200 text-gray-700" data-filter="negocios">Negocios y Comercio</button>
+                </div>
+
+                <!-- Rejilla de Aplicaciones -->
+                <div id="app-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Tarjeta de Aplicación -->
+                    <div class="app-card bg-white rounded-lg shadow border border-gray-100 p-5" data-category="negocios">
+                        <h3 class="text-xl font-semibold text-blue-700">Sistemas de Recomendación</h3>
+                        <p class="text-gray-600 mt-2">Plataformas como Netflix o Amazon sugieren productos o películas basándose en tu historial y el de usuarios similares.</p>
+                    </div>
+                    <!-- Tarjeta de Aplicación -->
+                    <div class="app-card bg-white rounded-lg shadow border border-gray-100 p-5" data-category="vision">
+                        <h3 class="text-xl font-semibold text-blue-700">Reconocimiento Facial</h3>
+                        <p class="text-gray-600 mt-2">Se utiliza en seguridad y para etiquetar automáticamente fotos en redes sociales o en la galería de tu teléfono.</p>
+                    </div>
+                    <!-- Tarjeta de Aplicación -->
+                    <div class="app-card bg-white rounded-lg shadow border border-gray-100 p-5" data-category="nlp">
+                        <h3 class="text-xl font-semibold text-blue-700">Traducción Automática</h3>
+                        <p class="text-gray-600 mt-2">Herramientas como Google Translate usan modelos de Deep Learning (NLP) para traducir texto y voz entre idiomas.</p>
+                    </div>
+                    <!-- Tarjeta de Aplicación -->
+                    <div class="app-card bg-white rounded-lg shadow border border-gray-100 p-5" data-category="nlp">
+                        <h3 class="text-xl font-semibold text-blue-700">Asistentes Virtuales</h3>
+                        <p class="text-gray-600 mt-2">Siri, Alexa y Google Assistant entienden comandos de voz y responden preguntas usando Procesamiento de Lenguaje Natural.</p>
+                    </div>
+                    <!-- Tarjeta de Aplicación -->
+                    <div class="app-card bg-white rounded-lg shadow border border-gray-100 p-5" data-category="negocios">
+                        <h3 class="text-xl font-semibold text-blue-700">Detección de Fraude</h3>
+                        <p class="text-gray-600 mt-2">Los bancos analizan patrones de transacciones en tiempo real para identificar y bloquear actividades fraudulentas.</p>
+                    </div>
+                    <!-- Tarjeta de Aplicación -->
+                    <div class="app-card bg-white rounded-lg shadow border border-gray-100 p-5" data-category="vision">
+                        <h3 class="text-xl font-semibold text-blue-700">Vehículos Autónomos</h3>
+                        <p class="text-gray-600 mt-2">Los coches usan Visión por Computadora para identificar peatones, señales de tráfico y otros vehículos para navegar.</p>
+                    </div>
+                     <!-- Tarjeta de Aplicación -->
+                    <div class="app-card bg-white rounded-lg shadow border border-gray-100 p-5" data-category="vision">
+                        <h3 class="text-xl font-semibold text-blue-700">Diagnóstico Médico</h3>
+                        <p class="text-gray-600 mt-2">Modelos de ML analizan imágenes médicas (rayos X, resonancias) para detectar signos tempranos de enfermedades.</p>
+                    </div>
+                     <!-- Tarjeta de Aplicación -->
+                    <div class="app-card bg-white rounded-lg shadow border border-gray-100 p-5" data-category="nlp">
+                        <h3 class="text-xl font-semibold text-blue-700">Filtros de Spam</h3>
+                        <p class="text-gray-600 mt-2">Los clientes de correo electrónico clasifican automáticamente los mensajes como 'spam' o 'importante' usando modelos de texto.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal de Herramientas -->
+    <div id="tool-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-lg p-6 md:p-8 relative">
+            <button id="modal-close-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            <h3 id="modal-title" class="text-3xl font-bold text-blue-700 mb-4"></h3>
+            <p id="modal-desc" class="text-gray-700 text-lg"></p>
+        </div>
+    </div>
+
+
+    <script>
+        // Configuración de la API de Gemini
+        const apiKey = ""; 
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+        // Función de utilidad para manejar la carga de la API
+        async function fetchWithExponentialBackoff(payload) {
+            const MAX_RETRIES = 5;
+            const INITIAL_DELAY = 1000; 
+
+            for (let i = 0; i < MAX_RETRIES; i++) {
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        return await response.json();
+                    } else if (response.status === 429 && i < MAX_RETRIES - 1) {
+                        const delay = INITIAL_DELAY * Math.pow(2, i);
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        continue;
+                    } else {
+                        throw new Error(`Error HTTP: ${response.status}`);
+                    }
+                } catch (error) {
+                    if (i === MAX_RETRIES - 1) {
+                        throw new Error(`Fallo en la conexión tras ${MAX_RETRIES} intentos: ${error.message}`);
+                    }
+                    const delay = INITIAL_DELAY * Math.pow(2, i);
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Lógica de Navegación por Pestañas ---
+            const navTabs = document.querySelectorAll('.nav-tab');
+            const contentSections = document.querySelectorAll('.section-content');
+            const rlGenerator = document.getElementById('rl-scenario-generator');
+
+            function switchTab(contentId) {
+                navTabs.forEach(t => {
+                    t.classList.remove('tab-active');
+                    t.classList.add('tab-inactive');
+                });
+                
+                const activeTab = document.querySelector(`[data-content="${contentId}"]`);
+                if (activeTab) {
+                    activeTab.classList.add('tab-active');
+                    activeTab.classList.remove('tab-inactive');
+                }
+
+                contentSections.forEach(section => {
+                    if (section.id === contentId) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+                
+                // Mostrar/Ocultar el generador RL (solo si estamos en Métodos y está seleccionado Reforzado)
+                const isReinforcementLearningSelected = document.querySelector('.method-btn[data-method="reforzado"]').classList.contains('bg-blue-600');
+                
+                if (contentId === 'content-metodos' && isReinforcementLearningSelected) {
+                    rlGenerator.classList.remove('hidden');
+                } else {
+                    rlGenerator.classList.add('hidden');
+                }
+            }
+
+            navTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    switchTab(tab.dataset.content);
+                });
+            });
+
+            // --- Lógica Feature 1: Asistente de Definiciones ---
+            const definitionQuery = document.getElementById('definition-query');
+            const generateDefinitionBtn = document.getElementById('generate-definition-btn');
+            const definitionBtnText = document.getElementById('definition-btn-text');
+            const definitionLoader = document.getElementById('definition-loader');
+            const definitionOutput = document.getElementById('definition-output');
+
+            generateDefinitionBtn.addEventListener('click', async () => {
+                const query = definitionQuery.value.trim();
+                if (!query) {
+                    definitionOutput.textContent = "Por favor, introduce un concepto para definir.";
+                    return;
+                }
+                
+                definitionBtnText.textContent = "Generando...";
+                definitionLoader.classList.remove('hidden');
+                generateDefinitionBtn.disabled = true;
+                definitionOutput.textContent = "Consultando a Gemini...";
+
+                const systemPrompt = "Eres un tutor experto en Machine Learning. Responde a la pregunta del usuario con una explicación concisa y clara, de no más de 3 frases, sobre el concepto de ML solicitado. Usa un tono informativo y profesional.";
+                const userQuery = `Define el concepto: ${query}`;
+                
+                const payload = {
+                    contents: [{ parts: [{ text: userQuery }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                };
+
+                try {
+                    const result = await fetchWithExponentialBackoff(payload);
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text || "No se pudo generar una definición. Inténtalo de nuevo.";
+                    definitionOutput.textContent = text;
+                } catch (error) {
+                    definitionOutput.textContent = `Error: ${error.message}`;
+                } finally {
+                    definitionBtnText.textContent = "Generar Definición";
+                    definitionLoader.classList.add('hidden');
+                    generateDefinitionBtn.disabled = false;
+                }
+            });
+
+            // --- Lógica de la Sección de Métodos (Incluye Feature 2) ---
+            const methodButtons = document.querySelectorAll('.method-btn');
+            const methodTitle = document.getElementById('method-title');
+            const methodDesc = document.getElementById('method-desc');
+            const methodAlgos = document.getElementById('method-algos');
+            let metodosChart = null;
+            
+            // Elementos del Generador RL (Feature 2)
+            const rlQuery = document.getElementById('rl-query');
+            const generateRlBtn = document.getElementById('generate-rl-btn');
+            const rlBtnText = document.getElementById('rl-btn-text');
+            const rlLoader = document.getElementById('rl-loader');
+            const rlScenarioText = document.getElementById('rl-scenario-text');
+
+            const methodData = {
+                'supervisado': {
+                    title: 'Aprendizaje Supervisado',
+                    desc: 'En el aprendizaje supervisado, el algoritmo aprende de un conjunto de datos "etiquetados". Cada dato de entrada tiene una "respuesta correcta". El objetivo es aprender una regla que mapee las entradas a las salidas.',
+                    algos: ['Regresión Lineal', 'Máquinas de Vectores de Soporte (SVM)', 'Árboles de Decisión', 'K-Vecinos más Cercanos (KNN)'],
+                    chart: {
+                        labels: ['Clasificación', 'Regresión'],
+                        data: [65, 35],
+                        colors: ['#3b82f6', '#10b981']
+                    }
+                },
+                'no-supervisado': {
+                    title: 'Aprendizaje No Supervisado',
+                    desc: 'Aquí, el algoritmo trabaja con datos "no etiquetados". El objetivo es encontrar estructuras, patrones o agrupaciones ocultas en los datos, sin una respuesta correcta predefinida.',
+                    algos: ['K-Means', 'Agrupamiento Jerárquico', 'Análisis de Componentes Principales (PCA)', 'DBSCAN'],
+                    chart: {
+                        labels: ['Agrupamiento (Clustering)', 'Reducción de Dimensión', 'Detección de Anomalías'],
+                        data: [50, 30, 20],
+                        colors: ['#f59e0b', '#8b5cf6', '#ec4899']
+                    }
+                },
+                'reforzado': {
+                    title: 'Aprendizaje por Refuerzo',
+                    desc: 'En este método, un "agente" aprende a tomar decisiones interactuando con un entorno. Recibe "recompensas" por acciones buenas y "castigos" por acciones malas, optimizando su estrategia para maximizar la recompensa total.',
+                    algos: ['Q-Learning', 'SARSA', 'Redes de Políticas (Policy Gradients)', 'DQN (Deep Q-Network)'],
+                    chart: {
+                        labels: ['Robótica', 'Juegos (Ej. Go, Ajedrez)', 'Optimización de Rutas'],
+                        data: [40, 35, 25],
+                        colors: ['#ef4444', '#6366f1', '#84cc16']
+                    }
+                }
+            };
+
+            function updateMethodContent(method) {
+                const data = methodData[method];
+
+                methodTitle.textContent = data.title;
+                methodDesc.textContent = data.desc;
+                methodAlgos.innerHTML = data.algos.map(algo => `<li>${algo}</li>`).join('');
+
+                methodButtons.forEach(btn => {
+                    if (btn.dataset.method === method) {
+                        btn.classList.add('bg-blue-600', 'text-white', 'shadow-md');
+                        btn.classList.remove('bg-gray-200', 'text-gray-700');
+                    } else {
+                        btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
+                        btn.classList.add('bg-gray-200', 'text-gray-700');
+                    }
+                });
+
+                updateChart(data.chart);
+                
+                // Mostrar/Ocultar el generador RL
+                if (method === 'reforzado') {
+                    rlGenerator.classList.remove('hidden');
+                } else {
+                    rlGenerator.classList.add('hidden');
+                }
+            }
+            
+            function updateChart(data) {
+                if (metodosChart) {
+                    metodosChart.data.labels = data.labels;
+                    metodosChart.data.datasets[0].data = data.data;
+                    metodosChart.data.datasets[0].backgroundColor = data.colors;
+                    metodosChart.update();
+                }
+            }
+
+            methodButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    updateMethodContent(btn.dataset.method);
+                });
+            });
+
+            const ctx = document.getElementById('metodosChart').getContext('2d');
+            const initialData = methodData['supervisado'].chart;
+            metodosChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: initialData.labels,
+                    datasets: [{
+                        data: initialData.data,
+                        backgroundColor: initialData.colors,
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 15,
+                                font: { size: 12 }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Lógica de la Feature 2: Generador de Escenarios RL
+            generateRlBtn.addEventListener('click', async () => {
+                const query = rlQuery.value.trim();
+                if (!query) {
+                    rlScenarioText.textContent = "Por favor, introduce una idea para el escenario (Ej: 'un juego de plataforma').";
+                    return;
+                }
+                
+                rlBtnText.textContent = "Creando...";
+                rlLoader.classList.remove('hidden');
+                generateRlBtn.disabled = true;
+                rlScenarioText.innerHTML = "Consultando a Gemini para generar el escenario...";
+
+                const systemPrompt = "Eres un arquitecto de sistemas de Aprendizaje por Refuerzo. Tu tarea es convertir la solicitud del usuario en un escenario RL estructurado. El resultado debe ser un texto bien formateado con saltos de línea y negritas, que identifique claramente los siguientes cuatro componentes en español: Agente, Entorno, Acciones y Recompensa.";
+                const userQuery = `Genera un escenario de Aprendizaje por Refuerzo para: ${query}`;
+                
+                const payload = {
+                    contents: [{ parts: [{ text: userQuery }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                };
+
+                try {
+                    const result = await fetchWithExponentialBackoff(payload);
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text || "No se pudo generar el escenario. Inténtalo de nuevo con otra idea.";
+                    rlScenarioText.innerHTML = text.replace(/\n/g, '<br>'); // Mantener saltos de línea
+                } catch (error) {
+                    rlScenarioText.textContent = `Error: ${error.message}`;
+                } finally {
+                    rlBtnText.textContent = "Crear Escenario RL";
+                    rlLoader.classList.add('hidden');
+                    generateRlBtn.disabled = false;
+                }
+            });
+
+
+            
+            // --- Lógica de la Sección de Proceso ---
+            const processSteps = document.querySelectorAll('.process-step');
+            const processTitle = document.getElementById('process-title');
+            const processDesc = document.getElementById('process-desc');
+            
+            const processData = {
+                'step-1': {
+                    title: '1. Recolección de Datos',
+                    desc: 'El primer paso es adquirir los datos necesarios. Esto puede implicar consultar bases de datos, usar APIs, descargar archivos o crear datos a través de encuestas o experimentos.'
+                },
+                'step-2': {
+                    title: '2. Preparación de Datos',
+                    desc: 'A menudo, este es el paso que más tiempo consume. Incluye la limpieza de datos (manejar valores faltantes, errores), la transformación (normalización, escalado) y la ingeniería de características (crear nuevas variables predictivas).'
+                },
+                'step-3': {
+                    title: '3. Entrenamiento del Modelo',
+                    desc: 'Aquí es donde "aprende" el algoritmo. Se seleccionan uno o varios modelos (ej. Regresión Lineal, Red Neuronal) y se les alimenta con los datos de entrenamiento. El modelo ajusta sus parámetros internos para minimizar el error en sus predicciones.'
+                },
+                'step-4': {
+                    title: '4. Evaluación del Modelo',
+                    desc: 'Una vez entrenado, el modelo debe ser evaluado con datos que nunca ha visto (datos de prueba). Se utilizan métricas (como precisión, exactitud, R²) para medir qué tan bien generaliza y realiza su tarea.'
+                },
+                'step-5': {
+                    title: '5. Despliegue e Inferencia',
+                    desc: 'El modelo final se integra en una aplicación o sistema (despliegue) para que pueda hacer predicciones sobre datos nuevos del mundo real (inferencia). Este paso también incluye el monitoreo continuo del rendimiento del modelo.'
+                }
+            };
+            
+            processSteps.forEach(step => {
+                step.addEventListener('click', () => {
+                    const data = processData[step.id];
+                    processTitle.textContent = data.title;
+                    processDesc.textContent = data.desc;
+                    
+                    processSteps.forEach(s => s.classList.remove('process-step-active'));
+                    step.classList.add('process-step-active');
+                });
+            });
+
+            // --- Lógica de la Sección de Herramientas (Modal) ---
+            const toolCards = document.querySelectorAll('.tool-card');
+            const modal = document.getElementById('tool-modal');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDesc = document.getElementById('modal-desc');
+
+            const toolData = {
+                'python': { title: 'Python', desc: 'Es el lenguaje de programación dominante en ciencia de datos y ML gracias a su sintaxis simple y su vasto ecosistema de bibliotecas.' },
+                'scikit': { title: 'Scikit-learn', desc: 'La biblioteca de referencia para el ML "clásico". Proporciona herramientas eficientes para minería de datos y análisis de datos, incluyendo algoritmos de clasificación, regresión, clustering y más.' },
+                'tensorflow': { title: 'TensorFlow', desc: 'Desarrollado por Google, es una plataforma de extremo a extremo para el ML, especialmente popular para el Deep Learning y el despliegue de modelos a gran escala.' },
+                'pytorch': { title: 'PyTorch', desc: 'Desarrollado por Facebook (Meta), es la otra gran biblioteca de Deep Learning. Es conocida por su flexibilidad y su enfoque "pythonico", siendo muy popular en la investigación.' },
+                'pandas': { title: 'Pandas', desc: 'Una biblioteca esencial para la manipulación y análisis de datos. Proporciona estructuras de datos de alto rendimiento y fáciles de usar, como los DataFrames.' },
+                'jupyter': { title: 'Jupyter Notebooks', desc: 'Un entorno de desarrollo interactivo basado en la web que permite crear y compartir documentos con código en vivo, ecuaciones, visualizaciones y texto narrativo.' },
+                'r': { title: 'Lenguaje R', desc: 'Un lenguaje y entorno enfocado en la computación estadística y gráficos. Es muy potente y preferido por muchos estadísticos y académicos.' },
+                'aws': { title: 'Cloud AI (AWS, GCP, Azure)', desc: 'Las plataformas en la nube ofrecen servicios de ML gestionados (como SageMaker, Vertex AI) que permiten entrenar y desplegar modelos a escala sin gestionar la infraestructura subyacente.' }
+            };
+
+            toolCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const data = toolData[card.dataset.tool];
+                    modalTitle.textContent = data.title;
+                    modalDesc.textContent = data.desc;
+                    modal.classList.remove('hidden');
+                });
+            });
+
+            modalCloseBtn.addEventListener('click', () => {
+                modal.classList.add('hidden');
+            });
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.add('hidden');
+                }
+            });
+
+            // --- Lógica de la Sección de Aplicaciones (Filtro) ---
+            const filterButtons = document.querySelectorAll('.app-filter-btn');
+            const appCards = document.querySelectorAll('.app-card');
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filter = btn.dataset.filter;
+                    
+                    filterButtons.forEach(b => {
+                        if (b === btn) {
+                            b.classList.add('bg-blue-600', 'text-white');
+                            b.classList.remove('bg-gray-200', 'text-gray-700');
+                        } else {
+                            b.classList.remove('bg-blue-600', 'text-white');
+                            b.classList.add('bg-gray-200', 'text-gray-700');
+                        }
+                    });
+
+                    appCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+            
+            // Inicializar con la pestaña "Inicio" y el contenido de "supervisado"
+            updateMethodContent('supervisado');
+            switchTab('content-inicio');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorador de Proyectos de ML</title>
+    <!-- Chosen Palette: Academic Calm -->
+    <!-- Application Structure Plan: El SPA está diseñado como un "explorador de ideas" interactivo. La estructura principal consiste en una barra de navegación con filtros y una cuadrícula de "tarjetas" de proyectos. Esta arquitectura fue elegida porque el objetivo del usuario (un estudiante) es explorar y comparar muchas ideas discretas (los 60 proyectos). Los filtros interactivos (por tipo de tarea de ML) permiten al usuario reducir el ruido y enfocarse en las categorías que le interesan, facilitando la toma de decisiones. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FIX: Se actualiza el enlace de Plotly a una versión específica (2.30.0) para resolver la advertencia de 'plotly-latest.min.js'. -->
+    <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb; /* bg-gray-50 */
+            color: #1f2937; /* text-gray-800 */
+        }
+        .filter-btn {
+            transition: all 0.2s ease-in-out;
+            border: 2px solid transparent;
+        }
+        .filter-btn.active {
+            background-color: #4f46e5; /* bg-indigo-600 */
+            color: #ffffff; /* text-white */
+            border-color: #4f46e5; /* border-indigo-600 */
+        }
+        .filter-btn:not(.active):hover {
+            background-color: #eef2ff; /* bg-indigo-50 */
+            color: #4338ca; /* text-indigo-700 */
+        }
+        .project-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border: 1px solid #e5e7eb; /* border-gray-200 */
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        /* Estilos específicos para las nuevas categorías */
+        .bg-gray-700 { background-color: #374151; }
+        .text-gray-100 { color: #f3f4f6; }
+    </style>
+</head>
+<body class="h-full">
+    <div class="flex flex-col min-h-screen">
+        
+        <header class="bg-white shadow-sm w-full">
+            <div class="container mx-auto px-4 py-6">
+                <h1 class="text-3xl font-bold text-indigo-600 text-center">Explorador de Proyectos Finales</h1>
+                <p class="text-lg text-gray-600 text-center mt-1">60 Ideas para Aprendizaje Automático de Pregrado</p>
+            </div>
+        </header>
+
+        <div class="container mx-auto px-4 py-8">
+            <p class="text-center text-gray-700 max-w-3xl mx-auto">
+                Aquí tienes 60 ideas de proyectos finales, cubriendo el espectro desde ML clásico hasta introducciones a Deep Learning, Series de Tiempo y Sistemas de Recomendación. Utiliza los filtros para explorar.
+            </p>
+        </div>
+
+        <nav class="sticky top-0 bg-gray-50 z-10 shadow-sm py-4 mb-8">
+            <div id="filter-nav" class="container mx-auto px-4 flex flex-wrap justify-center gap-2">
+                <button class="filter-btn active font-medium py-2 px-4 rounded-full" data-filter="all">Todos (60)</button>
+                <button class="filter-btn font-medium py-2 px-4 rounded-full" data-filter="clasificacion">Clasificación (15)</button>
+                <button class="filter-btn font-medium py-2 px-4 rounded-full" data-filter="regresion">Regresión (15)</button>
+                <button class="filter-btn font-medium py-2 px-4 rounded-full" data-filter="agrupamiento">Agrupamiento (8)</button>
+                <button class="filter-btn font-medium py-2 px-4 rounded-full" data-filter="nlp">NLP (7)</button>
+                <button class="filter-btn font-medium py-2 px-4 rounded-full" data-filter="cv">Visión por Computadora (7)</button>
+                <button class="filter-btn font-medium py-2 px-4 rounded-full" data-filter="series-tiempo">Series de Tiempo (4)</button>
+                <button class="filter-btn font-medium py-2 px-4 rounded-full" data-filter="recomendacion">Recomendación (4)</button>
+            </div>
+        </nav>
+
+        <main id="project-grid" class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-grow">
+        </main>
+
+        <section id="resources" class="bg-white border-t border-gray-200 mt-16 py-12">
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl font-bold text-indigo-600 text-center mb-8">Recursos Generales Gratuitos</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Plataformas y Entornos</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">➔</span>
+                                <a href="https://colab.research.google.com/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-indigo-600 underline">Google Colab:</a>
+                                <span class="text-gray-600 ml-1">Notebooks Jupyter gratuitos con acceso a GPU/TPU.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">➔</span>
+                                <a href="https://www.kaggle.com/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-indigo-600 underline">Kaggle:</a>
+                                <span class="text-gray-600 ml-1">Plataforma con datasets, notebooks y competiciones.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">➔</span>
+                                <a href="https://jupyter.org/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-indigo-600 underline">Jupyter Notebook/Lab:</a>
+                                <span class="text-gray-600 ml-1">Para desarrollo local e interactivo.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Frameworks y Librerías</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">➔</span>
+                                <a href="https://scikit-learn.org/stable/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-indigo-600 underline">Scikit-learn:</a>
+                                <span class="text-gray-600 ml-1">Esencial para ML clásico (casi todo en esta lista).</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">➔</span>
+                                <a href="https://pandas.pydata.org/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-indigo-600 underline">Pandas:</a>
+                                <span class="text-gray-600 ml-1">Para manipulación y análisis de datos.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">➔</span>
+                                <a href="https://www.tensorflow.org/api_docs/python/tf/keras" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-indigo-600 underline">TensorFlow/Keras:</a>
+                                <span class="text-gray-600 ml-1">Para proyectos de Deep Learning (CV, NLP).</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">➔</span>
+                                <a href="https://opencv.org/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-indigo-600 underline">OpenCV:</a>
+                                <span class="text-gray-600 ml-1">Librería clásica para tareas de Visión por Computadora.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">➔</span>
+                                <a href="https://www.statsmodels.org/stable/index.html" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-indigo-600 underline">Statsmodels/Prophet:</a>
+                                <span class="text-gray-600 ml-1">Para Series de Tiempo (ARIMA, FBProphet).</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Fuentes de Datasets</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">➔</span>
+                                <a href="https://archive.ics.uci.edu/ml/index.php" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-indigo-600 underline">UCI Machine Learning Repository:</a>
+                                <span class="text-gray-600 ml-1">Datasets clásicos para benchmarking.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">➔</span>
+                                <a href="https://www.kaggle.com/datasets" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-indigo-600 underline">Kaggle Datasets:</a>
+                                <span class="text-gray-600 ml-1">Miles de datasets públicos y variados.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">➔</span>
+                                <a href="https://datasetsearch.research.google.com/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-indigo-600 underline">Google Dataset Search:</a>
+                                <span class="text-gray-600 ml-1">Un motor de búsqueda para datasets.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">➔</span>
+                                <a href="https://www.fma.gov/data/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-indigo-600 underline">Fuentes gubernamentales abiertas:</a>
+                                <span class="text-gray-600 ml-1">Datos socioeconómicos, demográficos y financieros.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-gray-800 text-gray-300 py-4 mt-auto">
+            <div class="container mx-auto px-4 text-center text-sm">
+                Aplicación SPA generada para un curso de Introducción al ML.
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const projects = [
+            // Proyectos originales (1-20)
+            {
+                category: "clasificacion",
+                title: "Predicción de Fuga de Clientes (Churn)",
+                description: "Construir un modelo para predecir qué clientes de un servicio (ej. telecomunicaciones) son propensos a cancelar su suscripción.",
+                resources: [
+                    { name: "Dataset de Churn en Kaggle", url: "https://www.kaggle.com/datasets/blastchar/telco-customer-churn" },
+                    { name: "Modelos", url: "#" , text: "Regresión Logística, k-NN, Árboles de Decisión" }
+                ]
+            },
+            {
+                category: "clasificacion",
+                title: "Clasificador de Spam en Emails",
+                description: "Desarrollar un modelo que clasifique automáticamente los correos electrónicos como 'spam' o 'no spam' basándose en su contenido.",
+                resources: [
+                    { name: "Dataset Spambase (UCI)", url: "https://archive.ics.uci.edu/ml/datasets/spambase" },
+                    { name: "Modelos", url: "#", text: "Naive Bayes, SVM, TF-IDF" }
+                ]
+            },
+            {
+                category: "clasificacion",
+                title: "Diagnóstico Médico Básico",
+                description: "Usar datos de pacientes (ej. niveles de glucosa, presión arterial) para predecir la presencia o ausencia de una enfermedad (ej. diabetes).",
+                resources: [
+                    { name: "Dataset Diabetes (UCI)", url: "https://archive.ics.uci.edu/ml/datasets/pima+indians+diabetes" },
+                    { name: "Modelos", url: "#", text: "SVM, Random Forest, Regresión Logística" }
+                ]
+            },
+            {
+                category: "clasificacion",
+                title: "Análisis de Sentimiento Básico",
+                description: "Clasificar reseñas de productos o películas como 'positivas' o 'negativas' analizando el texto de la reseña.",
+                resources: [
+                    { name: "Dataset IMDb (Kaggle)", url: "https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews" },
+                    { name: "Modelos", url: "#", text: "Naive Bayes, Regresión Logística con TF-IDF" }
+                ]
+            },
+            {
+                category: "clasificacion",
+                title: "Reconocimiento de Dígitos (MNIST)",
+                description: "Un proyecto clásico. Construir un modelo que identifique correctamente dígitos escritos a mano (0-9) a partir de imágenes.",
+                resources: [
+                    { name: "Dataset MNIST (Scikit-learn)", url: "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html" },
+                    { name: "Modelos", url: "#", text: "k-NN, SVM, Red Neuronal Básica (Keras)" }
+                ]
+            },
+            {
+                category: "regresion",
+                title: "Predicción del Precio de Viviendas",
+                description: "Estimar el precio de venta de una vivienda basándose en características como el número de habitaciones, tamaño, ubicación, etc.",
+                resources: [
+                    { name: "Dataset California Housing (Scikit-learn)", url: "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_california_housing.html" },
+                    { name: "Modelos", url: "#", text: "Regresión Lineal, Ridge/Lasso, SVR" }
+                ]
+            },
+            {
+                category: "regresion",
+                title: "Estimación de Consumo de Combustible",
+                description: "Predecir las 'millas por galón' (MPG) de un automóvil basándose en sus especificaciones técnicas (ej. cilindros, peso, potencia).",
+                resources: [
+                    { name: "Dataset Auto MPG (UCI)", url: "https://archive.ics.uci.edu/ml/datasets/auto+mpg" },
+                    { name: "Modelos", url: "#", text: "Regresión Lineal Múltiple, Regresión Polinómica" }
+                ]
+            },
+            {
+                category: "regresion",
+                title: "Predicción de Calificaciones de Estudiantes",
+                description: "Estimar la calificación final de un estudiante en un curso basándose en datos demográficos, de estudio y calificaciones previas.",
+                resources: [
+                    { name: "Dataset Student Performance (UCI)", url: "https://archive.ics.uci.edu/ml/datasets/student+performance" },
+                    { name: "Modelos", url: "#", text: "Regresión Lineal Múltiple, Random Forest Regressor" }
+                ]
+            },
+            {
+                category: "regresion",
+                title: "Estimación de la Edad de Abulones",
+                description: "Predecir la edad (número de anillos) de un abulón a partir de sus medidas físicas (longitud, diámetro, peso).",
+                resources: [
+                    { name: "Dataset Abalone (UCI)", url: "https://archive.ics.uci.edu/ml/datasets/abalone" },
+                    { name: "Modelos", url: "#", text: "Regresión Lineal, k-NN Regressor" }
+                ]
+            },
+            {
+                category: "regresion",
+                title: "Predicción de Salario por Experiencia",
+                description: "Un proyecto introductorio simple para predecir el salario de un empleado basándose únicamente en sus años de experiencia.",
+                resources: [
+                    { name: "Dataset Salario (Kaggle)", url: "https://www.kaggle.com/datasets/rsadiq/salary-data-simple-linear-regression" },
+                    { name: "Modelos", url: "#", text: "Regresión Lineal Simple" }
+                ]
+            },
+            {
+                category: "agrupamiento",
+                title: "Segmentación de Clientes",
+                description: "Agrupar a los clientes de un centro comercial en distintos segmentos (ej. 'ahorradores', 'grandes gastadores') basándose en sus hábitos de compra.",
+                resources: [
+                    { name: "Dataset Mall Customers (Kaggle)", url: "https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python" },
+                    { name: "Modelos", url: "#", text: "K-Means (usar el método del codo)" }
+                ]
+            },
+            {
+                category: "agrupamiento",
+                title: "Agrupamiento de Países",
+                description: "Agrupar países en categorías (ej. 'en desarrollo', 'desarrollados') utilizando indicadores socioeconómicos como PIB, esperanza de vida, etc.",
+                resources: [
+                    { name: "Dataset Países (Kaggle)", url: "https://www.kaggle.com/datasets/rohan0702/unsupervised-learning-on-country-data" },
+                    { name: "Modelos", url: "#", text: "K-Means, Clustering Jerárquico" }
+                ]
+            },
+            {
+                category: "agrupamiento",
+                title: "Compresión de Imágenes (Cuantización de Color)",
+                description: "Usar K-Means para reducir el número de colores en una imagen, agrupando colores similares en 'K' centroides de color.",
+                resources: [
+                    { name: "Dataset", url: "#", text: "Cualquier imagen digital (JPG, PNG)" },
+                    { name: "Modelos", url: "#", text: "K-Means (sobre los píxeles RGB)" }
+                ]
+            },
+            {
+                category: "agrupamiento",
+                title: "Agrupamiento de Especies (Iris)",
+                description: "Usar el famoso dataset Iris para agrupar las flores en clusters (K=3) basándose en las medidas de sus pétalos y sépalos, y comparar con las etiquetas reales.",
+                resources: [
+                    { name: "Dataset Iris (Scikit-learn)", url: "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html" },
+                    { name: "Modelos", url: "#", text: "K-Means, PCA para visualización" }
+                ]
+            },
+            {
+                category: "nlp",
+                title: "Clasificador de Noticias por Categoría",
+                description: "Clasificar artículos de noticias en categorías predefinidas (ej. 'deportes', 'tecnología', 'política') basándose en el texto del artículo.",
+                resources: [
+                    { name: "Dataset 20 Newsgroups (Scikit-learn)", url: "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups.html" },
+                    { name: "Modelos", url: "#", text: "Naive Bayes Multinomial, SVM con TF-IDF" }
+                ]
+            },
+            {
+                category: "nlp",
+                title: "Análisis de Frecuencia de Palabras y N-gramas",
+                description: "Realizar un análisis exploratorio (EDA) sobre un corpus de texto (ej. un libro) para encontrar las palabras y frases (n-gramas) más comunes.",
+                resources: [
+                    { name: "Dataset (Project Gutenberg)", url: "https://www.gutenberg.org/" },
+                    { name: "Modelos", url: "#", text: "CountVectorizer, TF-IDF (de Scikit-learn)" }
+                ]
+            },
+            {
+                category: "nlp",
+                title: "Generador de Texto con Cadenas de Markov",
+                description: "Implementar un modelo simple de Cadenas de Markov para generar nuevo texto que imite el estilo de un autor o corpus de entrada.",
+                resources: [
+                    { name: "Dataset (Project Gutenberg)", url: "https://www.gutenberg.org/" },
+                    { name: "Modelos", url: "#", text: "Implementación de Cadena de Markov (Python)" }
+                ]
+            },
+            {
+                category: "cv",
+                title: "Clasificador de Ropa (Fashion MNIST)",
+                description: "Una alternativa a MNIST. Clasificar imágenes de baja resolución de artículos de ropa (camisetas, pantalones, zapatillas) en 10 categorías.",
+                resources: [
+                    { name: "Dataset Fashion MNIST (Keras)", url: "https://www.tensorflow.org/api_docs/python/tf/keras/datasets/fashion_mnist" },
+                    { name: "Modelos", url: "#", text: "k-NN, Red Neuronal Densa, CNN Básica (Keras)" }
+                ]
+            },
+            {
+                category: "cv",
+                title: "Detección de Caras (Haar Cascades)",
+                description: "Usar la librería OpenCV para implementar un detector de caras en tiempo real (usando la cámara web) o en imágenes estáticas.",
+                resources: [
+                    { name: "Librería OpenCV", url: "https://opencv.org/" },
+                    { name: "Modelos", url: "#", text: "Clasificadores en cascada Haar (pre-entrenados)" }
+                ]
+            },
+            {
+                category: "cv",
+                title: "Clasificador Básico de Perros vs. Gatos",
+                description: "Construir una Red Neuronal Convolucional (CNN) simple para clasificar imágenes como si contienen un 'perro' o un 'gato'.",
+                resources: [
+                    { name: "Dataset Perros vs Gatos (Kaggle)", url: "https://www.kaggle.com/c/dogs-vs-cats" },
+                    { name: "Modelos", url: "#", text: "CNN Básica (Keras/TensorFlow)" }
+                ]
+            },
+            // Proyectos agregados en la iteración 2 (21-40)
+            {
+                category: "clasificacion",
+                title: "Detección de Fraude en Transacciones",
+                description: "Clasificar transacciones financieras como fraudulentas o legítimas basándose en el historial de transacciones y características del usuario.",
+                resources: [
+                    { name: "Dataset de Fraude de Tarjetas (Kaggle)", url: "https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud" },
+                    { name: "Modelos", url: "#", text: "SVM, Árboles de Decisión, manejo de desbalance de clases" }
+                ]
+            },
+            {
+                category: "clasificacion",
+                title: "Clasificador de Especies de Setas",
+                description: "Predecir si una seta es comestible o venenosa utilizando atributos morfológicos (color, forma del tallo, olor, etc.).",
+                resources: [
+                    { name: "Dataset Mushroom (UCI)", url: "https://archive.ics.uci.edu/ml/datasets/mushroom" },
+                    { name: "Modelos", url: "#", text: "Naive Bayes, Árbol de Decisión (ID3, C4.5)" }
+                ]
+            },
+            {
+                category: "clasificacion",
+                title: "Predicción de Ataque al Corazón",
+                description: "Clasificar pacientes con riesgo de ataque cardíaco usando datos clínicos como colesterol, presión arterial y edad.",
+                resources: [
+                    { name: "Dataset Heart Disease (UCI)", url: "https://archive.ics.uci.edu/ml/datasets/heart+disease" },
+                    { name: "Modelos", url: "#", text: "Regresión Logística, Random Forest" }
+                ]
+            },
+            {
+                category: "clasificacion",
+                title: "Clasificación de Género por Voz",
+                description: "Determinar el género de un hablante basándose en propiedades acústicas de la voz (frecuencia media, desviación estándar, etc.).",
+                resources: [
+                    { name: "Dataset Voice Gender (Kaggle)", url: "https://www.kaggle.com/datasets/primaryobjects/voicegender" },
+                    { name: "Modelos", url: "#", text: "SVM, k-NN" }
+                ]
+            },
+            {
+                category: "clasificacion",
+                title: "Clasificador de Tipo de Vino",
+                description: "Clasificar vinos en una de tres categorías basándose en un análisis químico de sus propiedades.",
+                resources: [
+                    { name: "Dataset Wine (Scikit-learn)", url: "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_wine.html" },
+                    { name: "Modelos", url: "#", text: "LDA, QDA, k-NN" }
+                ]
+            },
+            {
+                category: "regresion",
+                title: "Predicción de la Demanda de Bicicletas Compartidas",
+                description: "Predecir el número total de alquileres de bicicletas en un día específico, usando variables como clima, día de la semana y festivos.",
+                resources: [
+                    { name: "Dataset Bike Sharing Demand (Kaggle)", url: "https://www.kaggle.com/datasets/lakshmi25npathi/bike-sharing-demand" },
+                    { name: "Modelos", url: "#", text: "Regresión Lineal, Modelos de Bosque" }
+                ]
+            },
+            {
+                category: "regresion",
+                title: "Estimación del Nivel de Contaminación del Aire",
+                description: "Predecir el nivel de contaminantes (ej. CO o PM2.5) basándose en factores meteorológicos y datos históricos.",
+                resources: [
+                    { name: "Dataset Air Quality (UCI)", url: "https://archive.ics.uci.edu/ml/datasets/Air+Quality" },
+                    { name: "Modelos", url: "#", text: "Regresión Ridge, Gradient Boosting" }
+                ]
+            },
+            {
+                category: "regresion",
+                title: "Predicción de Expectativa de Vida",
+                description: "Estimar la expectativa de vida de un país basándose en factores de salud, económicos y sociales.",
+                resources: [
+                    { name: "Dataset Life Expectancy (Kaggle)", url: "https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who" },
+                    { name: "Modelos", url: "#", text: "Regresión Múltiple, Feature Selection" }
+                ]
+            },
+            {
+                category: "regresion",
+                title: "Predicción de la Valoración de Restaurantes",
+                description: "Estimar la puntuación promedio de un restaurante basándose en su ubicación, tipo de cocina y número de reseñas.",
+                resources: [
+                    { name: "Dataset Restaurantes (Kaggle)", url: "https://www.kaggle.com/datasets/uciml/restaurant-ratings" },
+                    { name: "Modelos", url: "#", text: "Regresión Polinómica, Regresión con variables categóricas" }
+                ]
+            },
+            {
+                category: "regresion",
+                title: "Estimación de Cajas en el Supermercado (Transaction Tiers)",
+                description: "Predecir el número de cajas registradoras abiertas basándose en la hora del día y el día de la semana para minimizar el tiempo de espera.",
+                resources: [
+                    { name: "Dataset Retail Data (Simulado)", url: "#", text: "Crear un dataset simulado simple (tiempo, día, clientes)" }
+                ]
+            },
+            {
+                category: "agrupamiento",
+                title: "Detección de Anomalías en Tráfico de Red",
+                description: "Utilizar algoritmos de agrupamiento para identificar patrones inusuales o anomalías que puedan indicar un ataque de red o un fallo.",
+                resources: [
+                    { name: "Dataset KDD Cup 1999", url: "http://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html" },
+                    { name: "Modelos", url: "#", text: "One-Class SVM, K-Means (como detector de outliers)" }
+                ]
+            },
+            {
+                category: "agrupamiento",
+                title: "Agrupamiento de Artículos de Wikipedia",
+                description: "Aplicar agrupamiento a las representaciones TF-IDF de artículos de Wikipedia (o noticias) para agrupar temas similares.",
+                resources: [
+                    { name: "Dataset Wikipedia Articles", url: "#", text: "Utilizar el dataset 20 Newsgroups o descargar resúmenes de Wiki" }
+                ]
+            },
+            {
+                category: "nlp",
+                title: "Etiquetado de Parte de la Oración (POS Tagging)",
+                description: "Implementar un etiquetador de partes de la oración básico (ej. utilizando HMM o un modelo de n-gramas) para identificar verbos, sustantivos, etc.",
+                resources: [
+                    { name: "Corpus NLTK (Brown/Penn Treebank)", url: "https://www.nltk.org/nltk_data/" },
+                    { name: "Modelos", url: "#", text: "NLTK POS Tagger, HMM básico" }
+                ]
+            },
+            {
+                category: "nlp",
+                title: "Extracción de Entidades Nombradas (NER) con reglas",
+                description: "Crear un sistema simple basado en reglas o expresiones regulares para identificar entidades (personas, lugares, fechas) en un texto dado.",
+                resources: [
+                    { name: "Dataset CoNLL-2003 (para comparación)", url: "https://www.clips.uantwerpen.be/conll2003/ner/" },
+                    { name: "Modelos", url: "#", text: "RegEx, Tokenización (NLTK/spaCy básico)" }
+                ]
+            },
+            {
+                category: "cv",
+                title: "Reconocimiento de Formas Geométricas",
+                description: "Usar contornos y simplificación de polígonos de OpenCV para identificar formas básicas (círculos, rectángulos, triángulos) en imágenes.",
+                resources: [
+                    { name: "Librería OpenCV", url: "https://opencv.org/" },
+                    { name: "Modelos", url: "#", text: "OpenCV findContours, approxPolyDP" }
+                ]
+            },
+            {
+                category: "cv",
+                title: "Filtro de Color Básico (Detector de Objetos por Color)",
+                description: "Implementar un filtro HSV para detectar y aislar objetos de un color específico (ej. una pelota roja) en una transmisión de video o imagen.",
+                resources: [
+                    { name: "Librería OpenCV", url: "https://opencv.org/" },
+                    { name: "Modelos", url: "#", text: "Transformación a espacio HSV" }
+                ]
+            },
+            {
+                category: "series-tiempo",
+                title: "Pronóstico Básico de Acciones (Tendencia Simple)",
+                description: "Predecir el precio de cierre de una acción para el día siguiente utilizando regresión lineal simple sobre los precios históricos recientes.",
+                resources: [
+                    { name: "Dataset Yahoo Finance (CSV)", url: "#", text: "Usar yfinance o descargar manualmente de Yahoo Finance" },
+                    { name: "Modelos", url: "#", text: "Regresión Lineal, Media Móvil" }
+                ]
+            },
+            {
+                category: "series-tiempo",
+                title: "Análisis de Componentes (Estacionalidad)",
+                description: "Descomponer una serie de tiempo (ej. datos de ventas mensuales) en tendencia, estacionalidad y ruido residual para entender patrones.",
+                resources: [
+                    { name: "Dataset Ventas Minoristas", url: "https://www.kaggle.com/datasets/roshansarma/tata-steel-stock-data" },
+                    { name: "Modelos", url: "#", text: "Descomposición aditiva/multiplicativa de Statsmodels" }
+                ]
+            },
+            {
+                category: "recomendacion",
+                title: "Sistema de Recomendación Basado en Popularidad",
+                description: "Implementar el sistema de recomendación más simple: recomendar los 10 artículos más populares (mejor calificados, más vistos) a cualquier usuario.",
+                resources: [
+                    { name: "Dataset MovieLens 100k", url: "https://grouplens.org/datasets/movielens/100k/" },
+                    { name: "Modelos", url: "#", text: "Cálculo simple de la media/conteo" }
+                ]
+            },
+            {
+                category: "recomendacion",
+                title: "Recomendación de Películas (Filtrado Basado en Contenido)",
+                description: "Recomendar películas a un usuario basándose en las características de las películas que ya ha calificado positivamente (ej. mismo director, género).",
+                resources: [
+                    { name: "Dataset TMDB 5000 (Kaggle)", url: "https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata" },
+                    { name: "Modelos", url: "#", text: "Similitud del coseno sobre vectores de características" }
+                ]
+            },
+            // Nuevos Proyectos agregados en la iteración 3 (41-60)
+            // 5 Clasificación adicionales
+            {
+                category: "clasificacion",
+                title: "Clasificación de Especies de Pingüinos",
+                description: "Usar atributos biométricos (longitud del pico, masa corporal) para clasificar pingüinos en diferentes especies (Adelie, Chinstrap, Gentoo).",
+                resources: [
+                    { name: "Dataset Palmer Penguins (Scikit-learn)", url: "https://allisonhorst.github.io/palmerpenguins/" },
+                    { name: "Modelos", url: "#", text: "Naive Bayes Gaussiano, QDA, SVM lineal" }
+                ]
+            },
+            {
+                category: "clasificacion",
+                title: "Predicción de Aprobación de Préstamos",
+                description: "Determinar si una solicitud de préstamo debe ser aprobada o rechazada basándose en el historial crediticio y los datos financieros del solicitante.",
+                resources: [
+                    { name: "Dataset Loan Prediction (Kaggle)", url: "https://www.kaggle.com/datasets/altruistdelic/loan-prediction-problem-dataset" },
+                    { name: "Modelos", url: "#", text: "Árboles de Decisión, Random Forest, XGBoost" }
+                ]
+            },
+            {
+                category: "clasificacion",
+                title: "Clasificador Multiclase de Materiales",
+                description: "Clasificar objetos en múltiples clases (ej. vidrio, cartón, plástico) a partir de datos químicos o de sensores.",
+                resources: [
+                    { name: "Dataset Glass Identification (UCI)", url: "https://archive.ics.uci.edu/ml/datasets/glass+identification" },
+                    { name: "Modelos", url: "#", text: "k-NN, Regresión Logística Multiclase" }
+                ]
+            },
+            {
+                category: "clasificacion",
+                title: "Detección de Phishing en Sitios Web",
+                description: "Clasificar URLs como legítimas o de phishing basándose en atributos de URL (longitud, símbolos, subdominios, etc.).",
+                resources: [
+                    { name: "Dataset Phishing Websites (UCI)", url: "https://archive.ics.uci.edu/ml/datasets/phishing+websites" },
+                    { name: "Modelos", url: "#", text: "SVM, Random Forest" }
+                ]
+            },
+            {
+                category: "clasificacion",
+                title: "Clasificación de Emociones en Texto (Básico)",
+                description: "Clasificar frases cortas o tweets en emociones básicas (ej. alegría, tristeza, ira, neutral) utilizando técnicas de NLP simples.",
+                resources: [
+                    { name: "Dataset Emotion Lexicon (Kaggle)", url: "https://www.kaggle.com/datasets/praveengovi/emotions-dataset-for-nlp" },
+                    { name: "Modelos", url: "#", text: "Naive Bayes, Regresión Logística con Word Embeddings (Word2Vec básico)" }
+                ]
+            },
+            // 5 Regresión adicionales
+            {
+                category: "regresion",
+                title: "Predicción de Ingresos por Publicidad",
+                description: "Predecir la cantidad de ingresos de un producto o servicio basándose en la inversión en diferentes canales de publicidad (TV, radio, prensa).",
+                resources: [
+                    { name: "Dataset Advertising (Kaggle)", url: "https://www.kaggle.com/datasets/sankha469/advertising-data" },
+                    { name: "Modelos", url: "#", text: "Regresión Lineal Múltiple con interacción de variables" }
+                ]
+            },
+            {
+                category: "regresion",
+                title: "Estimación del Flujo de Tráfico",
+                description: "Predecir la velocidad promedio del tráfico en un segmento de carretera basándose en la hora del día, el día de la semana y el clima.",
+                resources: [
+                    { name: "Dataset Traffic Flow (UCI)", url: "https://archive.ics.uci.edu/ml/datasets/pems-sf" },
+                    { name: "Modelos", url: "#", text: "SVR, Random Forest Regressor" }
+                ]
+            },
+            {
+                category: "regresion",
+                title: "Predicción del Rendimiento de Paneles Solares",
+                description: "Estimar la potencia de salida (kW) de un panel solar utilizando datos meteorológicos (temperatura, radiación, humedad).",
+                resources: [
+                    { name: "Dataset Solar Power Generation (Kaggle)", url: "https://www.kaggle.com/datasets/datasets/anikannal/solar-power-generation-data" },
+                    { name: "Modelos", url: "#", text: "Regresión Polinómica, Red Neuronal Densa (Keras)" }
+                ]
+            },
+            {
+                category: "regresion",
+                title: "Predicción de Consumo de Energía",
+                description: "Predecir el consumo total de energía de un edificio basándose en variables ambientales y de uso (temperatura interior/exterior, hora).",
+                resources: [
+                    { name: "Dataset Energy Efficiency (UCI)", url: "https://archive.ics.uci.edu/ml/datasets/energy+efficiency" },
+                    { name: "Modelos", url: "#", text: "Gradient Boosting, Regresión Lasso" }
+                ]
+            },
+            {
+                category: "regresion",
+                title: "Predicción de Retrasos en Vuelos",
+                description: "Estimar el tiempo (en minutos) de retraso de un vuelo basándose en el clima de salida/llegada, aerolínea y distancia.",
+                resources: [
+                    { name: "Dataset Flight Delays (Kaggle)", url: "https://www.kaggle.com/datasets/yuvarambola/flight-delay-prediction" },
+                    { name: "Modelos", url: "#", text: "Random Forest Regressor, LightGBM (opcional)" }
+                ]
+            },
+            // 2 Agrupamiento adicionales
+            {
+                category: "agrupamiento",
+                title: "Detección de Ruido en Datos (DBSCAN)",
+                description: "Usar DBSCAN para identificar clusters de densidad y clasificar los puntos fuera de esos clusters como 'ruido' o outliers, en un dataset 2D simple.",
+                resources: [
+                    { name: "Dataset (Scikit-learn)", url: "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html", text: "Generar un dataset con `make_blobs` y ruido" }
+                ]
+            },
+            {
+                category: "agrupamiento",
+                title: "Agrupamiento de Libros por Temas (LDA/NMF)",
+                description: "Aplicar Modelado de Temas (Latent Dirichlet Allocation o Non-Negative Matrix Factorization) a un corpus de texto para descubrir grupos de temas subyacentes.",
+                resources: [
+                    { name: "Dataset BBC News Summary (Kaggle)", url: "https://www.kaggle.com/datasets/pariza/bbc-news-summary" },
+                    { name: "Modelos", url: "#", text: "LDA/NMF (de Scikit-learn)" }
+                ]
+            },
+            // 2 NLP adicionales
+            {
+                category: "nlp",
+                title: "Traductor de Juguete (Sequence to Sequence Básico)",
+                description: "Implementar un modelo Seq2Seq (usando una RNN simple con Keras) para traducir frases muy cortas entre dos idiomas (ej. Español-Inglés) como prueba de concepto.",
+                resources: [
+                    { name: "Dataset Small Parallel Corpus (Tatoeba)", url: "http://www.manythings.org/anki/" },
+                    { name: "Modelos", url: "#", text: "RNN/LSTM básico (Keras)" }
+                ]
+            },
+            {
+                category: "nlp",
+                title: "Clasificación de Autoría",
+                description: "Clasificar la obra de texto como perteneciente a uno de varios autores conocidos basándose en el uso de palabras y estilo (Estilometría).",
+                resources: [
+                    { name: "Dataset (Project Gutenberg)", url: "https://www.gutenberg.org/" },
+                    { name: "Modelos", url: "#", text: "Naive Bayes, SVM con Word Embeddings/Caracteres" }
+                ]
+            },
+            // 2 CV adicionales
+            {
+                category: "cv",
+                title: "Reconocimiento de Alfabeto de Signos Americano (ASL)",
+                description: "Construir una CNN para clasificar imágenes que representan letras del alfabeto de señas americano (un conjunto limitado de letras).",
+                resources: [
+                    { name: "Dataset ASL Alphabet (Kaggle)", url: "https://www.kaggle.com/datasets/grassrootsmotorsports/asl-alphabet" },
+                    { name: "Modelos", url: "#", text: "CNN (Keras/TensorFlow)" }
+                ]
+            },
+            {
+                category: "cv",
+                title: "Detección de Bordes (Canny)",
+                description: "Implementar la detección de bordes Canny utilizando OpenCV para destacar los contornos de los objetos en una imagen.",
+                resources: [
+                    { name: "Librería OpenCV", url: "https://opencv.org/" },
+                    { name: "Modelos", url: "#", text: "Canny Edge Detector (OpenCV)" }
+                ]
+            },
+            // 2 Series de Tiempo adicionales
+            {
+                category: "series-tiempo",
+                title: "Pronóstico de Consumo de Electricidad (ARIMA)",
+                description: "Utilizar un modelo ARIMA (AutoRegressive Integrated Moving Average) para pronosticar el consumo de electricidad a corto plazo.",
+                resources: [
+                    { name: "Dataset Global Energy Consumption (Kaggle)", url: "https://www.kaggle.com/datasets/robbyv/gdp-per-capita-based-on-purchasing-power-parity" },
+                    { name: "Modelos", url: "#", text: "Modelos ARIMA/SARIMA (librería Statsmodels)" }
+                ]
+            },
+            {
+                category: "series-tiempo",
+                title: "Predicción de la Temperatura con LSTM",
+                description: "Usar una Red Neuronal Recurrente (LSTM) en Keras para predecir la temperatura futura basándose en una ventana de datos climáticos históricos.",
+                resources: [
+                    { name: "Dataset Temperatura (Kaggle)", url: "https://www.kaggle.com/datasets/sudalairajkumar/daily-temperature-of-major-cities" },
+                    { name: "Modelos", url: "#", text: "LSTM (Keras/TensorFlow)" }
+                ]
+            },
+            // 2 Recomendación adicionales
+            {
+                category: "recomendacion",
+                title: "Recomendación Colaborativa (Basada en Usuarios)",
+                description: "Implementar un sistema de filtrado colaborativo basado en usuarios, encontrando usuarios con gustos similares para recomendar artículos.",
+                resources: [
+                    { name: "Dataset MovieLens 100k", url: "https://grouplens.org/datasets/movielens/100k/" },
+                    { name: "Modelos", url: "#", text: "Similitud del Coseno (entre vectores de usuarios)" }
+                ]
+            },
+            {
+                category: "recomendacion",
+                title: "Recomendación Colaborativa (Factorización de Matrices)",
+                description: "Introducción a la factorización de matrices (ej. SVD) para predecir ratings de películas, una técnica avanzada de filtrado colaborativo.",
+                resources: [
+                    { name: "Librería Surprise", url: "https://surprise.readthedocs.io/en/stable/" },
+                    { name: "Modelos", url: "#", text: "SVD (Singular Value Decomposition)" }
+                ]
+            },
+        ];
+
+        function renderProjects(filter = 'all') {
+            const grid = document.getElementById('project-grid');
+            if (!grid) return;
+            
+            grid.innerHTML = '';
+            
+            const filteredProjects = projects.filter(p => filter === 'all' || p.category === filter);
+            
+            if (filteredProjects.length === 0) {
+                grid.innerHTML = `<p class="text-gray-600 text-center md:col-span-2 lg:col-span-3">No se encontraron proyectos para esta categoría.</p>`;
+                return;
+            }
+
+            filteredProjects.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'project-card bg-white rounded-lg shadow-sm p-6 flex flex-col';
+                card.setAttribute('data-category', project.category);
+
+                let categoryText = '';
+                let categoryClass = '';
+                switch (project.category) {
+                    case 'clasificacion':
+                        categoryText = 'Clasificación';
+                        categoryClass = 'bg-blue-100 text-blue-800';
+                        break;
+                    case 'regresion':
+                        categoryText = 'Regresión';
+                        categoryClass = 'bg-green-100 text-green-800';
+                        break;
+                    case 'agrupamiento':
+                        categoryText = 'Agrupamiento';
+                        categoryClass = 'bg-yellow-100 text-yellow-800';
+                        break;
+                    case 'nlp':
+                        categoryText = 'NLP';
+                        categoryClass = 'bg-purple-100 text-purple-800';
+                        break;
+                    case 'cv':
+                        categoryText = 'Visión por Computadora';
+                        categoryClass = 'bg-pink-100 text-pink-800';
+                        break;
+                    case 'series-tiempo':
+                        categoryText = 'Series de Tiempo';
+                        categoryClass = 'bg-red-100 text-red-800';
+                        break;
+                    case 'recomendacion':
+                        categoryText = 'Recomendación';
+                        categoryClass = 'bg-teal-100 text-teal-800';
+                        break;
+                }
+
+                let resourcesHtml = project.resources.map(res => {
+                    if (res.text) {
+                        return `<li class="text-sm text-gray-600"><span class="font-medium text-gray-800">${res.name}:</span> ${res.text}</li>`;
+                    }
+                    return `<li class="text-sm"><a href="${res.url}" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">${res.name}</a></li>`;
+                }).join('');
+
+                card.innerHTML = `
+                    <div>
+                        <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full ${categoryClass} mb-3">${categoryText}</span>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">${project.title}</h3>
+                        <p class="text-gray-700 text-sm mb-4">${project.description}</p>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-gray-100">
+                        <h4 class="text-xs font-semibold text-gray-500 uppercase mb-2">Recursos Sugeridos</h4>
+                        <ul class="space-y-1">${resourcesHtml}</ul>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProjects();
+
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const filter = btn.dataset.filter;
+                    renderProjects(filter);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

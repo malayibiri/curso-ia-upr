@@ -1,1 +1,1 @@
-# curso-ia-2024-2025
+# curso-ia-upr
