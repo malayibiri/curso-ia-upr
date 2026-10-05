@@ -1,0 +1,9 @@
+# Ignorar la carpeta de salida compilada
+public/
+# Dependencias node / cache
+node_modules/
+.quarto/
+*.quarto_ipynb
+# Archivos temporales
+*.tmp
+*~

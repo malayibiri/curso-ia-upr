@@ -1,0 +1,43 @@
+---
+title: "Introducción a la Inteligencia Artificial"
+subtitle: "Curso de la Universidad de Pinar del Río \"Hermanos Saíz Montes de OCa\""
+date: "2026"
+author: "Ingeniería en Ciencias de la Computación"
+format: html
+---
+
+# ¡Bienvenido al curso!
+
+Este sitio web es la plataforma principal de la asignatura **Introducción a la
+Inteligencia Artificial**. En él encontrarás:
+
+- 📖 **Material de estudio**: capítulos y apuntes sobre los fundamentos de la IA.
+- 🧪 **Demostraciones interactivas**: código Python que se ejecuta directamente
+  en tu navegador (sin instalar nada).
+- 📝 **Tareas**: ejercicios y trabajos prácticos.
+- 🔧 **Proyectos**: problemas y retos para aplicar lo aprendido.
+
+## ¿Por qué un sitio web?
+
+Porque la Inteligencia Artificial es una disciplina que se entiende mejor
+*haciendo*. Este curso combina la teoría clásica de los libros de texto con
+**ejecutable**. Cada concepto importante viene acompañado de una demostración
+en Python que puedes modificar, ejecutar y experimentar directamente desde tu
+navegador, sin necesidad de instalar Python ni configurar tu máquina.
+
+> **No necesitas instalar nada.** Abre la demo y empieza a programar.
+
+## Estructura del sitio
+
+| Sección | Descripción |
+|---|---|
+| **El curso** | Presentación, objetivos y método del curso. |
+| **Aprendizaje** | Capítulos temáticos con teoría y código. |
+| **Proyectos** | Problemas y retos integradores. |
+| **Tareas** | Trabajos prácticos asignados durante el curso. |
+
+## Créditos
+
+Material basado en *Artificial Intelligence: A Modern Approach* (4ª ed.) de
+Russell y Norvig, y en los recursos recomendados que aparecen en el
+[GitHub](https://github.com/malayibiri/curso-ia-upr) del curso.

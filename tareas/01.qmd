@@ -1,0 +1,28 @@
+---
+title: "Tarea 1"
+format: html
+---
+
+# Tarea 1
+
+## Enunciado
+
+Resumir del 1ro al 3er capítulo del libro *Artificial Intelligence: A Modern
+Approach* (4ª ed., Russell y Norvig).
+
+## Bibliografía
+
+> Stuart J. Russell and Peter Norvig, *Artificial Intelligence: A Modern
+> Approach*, 4th Edition, Global Edition, Pearson.
+
+## Consejos
+
+- El resumen debe cubrir: historia de la IA, agentes, entornos, y clasificación
+  de agentes.
+- Extensión: 2-3 páginas por capítulo.
+- Cita el material original donde sea apropiado.
+
+## Entrega
+
+- Documento en PDF o HTML.
+- Rendir: antes del [fecha].

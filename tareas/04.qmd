@@ -1,0 +1,34 @@
+---
+title: "Tarea 4"
+format: html
+---
+
+# Tarea 4
+
+## Enunciado
+
+Construir una red neuronal sencilla en Python (sin librerías de IA) para
+clasificar la base MNIST.
+
+## Requisitos
+
+- Preprocesamiento: normalización de los píxeles al rango [0, 1].
+- Red neuronal de 1 capa oculta de 128 unidades.
+- Función de activación: ReLU en la capa oculta, softmax en la salida.
+- Función de costo: entropía cruzada.
+- Optimizador: descenso de gradiente.
+- Evaluar en 1000 imágenes de entrenamiento y 1000 de prueba.
+
+## Entrega
+
+- Código en Python.
+- Informe en PDF con:
+  - Curva de entrenamiento.
+  - Confusión de clasificación en el test.
+  - 5 ejemplos de clasificación fallida y su análisis.
+
+## Criterios
+
+- **Implementación** (60%): la red funciona correctamente.
+- **Análisis** (25%): el estudiante interpreta las fallas.
+- **Documentación** (15%): código comentado.

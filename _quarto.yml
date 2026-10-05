@@ -1,0 +1,37 @@
+project:
+  type: website
+  output-dir: public
+
+website:
+  title: "Introducción a la IA"
+  navbar:
+    left:
+      - href: index.qmd
+        text: "Inicio"
+      - href: 01-introduccion/01.qmd
+        text: "El curso"
+      - href: 03-proyectos/01.qmd
+        text: "Proyectos"
+      - href: tareas/01.qmd
+        text: "Tareas"
+    right:
+      - icon: github
+        href: "https://github.com/malayibiri/curso-ia-upr"
+        menu:
+          - href: "https://github.com/malayibiri/curso-ia-upr"
+            text: "Repositorio"
+          - href: "https://github.com/malayibiri/curso-ia-upr/issues"
+            text: "Reportar un problema"
+  bread-crumbs: false
+
+format:
+  html:
+    theme: cosmo
+    toc: false
+    code-fold: true
+    code-summary: "código"
+    css: styles.css
+
+execute:
+  echo: true
+  eval: false

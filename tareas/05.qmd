@@ -1,0 +1,34 @@
+---
+title: "Tarea 5"
+format: html
+---
+
+# Tarea 5
+
+## Enunciado
+
+Ensayo final sobre el impacto de la IA en la sociedad.
+
+## Preguntas guía
+
+- ¿Qué capacidades tienen los LLMs actuales y cuáles aún no tienen?
+- ¿Cómo cambia el rol del programador?
+- ¿Cuáles son los riesgos de usar IA en educación?
+- ¿Cómo se debería regular el uso de IA?
+
+## Requisitos
+
+- Extensión: 3-5 páginas.
+- Citas: mínimo 3 fuentes (libros, artículos, blog técnicos).
+- Estructura: introducción, cuerpo, conclusión.
+
+## Criterios
+
+- **Argumentación** (40%): el estudiante defiende una postura clara.
+- **Fuentes** (30%): las fuentes son relevantes y recientes.
+- **Redacción** (30%): claridad y coherencia del texto.
+
+## Entrega
+
+- Documento en PDF.
+- Antes del [fecha final del curso].

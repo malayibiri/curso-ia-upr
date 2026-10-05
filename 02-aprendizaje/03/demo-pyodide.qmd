@@ -1,0 +1,69 @@
+---
+title: "Demo: Python en tu navegador con Pyodide"
+format: html
+---
+
+# Demostración: Python en el navegador con Pyodide
+
+En esta página vas a ejecutar código **Python real** dentro de tu navegador,
+sin instalar nada. El motor es [Pyodide](https://pyodide.org), un
+compilador que convierte CPython a WebAssembly.
+
+## ¿Qué hace Pyodide?
+
+Pyodide compila CPython y una colección de paquetes Python populares
+(NumPy, SciPy, pandas, matplotlib, scikit-learn…) a WebAssembly. El
+resultado es un entorno completo de Python que corre en el motor
+JavaScript del navegador.
+
+- ✅ **Sin servidor**: el código se descarga y ejecuta en tu máquina.
+- ✅ **Sin instalación**: no hay que configurar entornos.
+- ✅ **Colaborativo**: comparte el enlace de la página y todos ejecutan el
+  mismo código.
+
+## El widget de demo
+
+Abajo tienes una celda interactiva. Haz clic en **▶ Ejecutar** para correr
+el código. Puedes editar el código antes de ejecutar, y el resultado
+aparecerá en la casilla de salida.
+
+::: {.pyodide-cell}
+<div class="pyodide-widget">
+  <button class="run">▶ Ejecutar</button>
+  <textarea>def hola(nombre):
+    return f"¡Hola, {nombre}!"
+
+print(hola("mundo"))</textarea>
+  <pre class="output"></pre>
+</div>
+:::
+
+<script src="assets/pyodide-widget.js"></script>
+
+## Paquetes disponibles
+
+Además de la biblioteca estándar de Python, Pyodide trae preinstalados
+paquetes científicos populares. Puedes instalar más con
+`pyodide.loadPackage` o vía `micropip`:
+
+```python
+import micropip
+await micropip.install("matplotlib")
+```
+
+## ¿Por qué esto importa para la IA?
+
+La mayoría de las herramientas de IA modernas (PyTorch, TensorFlow,
+scikit-learn) están escritas en Python. Con Pyodide puedes experimentar
+con ellas **desde el navegador**, lo que convierte cada página de este
+curso en un laboratorio interactivo sin dependencias externas.
+
+## Ejercicios
+
+1. Escribe una función en Python que calcule la secuencia de Fibonacci del
+   0 al 20 y visualízala.
+2. Crea un vector NumPy y calcula su media, su varianza y su desviación
+   estándar.
+3. Importa `math` y calcula $\pi$ a 50 decimales.
+4. Diseña un juego de "adivina el número" (aleatorio 1-100) y pide al
+   usuario que adivine por `input`.

@@ -1,0 +1,37 @@
+---
+title: "Tarea 3"
+format: html
+---
+
+# Tarea 3
+
+## Enunciado
+
+Analizar un artículo de investigación reciente (2023 o posterior) sobre
+aprendizaje automático. El análisis debe incluir:
+
+1. Pregunta de investigación.
+2. Hipótesis y método.
+3. Resultados clave (con cifras).
+4. Límites señalados por los autores.
+5. Tu opinión crítica (acorde con el material del curso).
+
+## Elección del artículo
+
+Elige uno de:
+
+- [arXiv](https://arxiv.org) — cualquier artículo de la categoría `cs.LG`
+  publicado en 2023 o después.
+- [Nature Machine Intelligence](https://www.nature.com/natmachintell/) —
+  cualquier artículo.
+- Un artículo de una conferencia IA (NeurIPS, ICML, ICLR).
+
+## Extensión
+
+- 2-3 páginas.
+- Cita bibliográfica en formato IEEE.
+
+## Entrega
+
+- Documento en PDF.
+- Enlace al artículo original.

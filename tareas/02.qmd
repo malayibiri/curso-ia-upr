@@ -1,0 +1,31 @@
+---
+title: "Tarea 2"
+format: html
+---
+
+# Tarea 2
+
+## Enunciado
+
+Implementar en Python el algoritmo de búsqueda en amplitud (BFS) para el
+problema del 8, y comparar su rendimiento con la búsqueda ingenua (DFS).
+
+## Requisitos
+
+- Representación del estado: tupla de 9 elementos.
+- Representación de las acciones: 4 direcciones.
+- Criterio de meta: estado ordenado.
+- Función de costo: 1 por movimiento.
+- Gráficas de comparación: número de estados visitados en función de la
+  profundidad inicial.
+
+## Criterios de evaluación
+
+- **Correctitud** (50%): resuelve correctamente 10 instancias de prueba.
+- **Eficiencia** (30%): la función de costo está bien representada.
+- **Documentación** (20%): el código está comentado y el informe es claro.
+
+## Entrega
+
+- Código en Python.
+- Informe en PDF con las gráficas.
