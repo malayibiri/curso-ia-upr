@@ -1,7 +1,7 @@
 ---
 title: "Introducción a la Inteligencia Artificial"
 subtitle: "Curso 2026–2027 · Ingeniería Informática, Universidad de Pinar del Río"
-date: "2026"
+date: "2026-09"
 author: "Rafael Martínez Estévez"
 sidebar: false
 format: html
