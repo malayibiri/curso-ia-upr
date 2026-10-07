@@ -49,6 +49,14 @@ local: true/false
 - Al añadir una ficha, registrarla también en el `sidebar` de `_quarto.yml`
   dentro de su sección por tipo IA.
 
+## Sidebars por sección
+
+- Tres sidebars con `id` en `_quarto.yml`: `curso`, `tareas`, `proyectos`.
+  `index.qmd` lleva `sidebar: false` (Inicio sin sidebar).
+- La asignación es por carpeta vía `_metadata.yml` (`01-introduccion/`,
+  `02-aprendizaje/`, `tareas/`, `proyectos/`); no hace falta frontmatter
+  por página.
+
 ## Widget Pyodide
 
 - Fuente única: `assets/pyodide.html`, inyectado globalmente vía

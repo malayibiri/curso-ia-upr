@@ -3,6 +3,7 @@ title: "Introducción a la Inteligencia Artificial"
 subtitle: "Curso de la Universidad de Pinar del Río \"Hermanos Saíz Montes de OCa\""
 date: "2026"
 author: "Ingeniería en Ciencias de la Computación"
+sidebar: false
 format: html
 ---
 
