@@ -27,7 +27,7 @@ El problema del 8 (o *puzzle*) tiene un tablero de 3×3 con 8 fichas numeradas
 y un espacio vacío. El objetivo es ordenar las fichas de forma ascendente
 mediante movimientos del espacio.
 
-```
+```text
 {1 2 3}  ->  {1 2 3}
 {4 _ 5}      {4 5 6}
 {7 6 8}      {7 8 _}

@@ -1,0 +1,67 @@
+<!-- Widget Pyodide — celdas interactivas de Python en el navegador.
+     Inyectado en todas las páginas vía _quarto.yml
+     (format -> html -> include-after-body).
+     Solo descarga Pyodide (CDN jsDelivr) en páginas que tengan
+     celdas .pyodide-cell. Uso:
+       <div class="pyodide-widget">
+         <button class="run">▶ Ejecutar</button>
+         <textarea>print("hola")</textarea>
+         <pre class="output"></pre>
+       </div>
+-->
+<script>
+(function () {
+  // Solo actuar en páginas con celdas; evita descargas innecesarias.
+  if (!document.querySelector(".pyodide-cell")) return;
+  if (window.__pyodideLoaded) return;
+
+  var script = document.createElement("script");
+  script.src = "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js";
+  script.onload = initAll;
+  document.head.appendChild(script);
+
+  function initAll() {
+    window.__pyodideLoaded = true;
+    loadPyodide().then(function (pyodide) {
+      window.__pyodide = pyodide;
+      document.querySelectorAll(".pyodide-widget").forEach(bindCell);
+    });
+  }
+
+  function bindCell(widget) {
+    var ta = widget.querySelector("textarea");
+    var out = widget.querySelector(".output");
+    var btn = widget.querySelector("button.run");
+
+    btn.addEventListener("click", function () {
+      out.textContent = "";
+      var code = ta.value;
+      window.__pyodide
+        .runPythonAsync(
+          "import sys, io\n" +
+            "_capture = io.StringIO()\n" +
+            "_sys_stdout = sys.stdout\n" +
+            "sys.stdout = _capture\n" +
+            "try:\n" +
+            "    exec(" +
+            JSON.stringify(code) +
+            ")\n" +
+            "except Exception as e:\n" +
+            "    _capture.write(f\"{type(e).__name__}: {e}\")\n" +
+            "finally:\n" +
+            "    sys.stdout = _sys_stdout\n" +
+            "get_capture_result = lambda: _capture.getvalue()\n"
+        )
+        .then(function () {
+          return window.__pyodide.runPythonAsync("get_capture_result()");
+        })
+        .then(function (result) {
+          out.textContent = result;
+        })
+        .catch(function (err) {
+          out.textContent = "Error: " + err;
+        });
+    });
+  }
+})();
+</script>

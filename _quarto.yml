@@ -23,6 +23,106 @@ website:
           - href: "https://github.com/malayibiri/curso-ia-upr/issues"
             text: "Reportar un problema"
   bread-crumbs: false
+  sidebar:
+    style: floating
+    contents:
+      - href: index.qmd
+        text: "Inicio"
+      - section: "El curso"
+        contents:
+          - 01-introduccion/01.qmd
+          - 02-aprendizaje/01/01.qmd
+          - 02-aprendizaje/02/02.qmd
+          - 02-aprendizaje/03/demo-pyodide.qmd
+      - section: "Proyectos"
+        contents:
+          - proyectos/index.qmd
+      - section: "Búsqueda y optimización"
+        contents:
+          - proyectos/laberinto-tesoros-sa-ga.qmd
+          - proyectos/taxis-fra-rom-ucs-astar.qmd
+          - proyectos/creador-horarios-astar-tabu.qmd
+          - proyectos/puzzle-n8-astar-ida-pdb.qmd
+          - proyectos/8-puzzle-comparison-astar-ida.qmd
+          - proyectos/rutas-terrenos-dijkstra-astar.qmd
+          - proyectos/laberinto-bpi-vs-astar.qmd
+          - proyectos/sudoku-nxn-astar-vs-sa.qmd
+          - proyectos/tsp-viajante-capacidad.qmd
+          - proyectos/hanoi.qmd
+          - proyectos/lacteo-acopio-leche.qmd
+          - proyectos/pienso-avicola.qmd
+      - section: "Clasificación y predicción"
+        contents:
+          - proyectos/agente-suelos-rendimiento.qmd
+          - proyectos/vinos-rf-knn.qmd
+          - proyectos/spam-numerico-naive-bayes.qmd
+          - proyectos/penguin-palmer-rf.qmd
+          - proyectos/diabetes-rf.qmd
+          - proyectos/recomendacion-peliculas-similitud-usuarios.qmd
+          - proyectos/recomendacion-peliculas-svd.qmd
+          - proyectos/prediccion-bitcoin.qmd
+          - proyectos/clasificador-spam-sms.qmd
+          - proyectos/diagnostico-diabetes-pima.qmd
+          - proyectos/voleibol-eide.qmd
+          - proyectos/etecsa-alarmas.qmd
+          - proyectos/gedel-viabilidad.qmd
+          - proyectos/lacteo-que-producir.qmd
+          - proyectos/transfusiones.qmd
+          - proyectos/banco-sangre-aptitud.qmd
+          - proyectos/consultorio-donantes.qmd
+          - proyectos/volley-cuba.qmd
+          - proyectos/biblioteca-popularidad.qmd
+          - proyectos/espectro-interferencias.qmd
+          - proyectos/rendimiento-academico.qmd
+          - proyectos/auditorias.qmd
+          - proyectos/pfsense-logs.qmd
+          - proyectos/vino-calidad.qmd
+          - proyectos/bradicardia.qmd
+      - section: "Regresión y series"
+        contents:
+          - proyectos/prediccion-precios-casas.qmd
+          - proyectos/pesca-pique.qmd
+          - proyectos/servicio-sangre-demanda.qmd
+          - proyectos/extraccion-movil-donaciones.qmd
+          - proyectos/calidad-aire.qmd
+          - proyectos/starbucks-nutricion.qmd
+      - section: "Visión por computadora"
+        contents:
+          - proyectos/frutas-mobilenet-cnn.qmd
+          - proyectos/carro-camion-cifar10-cnn.qmd
+          - proyectos/clasificacion-imagenes-cifar10.qmd
+          - proyectos/agente-obras-arte.qmd
+          - proyectos/deteccion-rostros.qmd
+          - proyectos/clasificacion-frutas.qmd
+          - proyectos/reconocimiento-manos.qmd
+          - proyectos/colorspectra-colores.qmd
+          - proyectos/digitos-manuscritos.qmd
+      - section: "Lenguaje, habla y agentes"
+        contents:
+          - proyectos/voz-a-texto.qmd
+          - proyectos/spam-texto-naive-bayes-scratch.qmd
+          - proyectos/traductor-incremental.qmd
+          - proyectos/adivina-animal-arbol.qmd
+          - proyectos/moto-diagnostico.qmd
+          - proyectos/panaderia-desfalco.qmd
+          - proyectos/asistente-bibliotecario.qmd
+      - section: "Juegos y refuerzo"
+        contents:
+          - proyectos/dino-runner-neuroevolucion.qmd
+          - proyectos/domino-ppo-lstm.qmd
+          - proyectos/flappy-bird-dqn.qmd
+      - section: "Recomendación y clustering"
+        contents:
+          - proyectos/crianza-perros.qmd
+          - proyectos/concesionario-vehiculos.qmd
+          - proyectos/segmentacion-clientes-kmeans.qmd
+      - section: "Tareas"
+        contents:
+          - tareas/01.qmd
+          - tareas/02.qmd
+          - tareas/03.qmd
+          - tareas/04.qmd
+          - tareas/05.qmd
 
 format:
   html:
@@ -31,6 +131,7 @@ format:
     code-fold: true
     code-summary: "código"
     css: styles.css
+    include-after-body: assets/pyodide.html
 
 execute:
   echo: true

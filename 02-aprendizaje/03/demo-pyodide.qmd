@@ -37,8 +37,7 @@ print(hola("mundo"))</textarea>
   <pre class="output"></pre>
 </div>
 :::
-
-<script src="assets/pyodide-widget.js"></script>
+<!-- El widget Pyodide se carga automáticamente en todas las páginas vía assets/pyodide.html -->
 
 ## Paquetes disponibles
 
@@ -67,3 +66,7 @@ curso en un laboratorio interactivo sin dependencias externas.
 3. Importa `math` y calcula $\pi$ a 50 decimales.
 4. Diseña un juego de "adivina el número" (aleatorio 1-100) y pide al
    usuario que adivine por `input`.
+
+> **Nota:** `input()` no funciona en el widget del navegador (no hay
+> consola interactiva). Para el ejercicio 4, define el número como
+> variable en el código en vez de pedirlo por teclado.
