@@ -1,48 +1,49 @@
 # curso-ia-upr
 
-Sitio web del curso de **Introducción a la Inteligencia Artificial** de la
-Universidad de Pinar del Río "Hermanos Saíz Montes de OCa".
+Sitio web del curso **Introducción a la Inteligencia Artificial**
+(2026–2027 · Ingeniería Informática, Universidad de Pinar del Río
+"Hermanos Saíz Montes de Oca").
 
-## Recursos
+Publicado en <https://malayibiri.github.io/curso-ia-upr/> mediante
+GitHub Pages (workflow en `.github/workflows/deploy.yml`, despliegue
+automático en cada push a `main`).
 
-- https://aima.cs.berkeley.edu/
-- https://github.com/udlbook
-- https://mlu-explain.github.io/
-- https://d2l.ai/
-- https://bbycroft.net/llm
-- https://poloclub.github.io/transformer-explainer/
-- https://poloclub.github.io/
-- https://cs231n.stanford.edu/
+## Secciones del sitio
 
-## Estructura
+| Carpeta | Sección | Contenido |
+|---|---|---|
+| `01-contenido/` | Contenido | 5 temas con demostraciones Python ejecutables en el navegador |
+| `02-tareas/` | Tareas | 5 trabajos prácticos del curso |
+| `03-problemas/` | Problemas | Banco de 65 enunciados de ediciones pasadas (9 con vínculo local) |
+| `04-proyecto/` | Proyecto de Curso | Orientaciones del trabajo final |
+| `assets/` | — | Widget Pyodide (`pyodide.html`) y estilos |
 
-```
-.quarto.yml          # config del sitio
-index.qmd            # portada
-01-introduccion/     # presentación del curso
-02-aprendizaje/      # capítulos temáticos
-  01/                # búsqueda
-  02/                # panorama de la IA
-  03/                # demo Pyodide
-03-problemas/        # proyectos integradores
-tareas/              # 5 tareas prácticas
-assets/              # JS y CSS
-styles.css           # estilos del sitio
-.github/workflows/   # despliegue a GitHub Pages
-```
-
-## Compilar localmente
+## Comandos
 
 ```bash
-quarto render
-# el sitio queda en public/
+quarto render            # compila todo el sitio a public/
+quarto preview           # vista previa local con recarga
+quarto render 03-problemas/  # solo una sección (rápido)
 ```
 
-## Despliegue
+Requisito: Quarto ≥ 1.8. No hay dependencias Python
+(`execute.eval: false`); no usar celdas ejecutables `{python}`.
 
-El sitio se despliega automáticamente a
-<https://malayibiri.github.io/curso-ia-upr/> mediante GitHub Actions
-(workflow en `.github/workflows/deploy.yml`) en cada push a `main`.
+## Convenciones (ver `AGENTS.md`)
 
-> Para habilitar Pages: en el repo GitHub → Settings → Pages → Deploy from
-> branch → main → `public` (artifact).
+- Bloques de código **siempre con lenguaje** (` ```text `, ` ```python `):
+  una cerca sin lenguaje rompe `quarto render`.
+- Fichas de `03-problemas/`: **anonimato total** (sin nombres, cursos ni años)
+  y **enunciado, no solución**, con frontmatter `tipo-ia` + `local`.
+- Al añadir páginas, registrarlas en el `sidebar` de `_quarto.yml`.
+- No commitear `public/` (está en `.gitignore`).
+
+## Recursos del curso
+
+- [AIMA (Berkeley)](https://aima.cs.berkeley.edu/)
+- [Understanding Deep Learning](https://github.com/udlbook)
+- [MLU-Explain](https://mlu-explain.github.io/)
+- [Dive into Deep Learning](https://d2l.ai/)
+- [LLM visual](https://bbycroft.net/llm)
+- [Transformer Explainer](https://poloclub.github.io/transformer-explainer/)
+- [CS231n (Stanford)](https://cs231n.stanford.edu/)
