@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: public
+  render:
+    - "*.qmd"
+    - "!AGENTS.md"
 
 website:
   title: "Introducción a la IA"
@@ -12,8 +15,10 @@ website:
         text: "Contenido"
       - href: 02-tareas/01.qmd
         text: "Tareas"
-      - href: 03-proyectos/index.qmd
-        text: "Proyectos"
+      - href: 03-problemas/index.qmd
+        text: "Problemas"
+      - href: 04-proyecto/orientacion.qmd
+        text: "Proyecto de Curso"
     right:
       - icon: github
         href: "https://github.com/malayibiri/curso-ia-upr"
@@ -42,90 +47,95 @@ website:
         - 02-tareas/03.qmd
         - 02-tareas/04.qmd
         - 02-tareas/05.qmd
-    - id: proyectos
-      title: "Proyectos"
+    - id: problemas
+      title: "Problemas"
       style: floating
       contents:
-        - 03-proyectos/index.qmd
+        - 03-problemas/index.qmd
         - section: "Búsqueda y optimización"
           contents:
-            - 03-proyectos/laberinto-tesoros-sa-ga.qmd
-            - 03-proyectos/taxis-fra-rom-ucs-astar.qmd
-            - 03-proyectos/creador-horarios-astar-tabu.qmd
-            - 03-proyectos/puzzle-n8-astar-ida-pdb.qmd
-            - 03-proyectos/8-puzzle-comparison-astar-ida.qmd
-            - 03-proyectos/rutas-terrenos-dijkstra-astar.qmd
-            - 03-proyectos/laberinto-bpi-vs-astar.qmd
-            - 03-proyectos/sudoku-nxn-astar-vs-sa.qmd
-            - 03-proyectos/tsp-viajante-capacidad.qmd
-            - 03-proyectos/hanoi.qmd
-            - 03-proyectos/lacteo-acopio-leche.qmd
-            - 03-proyectos/pienso-avicola.qmd
+            - 03-problemas/laberinto-tesoros-sa-ga.qmd
+            - 03-problemas/taxis-fra-rom-ucs-astar.qmd
+            - 03-problemas/creador-horarios-astar-tabu.qmd
+            - 03-problemas/puzzle-n8-astar-ida-pdb.qmd
+            - 03-problemas/8-puzzle-comparison-astar-ida.qmd
+            - 03-problemas/rutas-terrenos-dijkstra-astar.qmd
+            - 03-problemas/laberinto-bpi-vs-astar.qmd
+            - 03-problemas/sudoku-nxn-astar-vs-sa.qmd
+            - 03-problemas/tsp-viajante-capacidad.qmd
+            - 03-problemas/hanoi.qmd
+            - 03-problemas/lacteo-acopio-leche.qmd
+            - 03-problemas/pienso-avicola.qmd
         - section: "Clasificación y predicción"
           contents:
-            - 03-proyectos/agente-suelos-rendimiento.qmd
-            - 03-proyectos/vinos-rf-knn.qmd
-            - 03-proyectos/spam-numerico-naive-bayes.qmd
-            - 03-proyectos/penguin-palmer-rf.qmd
-            - 03-proyectos/diabetes-rf.qmd
-            - 03-proyectos/recomendacion-peliculas-similitud-usuarios.qmd
-            - 03-proyectos/recomendacion-peliculas-svd.qmd
-            - 03-proyectos/prediccion-bitcoin.qmd
-            - 03-proyectos/clasificador-spam-sms.qmd
-            - 03-proyectos/diagnostico-diabetes-pima.qmd
-            - 03-proyectos/voleibol-eide.qmd
-            - 03-proyectos/etecsa-alarmas.qmd
-            - 03-proyectos/gedel-viabilidad.qmd
-            - 03-proyectos/lacteo-que-producir.qmd
-            - 03-proyectos/transfusiones.qmd
-            - 03-proyectos/banco-sangre-aptitud.qmd
-            - 03-proyectos/consultorio-donantes.qmd
-            - 03-proyectos/volley-cuba.qmd
-            - 03-proyectos/biblioteca-popularidad.qmd
-            - 03-proyectos/espectro-interferencias.qmd
-            - 03-proyectos/rendimiento-academico.qmd
-            - 03-proyectos/auditorias.qmd
-            - 03-proyectos/pfsense-logs.qmd
-            - 03-proyectos/vino-calidad.qmd
-            - 03-proyectos/bradicardia.qmd
+            - 03-problemas/agente-suelos-rendimiento.qmd
+            - 03-problemas/vinos-rf-knn.qmd
+            - 03-problemas/spam-numerico-naive-bayes.qmd
+            - 03-problemas/penguin-palmer-rf.qmd
+            - 03-problemas/diabetes-rf.qmd
+            - 03-problemas/recomendacion-peliculas-similitud-usuarios.qmd
+            - 03-problemas/recomendacion-peliculas-svd.qmd
+            - 03-problemas/prediccion-bitcoin.qmd
+            - 03-problemas/clasificador-spam-sms.qmd
+            - 03-problemas/diagnostico-diabetes-pima.qmd
+            - 03-problemas/voleibol-eide.qmd
+            - 03-problemas/etecsa-alarmas.qmd
+            - 03-problemas/gedel-viabilidad.qmd
+            - 03-problemas/lacteo-que-producir.qmd
+            - 03-problemas/transfusiones.qmd
+            - 03-problemas/banco-sangre-aptitud.qmd
+            - 03-problemas/consultorio-donantes.qmd
+            - 03-problemas/volley-cuba.qmd
+            - 03-problemas/biblioteca-popularidad.qmd
+            - 03-problemas/espectro-interferencias.qmd
+            - 03-problemas/rendimiento-academico.qmd
+            - 03-problemas/auditorias.qmd
+            - 03-problemas/pfsense-logs.qmd
+            - 03-problemas/vino-calidad.qmd
+            - 03-problemas/bradicardia.qmd
         - section: "Regresión y series"
           contents:
-            - 03-proyectos/prediccion-precios-casas.qmd
-            - 03-proyectos/pesca-pique.qmd
-            - 03-proyectos/servicio-sangre-demanda.qmd
-            - 03-proyectos/extraccion-movil-donaciones.qmd
-            - 03-proyectos/calidad-aire.qmd
-            - 03-proyectos/starbucks-nutricion.qmd
+            - 03-problemas/prediccion-precios-casas.qmd
+            - 03-problemas/pesca-pique.qmd
+            - 03-problemas/servicio-sangre-demanda.qmd
+            - 03-problemas/extraccion-movil-donaciones.qmd
+            - 03-problemas/calidad-aire.qmd
+            - 03-problemas/starbucks-nutricion.qmd
         - section: "Visión por computadora"
           contents:
-            - 03-proyectos/frutas-mobilenet-cnn.qmd
-            - 03-proyectos/carro-camion-cifar10-cnn.qmd
-            - 03-proyectos/clasificacion-imagenes-cifar10.qmd
-            - 03-proyectos/agente-obras-arte.qmd
-            - 03-proyectos/deteccion-rostros.qmd
-            - 03-proyectos/clasificacion-frutas.qmd
-            - 03-proyectos/reconocimiento-manos.qmd
-            - 03-proyectos/colorspectra-colores.qmd
-            - 03-proyectos/digitos-manuscritos.qmd
+            - 03-problemas/frutas-mobilenet-cnn.qmd
+            - 03-problemas/carro-camion-cifar10-cnn.qmd
+            - 03-problemas/clasificacion-imagenes-cifar10.qmd
+            - 03-problemas/agente-obras-arte.qmd
+            - 03-problemas/deteccion-rostros.qmd
+            - 03-problemas/clasificacion-frutas.qmd
+            - 03-problemas/reconocimiento-manos.qmd
+            - 03-problemas/colorspectra-colores.qmd
+            - 03-problemas/digitos-manuscritos.qmd
         - section: "Lenguaje, habla y agentes"
           contents:
-            - 03-proyectos/voz-a-texto.qmd
-            - 03-proyectos/spam-texto-naive-bayes-scratch.qmd
-            - 03-proyectos/traductor-incremental.qmd
-            - 03-proyectos/adivina-animal-arbol.qmd
-            - 03-proyectos/moto-diagnostico.qmd
-            - 03-proyectos/panaderia-desfalco.qmd
-            - 03-proyectos/asistente-bibliotecario.qmd
+            - 03-problemas/voz-a-texto.qmd
+            - 03-problemas/spam-texto-naive-bayes-scratch.qmd
+            - 03-problemas/traductor-incremental.qmd
+            - 03-problemas/adivina-animal-arbol.qmd
+            - 03-problemas/moto-diagnostico.qmd
+            - 03-problemas/panaderia-desfalco.qmd
+            - 03-problemas/asistente-bibliotecario.qmd
         - section: "Juegos y refuerzo"
           contents:
-            - 03-proyectos/dino-runner-neuroevolucion.qmd
-            - 03-proyectos/domino-ppo-lstm.qmd
-            - 03-proyectos/flappy-bird-dqn.qmd
+            - 03-problemas/dino-runner-neuroevolucion.qmd
+            - 03-problemas/domino-ppo-lstm.qmd
+            - 03-problemas/flappy-bird-dqn.qmd
         - section: "Recomendación y clustering"
           contents:
-            - 03-proyectos/crianza-perros.qmd
-            - 03-proyectos/concesionario-vehiculos.qmd
-            - 03-proyectos/segmentacion-clientes-kmeans.qmd
+            - 03-problemas/crianza-perros.qmd
+            - 03-problemas/concesionario-vehiculos.qmd
+            - 03-problemas/segmentacion-clientes-kmeans.qmd
+    - id: proyecto-curso
+      title: "Proyecto de Curso"
+      style: floating
+      contents:
+        - 04-proyecto/orientacion.qmd
 
 format:
   html:

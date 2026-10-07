@@ -24,7 +24,7 @@ index.qmd            # portada
   01/                # búsqueda
   02/                # panorama de la IA
   03/                # demo Pyodide
-03-proyectos/        # proyectos integradores
+03-problemas/        # proyectos integradores
 tareas/              # 5 tareas prácticas
 assets/              # JS y CSS
 styles.css           # estilos del sitio

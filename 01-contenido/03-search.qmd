@@ -51,7 +51,10 @@ Modela entornos multiagente competitivos de suma cero (ej. Ajedrez, Go).
 
 Comparación interactiva entre **A\*** y **Greedy Best-First Search** sobre la misma cuadrícula de navegación.
 
-```{pyodide-python}
+::: {.pyodide-cell}
+<div class="pyodide-widget">
+  <button class="run">▶ Ejecutar</button>
+  <textarea>
 import heapq
 
 def a_estrella(grafo, heuristica, inicio, objetivo):
@@ -63,7 +66,7 @@ def a_estrella(grafo, heuristica, inicio, objetivo):
         f, actual, camino, g = heapq.heappop(frontera)
         if actual == objetivo:
             return camino, g
-        if actual in visitados and visitados[actual] <= g:
+        if actual in visitados and visitados[actual] &lt;= g:
             continue
         visitados[actual] = g
         for vecino, costo in grafo.get(actual, []):
@@ -107,3 +110,12 @@ camino_g, costo_g = greedy_best_first(grafo, heuristica, 'S', 'G')
 print("=== Comparación de Búsqueda Informada ===")
 print(f"A*                  -> Ruta: {' -> '.join(camino_a)} | Costo total: {costo_a}")
 print(f"Greedy Best-First   -> Ruta: {' -> '.join(camino_g)} | Costo total: {costo_g}")
+</textarea>
+  <pre class="output"></pre>
+</div>
+:::
+
+**Qué observar:** A* encuentra el óptimo (S → A → C → G, costo 7)
+mientras Greedy se deja engañar por la heurística y toma S → B → G
+(costo 11): es rápido pero no óptimo. Prueba hacer admisible la
+heurística de B (p. ej. `B: 6`) y comprueba que ambos coinciden.

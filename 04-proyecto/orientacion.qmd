@@ -1,0 +1,89 @@
+---
+title: "Proyecto de Curso: orientaciones"
+format: html
+---
+
+# Proyecto de Curso (2026–2027)
+
+**Objetivo:** idear una problemática y proponer una solución mediante
+métodos de **búsqueda** o de **aprendizaje de máquina**.
+
+Para inspirarte, revisa el [Banco de problemas](../03-problemas/index.qmd):
+65 enunciados de ediciones pasadas (varios con vínculo local en Pinar del
+Río y Cuba). Tu problemática debe ser **distinta** a la de los demás
+estudiantes.
+
+## Orientaciones generales
+
+- Se debe seguir un **método experimental**: se recolectan datos y se
+  prueban diferentes algoritmos para evaluar cuál funciona mejor.
+- Para ser evaluado se entrega un **informe** y un **proyecto de
+  programación** que permita reproducir el experimento del informe.
+- La evaluación es **individual**: cada estudiante presenta una
+  problemática distinta.
+
+## Estructura del informe
+
+### 1. Portada
+
+Título y autor.
+
+### 2. Introducción
+
+Descripción de la problemática. Debe quedar claro cuál es el papel de la
+IA en ese caso: qué aspecto concreto se va a intentar resolver dentro de
+la problemática.
+
+### 3. Desarrollo
+
+Incluye, al menos, las siguientes secciones:
+
+#### 3.1. Modelación del problema
+
+Expresión formal del problema: modelo de datos (forma exacta de los
+datos), representación de estados o variables de entrada/salida según el
+método elegido.
+
+#### 3.2. Recolección de datos
+
+Procedimiento usado: base de datos pública, algoritmo propio de
+generación de datos sintéticos, o datos facilitados por alguna entidad.
+Indica tamaño, formato y limitaciones.
+
+#### 3.3. Revisión bibliográfica
+
+Métodos adecuados para el problema concreto. Se pueden usar distintas
+fuentes, pero el libro de texto (*Russell & Norvig*) es la referencia
+primaria: capítulos de búsqueda (Temas 2–3) y de aprendizaje
+automático (Temas 4–5).
+
+#### 3.4. Proyecto de programación
+
+Descripción con métodos de ingeniería de software del programa
+desarrollado para los experimentos.
+
+#### 3.5. Descripción del experimento
+
+Resultados del experimento: evaluación comparativa del comportamiento de
+los algoritmos utilizados (tablas, gráficas y métricas).
+
+### 4. Conclusiones y recomendaciones
+
+Conclusiones: qué método funciona mejor para la problemática. Se
+plantean recomendaciones y trabajo futuro para mejores soluciones.
+
+## Sobre el proyecto de programación
+
+- El objetivo principal es **configurar el espacio de trabajo** que
+  permita realizar el experimento planteado.
+- **No se requiere desarrollar una aplicación funcional**: basta el
+  código experimental reproducible con sus datos.
+
+## Calendario sugerido
+
+| Fase | Entregable |
+|---|---|
+| Propuesta | Problemática en 1 párrafo + papel de la IA |
+| Datos | Dataset recolectado o generador + descripción |
+| Experimento | Comparación de ≥ 2 algoritmos |
+| Entrega final | Informe + código reproducible |

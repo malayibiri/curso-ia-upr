@@ -1,17 +1,18 @@
 ---
-title: "Proyectos del curso"
+title: "Banco de problemas"
 format: html
 ---
 
-# Proyectos del curso
+# Banco de problemas
 
 Banco de enunciados reconstruidos a partir de proyectos de ediciones
 pasadas de la asignatura. Cada ficha describe la **situación
 problemática y el objetivo** (no la solución), con el detalle suficiente
-para reutilizarla como proyecto docente. Los textos están anonimizados:
-no se publican nombres de estudiantes, cursos ni años.
+para reutilizarla como proyecto docente o para inspirar el
+[Proyecto de Curso](../04-proyecto/orientacion.qmd). Los textos están
+anonimizados: no se publican nombres de estudiantes, cursos ni años.
 
-## Proyectos con vínculo local
+## Problemas con vínculo local
 
 Plantean una situación problemática de Pinar del Río o Cuba:
 
@@ -27,7 +28,7 @@ Plantean una situación problemática de Pinar del Río o Cuba:
 | [Distribución de pienso avícola](pienso-avicola.qmd) | búsqueda |
 | [Recomendador para concesionario de vehículos](concesionario-vehiculos.qmd) | recomendación |
 
-## Todos los proyectos por tipo de problema IA
+## Todos los problemas por tipo de IA
 
 ### Búsqueda y optimización combinatoria
 

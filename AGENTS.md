@@ -21,10 +21,10 @@ en `_quarto.yml`; no usar celdas ejecutables `{python}`.
   `quarto render`. Los ` ```python ` son solo display (no se ejecutan).
 - Todo el contenido va en `.qmd` con frontmatter `title` (+ `format: html` opcional).
 
-## Sección `proyectos/` (banco de enunciados)
+## Sección `03-problemas/` (banco de enunciados)
 
-- Una ficha por proyecto: `proyectos/<año>-<tema>.qmd` + entrada en
-  `proyectos/index.qmd` (tabla local y tabla de su tipo IA).
+- Una ficha por problema: `03-problemas/<año>-<tema>.qmd` + entrada en
+  `03-problemas/index.qmd` (tabla local y tabla de su tipo IA).
 - **Anonimato total**: nunca nombres de estudiantes, cursos ni años en el texto.
 - **Enunciado, no solución**: situación, objetivo, datos, entregables. Sin
   código, resultados ni conclusiones del trabajo original.
@@ -51,8 +51,9 @@ local: true/false
 
 ## Sidebars por sección
 
-- Tres sidebars con `id` en `_quarto.yml`: `curso`, `tareas`, `proyectos`.
-  `index.qmd` lleva `sidebar: false` (Inicio sin sidebar).
+- Cuatro sidebars con `id` en `_quarto.yml`: `curso`, `tareas`,
+  `problemas`, `proyecto-curso`. `index.qmd` lleva `sidebar: false`
+  (Inicio sin sidebar).
 - La asignación es por carpeta vía `_metadata.yml` (`01-introduccion/`,
   `02-aprendizaje/`, `tareas/`, `proyectos/`); no hace falta frontmatter
   por página.

@@ -50,7 +50,10 @@ El agente aprende qué acciones tomar en un entorno dinámico para maximizar una
 
 Implementación desde cero del algoritmo **Q-Learning** para resolver un entorno de navegación de rejilla 1D simple.
 
-```{pyodide-python}
+::: {.pyodide-cell}
+<div class="pyodide-widget">
+  <button class="run">▶ Ejecutar</button>
+  <textarea>
 import random
 
 # Entorno 1D: [0, 1, 2, 3, 4 (META)]
@@ -65,7 +68,7 @@ gamma = 0.9   # Factor de descuento
 epsilon = 0.2 # Exploración epsilon-greedy
 
 def elegir_accion(estado):
-    if random.random() < epsilon:
+    if random.random() &lt; epsilon:
         return random.choice(ACCIONES)
     return 0 if q_tabla[estado][0] > q_tabla[estado][1] else 1
 
@@ -87,3 +90,12 @@ for _ in range(num_episodios):
 print("=== Tabla Q Aprendida (Acción 0: Izq, Acción 1: Der) ===")
 for s in range(ESTADOS - 1):
     print(f"Estado {s} -> Q(Izq): {q_tabla[s][0]:.2f} | Q(Der): {q_tabla[s][1]:.2f}")
+</textarea>
+  <pre class="output"></pre>
+</div>
+:::
+
+**Qué observar:** tras 200 episodios, Q(Der) supera a Q(Izq) en todos los
+estados: el agente aprendió a ir siempre a la derecha hacia la meta (4).
+Prueba con `epsilon = 0.5` (más exploración, aprendizaje más lento) o con
+recompensa `-1.0` por paso (el agente se vuelve más "impaciente").

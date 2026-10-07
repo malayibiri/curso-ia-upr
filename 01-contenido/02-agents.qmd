@@ -35,7 +35,10 @@ Para diseñar un agente, primero se debe especificar formalmente su entorno medi
 
 Implementación del entorno clásico del **Mundo de la Aspiradora (Vacuum World)** de 2 celdas con un agente de reflejo simple con estado interno.
 
-```{pyodide-python}
+::: {.pyodide-cell}
+<div class="pyodide-widget">
+  <button class="run">▶ Ejecutar</button>
+  <textarea>
 class EntornoAspiradora:
     def __init__(self):
         # Estados: 'Limpio' o 'Sucio'
@@ -55,7 +58,8 @@ class EntornoAspiradora:
 
 class AgenteReflejoConModelo:
     def __init__(self):
-        self.modelo_entorno = {'A': Unknown, 'B': Unknown} if False else {}
+        # Estado interno: recuerdo de lo percibido en cada celda
+        self.modelo_entorno = {}
 
     def actuar(self, percepcion):
         ubicacion, estado = percepcion
@@ -77,3 +81,12 @@ for paso in range(5):
     accion = agente.actuar(percepcion)
     print(f"Paso {paso+1} | Ubicación: {percepcion[0]} | Estado: {percepcion[1]} -> Acción: {accion}")
     env.ejecutar_accion(accion)
+</textarea>
+  <pre class="output"></pre>
+</div>
+:::
+
+**Qué observar:** el agente limpia A, se mueve a B, limpia B y luego
+oscila entre celdas ya limpias. Es un agente de reflejo simple con un
+mínimo de estado: decide solo con la percepción actual. Prueba iniciar
+con `{'A': 'Limpio', 'B': 'Sucio'}` o añadir una tercera celda.

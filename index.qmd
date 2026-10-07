@@ -1,6 +1,6 @@
 ---
 title: "Introducción a la Inteligencia Artificial"
-subtitle: "Curso de la Universidad de Pinar del Río \"Hermanos Saíz Montes de OCa\""
+subtitle: "Curso 2026–2027 · Ingeniería Informática, Universidad de Pinar del Río"
 date: "2026"
 author: "Rafael Martínez Estévez"
 sidebar: false
@@ -9,44 +9,49 @@ format: html
 
 # ¡Bienvenido al curso!
 
-Este sitio web es la plataforma principal de la asignatura **Introducción a la
-Inteligencia Artificial**. En él encontrarás:
+Este sitio es la plataforma de la asignatura **Introducción a la
+Inteligencia Artificial** (curso 2026–2027). Aquí está todo: el contenido
+teórico con demostraciones que se ejecutan en tu navegador, las tareas,
+un banco de 65 problemas reales de cursos anteriores y las orientaciones
+del proyecto final.
 
-- 📖 **Material de estudio**: capítulos y apuntes sobre los fundamentos de la IA.
-- 🧪 **Demostraciones interactivas**: código Python que se ejecuta directamente
-  en tu navegador (sin instalar nada).
-- 📝 **Tareas**: ejercicios y trabajos prácticos.
-- 🔧 **Proyectos**: problemas y retos para aplicar lo aprendido.
+## ¿Cómo está organizado el curso?
 
-## ¿Por qué un sitio web?
+| Tema | Qué verás | Demo interactiva |
+|---|---|---|
+| [1. Introducción a la IA](01-contenido/01-intro.qmd) | Definiciones, agente racional, fundamentos | Utilidad esperada |
+| [2. Agentes inteligentes](01-contenido/02-agents.qmd) | PEAS, entornos, tipos de agentes | Mundo de la aspiradora |
+| [3. Búsqueda](01-contenido/03-search.qmd) | No informada, A\*, local, juegos | A\* frente a Greedy |
+| [4. Aprendizaje automático](01-contenido/04-learning.qmd) | Supervisado, no supervisado, RL | Q-Learning desde cero |
+| [5. Aprendizaje profundo](01-contenido/05-deeplearning.qmd) | MLP, CNN, RNN, Transformers, generativos | Backpropagation con XOR |
 
-Porque la Inteligencia Artificial es una disciplina que se entiende mejor
-*haciendo*. Este curso combina la teoría clásica de los libros de texto con
-**ejecutable**. Cada concepto importante viene acompañado de una demostración
-en Python que puedes modificar, ejecutar y experimentar directamente desde tu
-navegador, sin necesidad de instalar Python ni configurar tu máquina.
+## ¿Cómo se evalúa?
 
-> **No necesitas instalar nada.** Abre la demo y empieza a programar.
+| Actividad | Dónde | Peso orientativo |
+|---|---|---|
+| [Tareas](02-tareas/01.qmd) | Ejercicios durante el curso | Seguimiento |
+| [Problemas](03-problemas/index.qmd) | Banco de 65 enunciados de ediciones pasadas | Referencia y práctica |
+| [Proyecto de Curso](04-proyecto/orientacion.qmd) | Problemática propia + informe + experimento | Evaluación final |
 
-## Estructura del sitio
+> Lee con atención las [orientaciones del Proyecto de Curso](04-proyecto/orientacion.qmd):
+> cada estudiante presenta una problemática distinta, con informe y
+> proyecto de programación evaluados individualmente.
 
-| Sección | Descripción |
-|---|---|
-| **Contenido** | Presentación, objetivos y método del curso. |
-| **Proyectos** | Problemas y retos integradores. |
-| **Tareas** | Trabajos prácticos asignados durante el curso. |
+## Sin instalar nada
+
+Cada tema trae una demostración en Python que se ejecuta directamente en
+tu navegador (Pyodide + WebAssembly). Pulsa **▶ Ejecutar**, modifica el
+código y experimenta.
 
 ## Recursos
 
-- https://aima.cs.berkeley.edu/
-- https://github.com/udlbook
-- https://mlu-explain.github.io/
-- https://d2l.ai/
-- https://bbycroft.net/llm
-- https://poloclub.github.io/transformer-explainer/
-- https://poloclub.github.io/
-- https://cs231n.stanford.edu/
-
+- [AIMA (Berkeley)](https://aima.cs.berkeley.edu/)
+- [Understanding Deep Learning](https://github.com/udlbook)
+- [MLU-Explain](https://mlu-explain.github.io/)
+- [Dive into Deep Learning](https://d2l.ai/)
+- [LLM visual](https://bbycroft.net/llm)
+- [Transformer Explainer](https://poloclub.github.io/transformer-explainer/)
+- [CS231n (Stanford)](https://cs231n.stanford.edu/)
 
 ## Créditos
 

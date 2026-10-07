@@ -29,7 +29,10 @@ La IA moderna es una disciplina interdisciplinaria construida sobre:
 
 A continuación, simularás la evaluación de racionalidad simple mediante una función de utilidad que mide la precisión de decisiones bajo incertidumbre.
 
-```{pyodide-python}
+::: {.pyodide-cell}
+<div class="pyodide-widget">
+  <button class="run">▶ Ejecutar</button>
+  <textarea>
 def evaluar_racionalidad(acciones, probabilid_exito, utilidades):
     """
     Calcula la Utilidad Esperada (UE) para un conjunto de acciones.
@@ -64,3 +67,13 @@ for act, ue in ue_resultados.items():
     print(f"Acción: {act} | Utilidad Esperada: {ue:.2f}")
 
 print(f"\nAcción Racional Seleccionada: {mejor_accion}")
+</textarea>
+  <pre class="output"></pre>
+</div>
+:::
+
+**Qué observar:** la ruta B es más arriesgada (60% de éxito) pero su
+utilidad esperada (56.00) supera a la de la ruta segura A (4.00), porque
+el costo del fallo en A (-50) es muy alto. El agente racional maximiza la
+utilidad esperada, no la probabilidad de éxito. Prueba cambiar
+`prob_exito` o las utilidades y vuelve a ejecutar.
