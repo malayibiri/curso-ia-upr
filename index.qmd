@@ -2,7 +2,7 @@
 title: "Introducción a la Inteligencia Artificial"
 subtitle: "Curso de la Universidad de Pinar del Río \"Hermanos Saíz Montes de OCa\""
 date: "2026"
-author: "Ingeniería en Ciencias de la Computación"
+author: "Rafael Martínez Estévez"
 sidebar: false
 format: html
 ---
@@ -32,10 +32,21 @@ navegador, sin necesidad de instalar Python ni configurar tu máquina.
 
 | Sección | Descripción |
 |---|---|
-| **El curso** | Presentación, objetivos y método del curso. |
-| **Aprendizaje** | Capítulos temáticos con teoría y código. |
+| **Contenido** | Presentación, objetivos y método del curso. |
 | **Proyectos** | Problemas y retos integradores. |
 | **Tareas** | Trabajos prácticos asignados durante el curso. |
+
+## Recursos
+
+- https://aima.cs.berkeley.edu/
+- https://github.com/udlbook
+- https://mlu-explain.github.io/
+- https://d2l.ai/
+- https://bbycroft.net/llm
+- https://poloclub.github.io/transformer-explainer/
+- https://poloclub.github.io/
+- https://cs231n.stanford.edu/
+
 
 ## Créditos
 

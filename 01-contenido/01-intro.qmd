@@ -1,0 +1,66 @@
+---
+title: "Tema 1: Introducción a la Inteligencia Artificial"
+format: html
+---
+
+## 1. Panorama General
+
+La Inteligencia Artificial (IA) se define formalmente como el estudio de los agentes que reciben percepciones del entorno y llevan a cabo acciones. De acuerdo con Russell & Norvig (*AIMA*), las definiciones históricas de IA se organizan en una matriz de cuatro cuadrantes según dos dimensiones principales: **pensamiento vs. comportamiento** y **rendimiento humano vs. racionalidad (ideal)**.
+
+| | Humano | Racional |
+|---|---|---|
+| **Pensar** | Sistemas que piensan como humanos (Enfoque cognitivo) | Sistemas que piensan racionalmente (Leyes del pensamiento / Lógica) |
+| **Actuar** | Sistemas que actúan como humanos (Prueba de Turing) | Sistemas que actúan racionalmente (Enfoque del agente racional) |
+
+### El Enfoque del Agente Racional
+*AIMA* adopta predominantemente el cuadrante de **actuar racionalmente**. Un agente racional es aquel que actúa con el fin de alcanzar el mejor resultado posible o, en condiciones de incertidumbre, el mejor resultado esperado. Este enfoque es superior a la imitación humana pura porque la racionalidad matemática se presta a definiciones formales y análisis sintáctico/semántico estricto.
+
+### Fundamentos Disciplinares de la IA
+La IA moderna es una disciplina interdisciplinaria construida sobre:
+- **Filosofía:** Formalización del razonamiento, mente versus materia, teoría del conocimiento (epistemología).
+- **Matemáticas:** Lógica formal, teoría de la probabilidad, computabilidad, complejidad algorítmica y optimización.
+- **Economía:** Teoría de la decisión, teoría de juegos, maximización de la utilidad esperada.
+- **Neurociencia y Psicología:** Estudio del procesamiento biológico de información y modelos del comportamiento cognitivo.
+- **Ingeniería de Computadores y Teoría del Control:** Hardware eficiente y diseño de sistemas que maximizan funciones de costo mediante retroalimentación.
+
+---
+
+## 2. Demostración Práctica (Pyodide)
+
+A continuación, simularás la evaluación de racionalidad simple mediante una función de utilidad que mide la precisión de decisiones bajo incertidumbre.
+
+```{pyodide-python}
+def evaluar_racionalidad(acciones, probabilid_exito, utilidades):
+    """
+    Calcula la Utilidad Esperada (UE) para un conjunto de acciones.
+    UE(a) = Suma( P(resultado|a) * U(resultado) )
+    """
+    utilidades_esperadas = {}
+    for accion in acciones:
+        p = probabilid_exito[accion]
+        u_exito = utilidades[accion]['exito']
+        u_fallo = utilidades[accion]['fallo']
+        
+        # Valor esperado
+        ue = (p * u_exito) + ((1 - p) * u_fallo)
+        utilidades_esperadas[accion] = ue
+
+    # Selección de la acción racional (maximizar UE)
+    accion_racional = max(utilidades_esperadas, key=utilidades_esperadas.get)
+    return utilidades_esperadas, accion_racional
+
+# Definición del entorno simple
+acciones = ['Navegar_Ruta_A', 'Navegar_Ruta_B']
+prob_exito = {'Navegar_Ruta_A': 0.9, 'Navegar_Ruta_B': 0.6}
+utilidades = {
+    'Navegar_Ruta_A': {'exito': 10, 'fallo': -50}, # Ruta segura pero bajo impacto de fallo grave
+    'Navegar_Ruta_B': {'exito': 100, 'fallo': -10} # Ruta arriesgada con alto beneficio
+}
+
+ue_resultados, mejor_accion = evaluar_racionalidad(acciones, prob_exito, utilidades)
+
+print("--- Evaluación de Utilidad Esperada ---")
+for act, ue in ue_resultados.items():
+    print(f"Acción: {act} | Utilidad Esperada: {ue:.2f}")
+
+print(f"\nAcción Racional Seleccionada: {mejor_accion}")

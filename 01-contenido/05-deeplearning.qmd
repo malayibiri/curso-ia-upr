@@ -1,0 +1,119 @@
+
+---
+title: "Tema 5: Aprendizaje Profundo (Deep Learning)"
+format: html
+---
+
+## 1. Panorama General
+
+El **Aprendizaje Profundo** es un subcampo del Aprendizaje Automático basado en Redes Neuronales Artificiales con múltiples capas ocultas ($L > 2$). Estas arquitecturas sustituyen el diseño manual de características (*Feature Engineering*) por el **aprendizaje automático de representaciones jerárquicas**: las capas iniciales detectan bordes/patrones simples, mientras que las capas profundas componen abstracciones complejas.
+
+---
+
+### 1. Fundamentos de Redes Neuronales
+- **Perceptrón de Rosenblatt:** La unidad elemental que realiza una combinación lineal de sus entradas con pesos y aplica una función de escalón.
+- **Perceptrón Multicapa (MLP / Feedforward Neural Networks):** Red densa donde las capas procesan información mediante la transformación $z = Wx + b$ seguida de una **función de activación no lineal** (ReLU, Sigmoide, Tanh, GELU).
+- **Algoritmo de Retropropagación (Backpropagation):** Aplica la regla de la cadena del cálculo diferencial para calcular de manera eficiente los gradientes de la función de pérdida con respecto a cada peso de la red, permitiendo la optimización mediante **Descenso de Gradiente Estocástico (SGD)** o variantes con momentum (Adam, RMSprop).
+
+---
+
+### 2. Arquitecturas Especializadas
+
+#### Redes Neuronales Convolucionales (CNN)
+Diseñadas para procesar datos con estructura de rejilla espacial (imágenes, video).
+- **Capas Convolucionales:** Utilizan filtros (kernels) compartidos localmente para extraer mapas de características (*feature maps*) preservando la invarianza a la traslación.
+- **Capas de Agrupamiento (Pooling):** Reducen la dimensión espacial (e.g., Max Pooling) para aportar invarianza local y disminuir el costo computacional.
+- **Ejemplos clásicos:** LeNet-5, AlexNet, ResNet (introdujo conexiones residuales para entrenar redes de cientos de capas).
+
+#### Redes Neuronales Recurrentes (RNN)
+Diseñadas para secuencias temporales y datos secuenciales (texto, audio, series de tiempo).
+- **Procesamiento con Estado Interno:** La red mantiene una memoria interna $h_t = f(W x_t + U h_{t-1} + b)$.
+- **Celdas de Memoria Especializadas:** **LSTM (Long Short-Term Memory)** y **GRU (Gated Recurrent Unit)** resuelven el problema del *desvanecimiento/explosión del gradiente* en secuencias largas mediante mecanismos de puertas (*gates*).
+
+#### Arquitectura Transformer y Mecanismo de Atención
+Representa el paradigma dominante actual en Procesamiento del Lenguaje Natural (PLN) y Visión por Computador.
+- **Mecanismo de Auto-Atención (Self-Attention):** Permite a la red calcular dependencias entre cualquier par de elementos de una secuencia directamente, sin importar su distancia, mediante matrices de consulta ($Q$), clave ($K$) y valor ($V$):
+  $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
+- **Modelos de Lenguaje Masivos (LLMs):** Basados en bloques de decodificador transformer (e.g., serie GPT) o codificador (e.g., BERT).
+
+---
+
+### 3. Modelos Generativos Profundos
+- **Autoencoders Variacionales (VAE):** Codifican datos en un espacio latente probabilístico continuo y generativo.
+- **Redes Generativas Antagónicas (GANs):** Un juego de suma cero entre dos redes: un **Generador** (crea datos falsos) y un **Discriminador** (intenta distinguir los datos reales de los sintéticos).
+- **Modelos de Difusión:** Generan datos aprendiendo a revertir gradualmente un proceso de adición de ruido gaussiano sobre los datos.
+
+---
+
+## 2. Demostración Práctica (Pyodide)
+
+Implementación directa en Python puro del algoritmo de **Forward Pass** y **Backpropagation** para un Perceptrón Multicapa (MLP) con una capa oculta.
+
+```{pyodide-python}
+import math
+import random
+
+# Función de activación Sigmoide y su derivada
+def sigmoide(x):
+    return 1.0 / (1.0 + math.exp(-x))
+
+def derivada_sigmoide(x):
+    return x * (1.0 - x)
+
+# Datos de entrenamiento: Función Lógica XOR
+X = [[0, 0], [0, 1], [1, 0], [1, 1]]
+y = [[0], [1], [1], [0]]
+
+# Inicialización de pesos aleatorios
+random.seed(42)
+w_oculta = [[random.uniform(-1, 1) for _ in range(2)] for _ in range(2)]
+b_oculta = [random.uniform(-1, 1) for _ in range(2)]
+w_salida = [random.uniform(-1, 1) for _ in range(2)]
+b_salida = random.uniform(-1, 1)
+
+alpha = 0.5  # Tasa de aprendizaje
+
+# Entrenamiento mediante Backpropagation
+for epoca in range(20000):
+    error_total = 0
+    for inputs, target in zip(X, y):
+        # 1. FORWARD PASS
+        # Capa oculta
+        h1 = sigmoide(inputs[0] * w_oculta[0][0] + inputs[1] * w_oculta[1][0] + b_oculta[0])
+        h2 = sigmoide(inputs[0] * w_oculta[0][1] + inputs[1] * w_oculta[1][1] + b_oculta[1])
+        
+        # Capa de salida
+        out = sigmoide(h1 * w_salida[0] + h2 * w_salida[1] + b_salida)
+        
+        # Error
+        err = target[0] - out
+        error_total += err ** 2
+        
+        # 2. BACKPROPAGATION
+        # Gradiente en la salida
+        delta_salida = err * derivada_sigmoide(out)
+        
+        # Gradientes en la capa oculta
+        delta_h1 = delta_salida * w_salida[0] * derivada_sigmoide(h1)
+        delta_h2 = delta_salida * w_salida[1] * derivada_sigmoide(h2)
+        
+        # Actualización de pesos y sesgos
+        w_salida[0] += alpha * delta_salida * h1
+        w_salida[1] += alpha * delta_salida * h2
+        b_salida += alpha * delta_salida
+        
+        w_oculta[0][0] += alpha * delta_h1 * inputs[0]
+        w_oculta[1][0] += alpha * delta_h1 * inputs[1]
+        b_oculta[0] += alpha * delta_h1
+        
+        w_oculta[0][1] += alpha * delta_h2 * inputs[0]
+        w_oculta[1][1] += alpha * delta_h2 * inputs[1]
+        b_oculta[1] += alpha * delta_h2
+
+print("=== Entrenamiento de Red Neuronal (XOR) ===")
+print("Resultados de predicción tras el entrenamiento:")
+for inputs in X:
+    h1 = sigmoide(inputs[0] * w_oculta[0][0] + inputs[1] * w_oculta[1][0] + b_oculta[0])
+    h2 = sigmoide(inputs[0] * w_oculta[0][1] + inputs[1] * w_oculta[1][1] + b_oculta[1])
+    out = sigmoide(h1 * w_salida[0] + h2 * w_salida[1] + b_salida)
+    print(f"Entrada: {inputs} -> Predicción: {out:.4f} (Objetivo: {1 if out > 0.5 else 0})")

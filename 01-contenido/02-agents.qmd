@@ -1,0 +1,79 @@
+---
+title: "Tema 2: Agentes Inteligentes"
+format: html
+---
+
+## 1. Panorama General
+
+Un **agente** es cualquier entidad capaz de percibir su entorno a través de **sensores** y actuar sobre él mediante **actuadores**. La arquitectura básica se define formalmente como la función del agente $f: P^* \to A$, que mapea secuencias completas de percepciones ($P^*$) a acciones ($A$).
+
+### Entornos de Trabajo: Especificación PEAS
+Para diseñar un agente, primero se debe especificar formalmente su entorno mediante la taxonomía **PEAS** (*Performance, Environment, Actuators, Sensors*):
+- **P (Performance / Rendimiento):** Criterio objetivo de evaluación del éxito.
+- **E (Environment / Entorno):** El medio físico o virtual donde opera.
+- **A (Actuators / Actuadores):** Mecanismos para modificar el estado del entorno.
+- **S (Sensors / Sensores):** Dispositivos que capturan señales del entorno.
+
+### Propiedades de los Entornos
+1. **Totalmente observable vs. Parcialmente observable:** Si los sensores detectan el estado completo del entorno en cada instante.
+2. **Determinista vs. Estocástico:** Si el siguiente estado está completamente determinado por el estado actual y la acción del agente.
+3. **Episódico vs. Secuencial:** Si la experiencia se divide en episodios independientes o si las decisiones actuales afectan las futuras.
+4. **Estático vs. Dinámico:** Si el entorno cambia mientras el agente reflexiona.
+5. **Discreto vs. Continuo:** Si el número de estados, percepciones y acciones es finito/contable o no.
+6. **Agente individual vs. Multiagente:** Si el entorno contiene otros agentes con los que compite o coopera.
+
+### Tipos Estratégicos de Agentes
+1. **Agentes de Reflejo Simple:** Seleccionan acciones basándose únicamente en la percepción actual (reglas condición-acción).
+2. **Agentes Basados en Modelos:** Mantienen un estado interno para rastrear aspectos no observables del entorno.
+3. **Agentes Basados en Objetos:** Combinan el estado interno con información sobre las metas para elegir acciones efectivas.
+4. **Agentes Basados en Utilidad:** Evalúan la calidad de los estados mediante una función de utilidad real.
+5. **Agentes con Aprendizaje:** Divididos en un elemento de aprendizaje, un elemento de crítica, un elemento de rendimiento y un generador de problemas.
+
+---
+
+## 2. Demostración Práctica (Pyodide)
+
+Implementación del entorno clásico del **Mundo de la Aspiradora (Vacuum World)** de 2 celdas con un agente de reflejo simple con estado interno.
+
+```{pyodide-python}
+class EntornoAspiradora:
+    def __init__(self):
+        # Estados: 'Limpio' o 'Sucio'
+        self.estado = {'A': 'Sucio', 'B': 'Sucio'}
+        self.ubicacion_agente = 'A'
+
+    def obtener_percepcion(self):
+        return (self.ubicacion_agente, self.estado[self.ubicacion_agente])
+
+    def ejecutar_accion(self, accion):
+        if accion == 'Aspirar':
+            self.estado[self.ubicacion_agente] = 'Limpio'
+        elif accion == 'Derecha':
+            self.ubicacion_agente = 'B'
+        elif accion == 'Izquierda':
+            self.ubicacion_agente = 'A'
+
+class AgenteReflejoConModelo:
+    def __init__(self):
+        self.modelo_entorno = {'A': Unknown, 'B': Unknown} if False else {}
+
+    def actuar(self, percepcion):
+        ubicacion, estado = percepcion
+        
+        if estado == 'Sucio':
+            return 'Aspirar'
+        elif ubicacion == 'A':
+            return 'Derecha'
+        elif ubicacion == 'B':
+            return 'Izquierda'
+
+# Simulación
+env = EntornoAspiradora()
+agente = AgenteReflejoConModelo()
+
+print("--- Inicio de la Simulación del Agente ---")
+for paso in range(5):
+    percepcion = env.obtener_percepcion()
+    accion = agente.actuar(percepcion)
+    print(f"Paso {paso+1} | Ubicación: {percepcion[0]} | Estado: {percepcion[1]} -> Acción: {accion}")
+    env.ejecutar_accion(accion)

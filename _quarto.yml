@@ -8,12 +8,12 @@ website:
     left:
       - href: index.qmd
         text: "Inicio"
-      - href: 01-introduccion/01.qmd
-        text: "El curso"
-      - href: proyectos/index.qmd
-        text: "Proyectos"
-      - href: tareas/01.qmd
+      - href: 01-contenido/01-intro.qmd
+        text: "Contenido"
+      - href: 02-tareas/01.qmd
         text: "Tareas"
+      - href: 03-proyectos/index.qmd
+        text: "Proyectos"
     right:
       - icon: github
         href: "https://github.com/malayibiri/curso-ia-upr"
@@ -25,106 +25,107 @@ website:
   bread-crumbs: false
   sidebar:
     - id: curso
-      title: "El curso"
+      title: "Contenido"
       style: floating
       contents:
-        - 01-introduccion/01.qmd
-        - 02-aprendizaje/01/01.qmd
-        - 02-aprendizaje/02/02.qmd
-        - 02-aprendizaje/03/demo-pyodide.qmd
+        - 01-contenido/01-intro.qmd
+        - 01-contenido/02-agents.qmd
+        - 01-contenido/03-search.qmd
+        - 01-contenido/04-learning.qmd
+        - 01-contenido/05-deeplearning.qmd
     - id: tareas
       title: "Tareas"
       style: floating
       contents:
-        - tareas/01.qmd
-        - tareas/02.qmd
-        - tareas/03.qmd
-        - tareas/04.qmd
-        - tareas/05.qmd
+        - 02-tareas/01.qmd
+        - 02-tareas/02.qmd
+        - 02-tareas/03.qmd
+        - 02-tareas/04.qmd
+        - 02-tareas/05.qmd
     - id: proyectos
       title: "Proyectos"
       style: floating
       contents:
-        - proyectos/index.qmd
+        - 03-proyectos/index.qmd
         - section: "Búsqueda y optimización"
           contents:
-            - proyectos/laberinto-tesoros-sa-ga.qmd
-            - proyectos/taxis-fra-rom-ucs-astar.qmd
-            - proyectos/creador-horarios-astar-tabu.qmd
-            - proyectos/puzzle-n8-astar-ida-pdb.qmd
-            - proyectos/8-puzzle-comparison-astar-ida.qmd
-            - proyectos/rutas-terrenos-dijkstra-astar.qmd
-            - proyectos/laberinto-bpi-vs-astar.qmd
-            - proyectos/sudoku-nxn-astar-vs-sa.qmd
-            - proyectos/tsp-viajante-capacidad.qmd
-            - proyectos/hanoi.qmd
-            - proyectos/lacteo-acopio-leche.qmd
-            - proyectos/pienso-avicola.qmd
+            - 03-proyectos/laberinto-tesoros-sa-ga.qmd
+            - 03-proyectos/taxis-fra-rom-ucs-astar.qmd
+            - 03-proyectos/creador-horarios-astar-tabu.qmd
+            - 03-proyectos/puzzle-n8-astar-ida-pdb.qmd
+            - 03-proyectos/8-puzzle-comparison-astar-ida.qmd
+            - 03-proyectos/rutas-terrenos-dijkstra-astar.qmd
+            - 03-proyectos/laberinto-bpi-vs-astar.qmd
+            - 03-proyectos/sudoku-nxn-astar-vs-sa.qmd
+            - 03-proyectos/tsp-viajante-capacidad.qmd
+            - 03-proyectos/hanoi.qmd
+            - 03-proyectos/lacteo-acopio-leche.qmd
+            - 03-proyectos/pienso-avicola.qmd
         - section: "Clasificación y predicción"
           contents:
-            - proyectos/agente-suelos-rendimiento.qmd
-            - proyectos/vinos-rf-knn.qmd
-            - proyectos/spam-numerico-naive-bayes.qmd
-            - proyectos/penguin-palmer-rf.qmd
-            - proyectos/diabetes-rf.qmd
-            - proyectos/recomendacion-peliculas-similitud-usuarios.qmd
-            - proyectos/recomendacion-peliculas-svd.qmd
-            - proyectos/prediccion-bitcoin.qmd
-            - proyectos/clasificador-spam-sms.qmd
-            - proyectos/diagnostico-diabetes-pima.qmd
-            - proyectos/voleibol-eide.qmd
-            - proyectos/etecsa-alarmas.qmd
-            - proyectos/gedel-viabilidad.qmd
-            - proyectos/lacteo-que-producir.qmd
-            - proyectos/transfusiones.qmd
-            - proyectos/banco-sangre-aptitud.qmd
-            - proyectos/consultorio-donantes.qmd
-            - proyectos/volley-cuba.qmd
-            - proyectos/biblioteca-popularidad.qmd
-            - proyectos/espectro-interferencias.qmd
-            - proyectos/rendimiento-academico.qmd
-            - proyectos/auditorias.qmd
-            - proyectos/pfsense-logs.qmd
-            - proyectos/vino-calidad.qmd
-            - proyectos/bradicardia.qmd
+            - 03-proyectos/agente-suelos-rendimiento.qmd
+            - 03-proyectos/vinos-rf-knn.qmd
+            - 03-proyectos/spam-numerico-naive-bayes.qmd
+            - 03-proyectos/penguin-palmer-rf.qmd
+            - 03-proyectos/diabetes-rf.qmd
+            - 03-proyectos/recomendacion-peliculas-similitud-usuarios.qmd
+            - 03-proyectos/recomendacion-peliculas-svd.qmd
+            - 03-proyectos/prediccion-bitcoin.qmd
+            - 03-proyectos/clasificador-spam-sms.qmd
+            - 03-proyectos/diagnostico-diabetes-pima.qmd
+            - 03-proyectos/voleibol-eide.qmd
+            - 03-proyectos/etecsa-alarmas.qmd
+            - 03-proyectos/gedel-viabilidad.qmd
+            - 03-proyectos/lacteo-que-producir.qmd
+            - 03-proyectos/transfusiones.qmd
+            - 03-proyectos/banco-sangre-aptitud.qmd
+            - 03-proyectos/consultorio-donantes.qmd
+            - 03-proyectos/volley-cuba.qmd
+            - 03-proyectos/biblioteca-popularidad.qmd
+            - 03-proyectos/espectro-interferencias.qmd
+            - 03-proyectos/rendimiento-academico.qmd
+            - 03-proyectos/auditorias.qmd
+            - 03-proyectos/pfsense-logs.qmd
+            - 03-proyectos/vino-calidad.qmd
+            - 03-proyectos/bradicardia.qmd
         - section: "Regresión y series"
           contents:
-            - proyectos/prediccion-precios-casas.qmd
-            - proyectos/pesca-pique.qmd
-            - proyectos/servicio-sangre-demanda.qmd
-            - proyectos/extraccion-movil-donaciones.qmd
-            - proyectos/calidad-aire.qmd
-            - proyectos/starbucks-nutricion.qmd
+            - 03-proyectos/prediccion-precios-casas.qmd
+            - 03-proyectos/pesca-pique.qmd
+            - 03-proyectos/servicio-sangre-demanda.qmd
+            - 03-proyectos/extraccion-movil-donaciones.qmd
+            - 03-proyectos/calidad-aire.qmd
+            - 03-proyectos/starbucks-nutricion.qmd
         - section: "Visión por computadora"
           contents:
-            - proyectos/frutas-mobilenet-cnn.qmd
-            - proyectos/carro-camion-cifar10-cnn.qmd
-            - proyectos/clasificacion-imagenes-cifar10.qmd
-            - proyectos/agente-obras-arte.qmd
-            - proyectos/deteccion-rostros.qmd
-            - proyectos/clasificacion-frutas.qmd
-            - proyectos/reconocimiento-manos.qmd
-            - proyectos/colorspectra-colores.qmd
-            - proyectos/digitos-manuscritos.qmd
+            - 03-proyectos/frutas-mobilenet-cnn.qmd
+            - 03-proyectos/carro-camion-cifar10-cnn.qmd
+            - 03-proyectos/clasificacion-imagenes-cifar10.qmd
+            - 03-proyectos/agente-obras-arte.qmd
+            - 03-proyectos/deteccion-rostros.qmd
+            - 03-proyectos/clasificacion-frutas.qmd
+            - 03-proyectos/reconocimiento-manos.qmd
+            - 03-proyectos/colorspectra-colores.qmd
+            - 03-proyectos/digitos-manuscritos.qmd
         - section: "Lenguaje, habla y agentes"
           contents:
-            - proyectos/voz-a-texto.qmd
-            - proyectos/spam-texto-naive-bayes-scratch.qmd
-            - proyectos/traductor-incremental.qmd
-            - proyectos/adivina-animal-arbol.qmd
-            - proyectos/moto-diagnostico.qmd
-            - proyectos/panaderia-desfalco.qmd
-            - proyectos/asistente-bibliotecario.qmd
+            - 03-proyectos/voz-a-texto.qmd
+            - 03-proyectos/spam-texto-naive-bayes-scratch.qmd
+            - 03-proyectos/traductor-incremental.qmd
+            - 03-proyectos/adivina-animal-arbol.qmd
+            - 03-proyectos/moto-diagnostico.qmd
+            - 03-proyectos/panaderia-desfalco.qmd
+            - 03-proyectos/asistente-bibliotecario.qmd
         - section: "Juegos y refuerzo"
           contents:
-            - proyectos/dino-runner-neuroevolucion.qmd
-            - proyectos/domino-ppo-lstm.qmd
-            - proyectos/flappy-bird-dqn.qmd
+            - 03-proyectos/dino-runner-neuroevolucion.qmd
+            - 03-proyectos/domino-ppo-lstm.qmd
+            - 03-proyectos/flappy-bird-dqn.qmd
         - section: "Recomendación y clustering"
           contents:
-            - proyectos/crianza-perros.qmd
-            - proyectos/concesionario-vehiculos.qmd
-            - proyectos/segmentacion-clientes-kmeans.qmd
+            - 03-proyectos/crianza-perros.qmd
+            - 03-proyectos/concesionario-vehiculos.qmd
+            - 03-proyectos/segmentacion-clientes-kmeans.qmd
 
 format:
   html:

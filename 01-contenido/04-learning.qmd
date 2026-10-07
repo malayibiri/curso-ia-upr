@@ -1,0 +1,89 @@
+---
+title: "Tema 4: Aprendizaje Automático"
+format: html
+---
+
+## 1. Panorama General
+
+El **Aprendizaje Automático** permite a los agentes mejorar su rendimiento en tareas específicas mediante la observación y la experiencia. Se clasifica según el tipo de retroalimentación en: **Supervisado**, **No Supervisado** y **Por Refuerzo**.
+
+---
+
+### 1. Aprendizaje Supervisado
+El agente aprende una función $h: X \to Y$ a partir de ejemplos etiquetados $(x_i, y_i)$.
+
+#### Modelos Paramétricos y Lineales
+- **Regresión Lineal:** Estima una variable continua minimizando el error cuadrático medio (MSE) mediante la ecuación normal o descenso de gradiente: $\hat{y} = w^T x + b$.
+- **Regresión Logística:** Modela probabilidades de clasificación binaria aplicando la función sigmoide $\sigma(z) = \frac{1}{1 + e^{-z}}$ a una combinación lineal de entradas.
+- **Máquinas de Vectores de Soporte (SVM):** Encuentra el hiperplano óptimo que maximiza el margen de separación entre clases. Permite trabajar con espacios no lineales mediante el **truco del núcleo (Kernel Trick)** (RBF, polinómico).
+
+#### Modelos Basados en Árboles y Ensembles
+- **Árboles de Decisión (ID3, C4.5, CART):** Dividen el espacio de características mediante pruebas jerárquicas seleccionadas con **Ganancia de Información** (Entropía) o el **Índice Gini**.
+- **Bosques Aleatorios (Random Forests):** Algoritmo de *Bagging* (Bootstrap Aggregating) que entrena un conjunto de árboles de decisión independientes construidos sobre subconjuntos aleatorios de datos y características, reduciendo la varianza sin aumentar el sesgo.
+- **Gradient Boosting (XGBoost, LightGBM):** Algoritmo de *Boosting* que entrena árboles de decisión de forma secuencial, donde cada nuevo árbol corrige los errores/residuos del árbol anterior mediante descenso de gradiente.
+
+#### Modelos No Paramétricos y Probabilísticos
+- **K-Vecinos Más Cercanos (k-NN):** Clasifica un punto según la clase mayoritaria de sus $k$ vecinos más cercanos en el espacio métrico.
+- **Naïve Bayes:** Clasificador probabilístico basado en el **Teorema de Bayes** bajo la suposición "ilusa" de independencia condicional entre las características dada la clase.
+
+---
+
+### 2. Aprendizaje No Supervisado
+El agente descubre patrones intrínsecos en datos sin etiquetas $x_i$.
+
+- **K-Means Clustering:** Agrupa datos en $k$ clústeres asignando cada punto al centroide más cercano (distancia euclidiana) y recalculando iterativamente los centroides.
+- **Clustering Jerárquico (Aglomerativo / Divisivo):** Construye un árbol de agrupamiento (Dendrograma) combinando o dividiendo clústeres según criterios de enlace (*Single*, *Complete*, *Average linkage*).
+- **Análisis de Componentes Principales (PCA):** Técnica de reducción de dimensionalidad lineal que proyecta los datos en los vectores ortogonales (componentes principales) que maximizan la varianza observada.
+
+---
+
+### 3. Aprendizaje por Refuerzo (RL)
+El agente aprende qué acciones tomar en un entorno dinámico para maximizar una recompensa acumulada $R$, formalizado mediante un **Proceso de Decisión de Markov (MDP)** $(S, A, P, R, \gamma)$.
+
+- **Aprendizaje Q (Q-Learning):** Algoritmo *Off-Policy* libre de modelo (Model-Free) que actualiza la función valor-acción $Q(s, a)$ mediante la ecuación de Bellman:
+  $$Q(s,a) \leftarrow Q(s,a) + \alpha \left[ r + \gamma \max_{a'} Q(s', a') - Q(s,a) \right]$$
+- **SARSA:** Algoritmo *On-Policy* similar a Q-Learning, pero evalúa la acción realmente tomada por la política actual $a'$ en el estado $s'$.
+
+---
+
+## 2. Demostración Práctica (Pyodide)
+
+Implementación desde cero del algoritmo **Q-Learning** para resolver un entorno de navegación de rejilla 1D simple.
+
+```{pyodide-python}
+import random
+
+# Entorno 1D: [0, 1, 2, 3, 4 (META)]
+ESTADOS = 5
+ACCIONES = [0, 1]  # 0: Izquierda, 1: Derecha
+META = 4
+
+# Parámetros de RL
+q_tabla = [[0.0, 0.0] for _ in range(ESTADOS)]
+alpha = 0.1   # Tasa de aprendizaje
+gamma = 0.9   # Factor de descuento
+epsilon = 0.2 # Exploración epsilon-greedy
+
+def elegir_accion(estado):
+    if random.random() < epsilon:
+        return random.choice(ACCIONES)
+    return 0 if q_tabla[estado][0] > q_tabla[estado][1] else 1
+
+# Entrenar el agente mediante Q-Learning
+num_episodios = 200
+for _ in range(num_episodios):
+    estado = 0
+    while estado != META:
+        accion = elegir_accion(estado)
+        siguiente_estado = max(0, min(META, estado + (1 if accion == 1 else -1)))
+        recompensa = 10.0 if siguiente_estado == META else -0.1
+        
+        # Ecuación de actualización Q-Learning (Bellman)
+        max_q_futuro = max(q_tabla[siguiente_estado])
+        q_tabla[estado][accion] += alpha * (recompensa + gamma * max_q_futuro - q_tabla[estado][accion])
+        
+        estado = siguiente_estado
+
+print("=== Tabla Q Aprendida (Acción 0: Izq, Acción 1: Der) ===")
+for s in range(ESTADOS - 1):
+    print(f"Estado {s} -> Q(Izq): {q_tabla[s][0]:.2f} | Q(Der): {q_tabla[s][1]:.2f}")

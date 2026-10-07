@@ -1,0 +1,109 @@
+---
+title: "Tema 3: Búsqueda y Resolución de Problemas"
+format: html
+---
+
+## 1. Panorama General
+
+Cuando un agente no puede seleccionar inmediatamente una acción adecuada, recurre a la **búsqueda**: la formulación de una secuencia de acciones para alcanzar un estado objetivo. Formalmente, un problema de búsqueda se compone de:
+1. **Estado inicial:** $s_0 \in S$.
+2. **Acciones disponibles:** $ACTIONS(s)$.
+3. **Modelo de transición:** $RESULT(s, a)$.
+4. **Test de objetivo:** $IS\_GOAL(s)$.
+5. **Costo del camino:** $c(s, a, s')$.
+
+### 1. Búsqueda No Informada (A Ciegas)
+No disponen de información sobre el costo acumulado o la cercanía al objetivo más allá de la estructura del problema.
+
+- **Búsqueda en Anchura (BFS - Breadth-First Search):** Expande primero el nodo más superficial. Es completa y óptima si los costos de paso son iguales. Complejidad espacial y temporal: $O(b^d)$.
+- **Búsqueda en Profundidad (DFS - Depth-First Search):** Expande el nodo más profundo de la frontera. Su costo espacial es lineal $O(bm)$, pero no es completa ni óptima en espacios de estados infinitos o con bucles.
+- **Búsqueda de Costo Uniforme (UCS / Algoritmo de Dijkstra):** Expande el nodo con el menor costo de camino acumulado $g(n)$. Garantiza la optimidad para costos de paso no negativos arbitrarios.
+- **Búsqueda con Profundidad Limitada e Iterativa (IDS - Iterative Deepening Search):** Aplica DFS incrementando progresivamente el límite de profundidad. Combina la eficiencia en espacio de DFS con la completitud y optimidad de BFS.
+- **Búsqueda Bidireccional:** Ejecuta dos búsquedas simultáneas (una hacia adelante desde el estado inicial y otra hacia atrás desde la meta) hasta que las fronteras se cruzan, reduciendo el factor de ramificación efectivo a $O(b^{d/2})$.
+
+### 2. Búsqueda Informada (Heurística)
+Utilizan una función heurística $h(n)$ que estima el costo desde el nodo $n$ hasta la meta.
+
+- **Búsqueda A\*:** Evalúa nodos con $f(n) = g(n) + h(n)$. Es completa y óptima si la heurística es **admisible** (nunca sobreestima el costo real) para árboles, y **consistente** (satisface la desigualdad triangular) para grafos.
+- **Búsqueda A\* con Memoria Limitada (IDA\* / SMA\*):**
+  - **IDA\* (Iterative Deepening A\*):** Usa límites de corte basados en el valor $f(n)$ en lugar de la profundidad.
+  - **SMA\* (Simplified Memory-Bounded A\*):** Utiliza toda la memoria disponible; cuando se llena, descarta el peor nodo para continuar la expansión.
+- **Búsqueda Codiciosa (Greedy Best-First Search):** Expande el nodo que parece estar más cerca de la meta evaluando solo $h(n)$. Es muy rápida pero no garantiza la optimidad.
+
+### 3. Búsqueda Local y Optimización
+Trabajan sobre el estado actual en lugar de mantener caminos en memoria. Útiles para problemas de configuración (ej. N-Reinas, diseño de circuitos).
+
+- **Búsqueda por Escalada de Colinas (Hill-Climbing):** Loop continuo que se mueve en la dirección de mayor ascenso de valor/utilidad. Es vulnerable a **máximos locales**, **crestas** y **mesetas**.
+- **Templado Simulado (Simulated Annealing):** Combina Hill-Climbing con una caminata aleatoria. Acepta "malos movimientos" con una probabilidad decreciente controlada por un parámetro de temperatura $T$, permitiendo escapar de máximos locales.
+- **Búsqueda Local de Haz (Local Beam Search):** Mantiene $k$ estados en lugar de uno solo. En cada paso, genera todos los sucesores de los $k$ estados y selecciona los $k$ mejores de todo el conjunto.
+- **Algoritmos Genéticos (GA):** Variante de la búsqueda de haz donde los estados sucesores se generan combinando dos estados padres (cruzamiento/crossover) y aplicando modificaciones aleatorias (mutación).
+
+### 4. Búsqueda Adversaria (Juegos)
+Modela entornos multiagente competitivos de suma cero (ej. Ajedrez, Go).
+
+- **Minimax:** Calcula la decisión óptima suponiendo que el oponente juega de manera perfecta para minimizar la utilidad del jugador actual.
+- **Poda Alfa-Beta ($\alpha$-$\beta$ Pruning):** Técnica de optimización para Minimax que permite podar ramas del árbol de juego que demostradamente no influirán en la decisión final, duplicando la profundidad efectiva alcanzable.
+- **Búsqueda en Árboles Monte Carlo (MCTS - Monte Carlo Tree Search):** Utiliza simulaciones aleatorias (playouts) para evaluar la calidad de las posiciones. Consta de 4 fases: *Selección (UCB1)*, *Expansión*, *Simulación* y *Retropropagación*. Es la base de sistemas modernos como AlphaGo.
+
+---
+
+## 2. Demostración Práctica (Pyodide)
+
+Comparación interactiva entre **A\*** y **Greedy Best-First Search** sobre la misma cuadrícula de navegación.
+
+```{pyodide-python}
+import heapq
+
+def a_estrella(grafo, heuristica, inicio, objetivo):
+    frontera = []
+    heapq.heappush(frontera, (heuristica[inicio], inicio, [inicio], 0))
+    visitados = {}
+
+    while frontera:
+        f, actual, camino, g = heapq.heappop(frontera)
+        if actual == objetivo:
+            return camino, g
+        if actual in visitados and visitados[actual] <= g:
+            continue
+        visitados[actual] = g
+        for vecino, costo in grafo.get(actual, []):
+            nuevo_g = g + costo
+            nuevo_f = nuevo_g + heuristica.get(vecino, 0)
+            heapq.heappush(frontera, (nuevo_f, vecino, camino + [vecino], nuevo_g))
+    return None, float('inf')
+
+def greedy_best_first(grafo, heuristica, inicio, objetivo):
+    frontera = []
+    heapq.heappush(frontera, (heuristica[inicio], inicio, [inicio], 0))
+    visitados = set()
+
+    while frontera:
+        h, actual, camino, g = heapq.heappop(frontera)
+        if actual == objetivo:
+            return camino, g
+        if actual in visitados:
+            continue
+        visitados.add(actual)
+        for vecino, costo in grafo.get(actual, []):
+            nuevo_g = g + costo
+            heapq.heappush(frontera, (heuristica.get(vecino, 0), vecino, camino + [vecino], nuevo_g))
+    return None, float('inf')
+
+# Grafo con un camino más corto pero con heurística engañosa
+grafo = {
+    'S': [('A', 2), ('B', 5)],
+    'A': [('C', 2), ('D', 4)],
+    'B': [('G', 6)],
+    'C': [('G', 3)],
+    'D': [('G', 1)],
+    'G': []
+}
+
+heuristica = {'S': 6, 'A': 4, 'B': 2, 'C': 2, 'D': 1, 'G': 0}
+
+camino_a, costo_a = a_estrella(grafo, heuristica, 'S', 'G')
+camino_g, costo_g = greedy_best_first(grafo, heuristica, 'S', 'G')
+
+print("=== Comparación de Búsqueda Informada ===")
+print(f"A*                  -> Ruta: {' -> '.join(camino_a)} | Costo total: {costo_a}")
+print(f"Greedy Best-First   -> Ruta: {' -> '.join(camino_g)} | Costo total: {costo_g}")
