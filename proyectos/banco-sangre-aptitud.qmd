@@ -1,0 +1,42 @@
+---
+title: "Aptitud de sangre donada"
+tipo-ia: clasificación
+local: true
+---
+
+# Aptitud de sangre donada
+
+> Vínculo local: "El Banco Provincial de Sangre de Pinar del Río
+> desempeña un papel fundamental…".
+
+## Situación problemática
+
+Del registro al laboratorio (VIH, hepatitis B/C, hemoglobina,
+hematocrito, proteínas, tensión, historial, grupo) el análisis manual de
+gran volumen es lento y propenso a error.
+
+## Objetivo
+
+Clasificar binariamente si la muestra donada es apta para transfusión
+desde los datos del donante y sus análisis.
+
+## Datos y entorno
+
+- Edad, sexo, pruebas previas, estado de la muestra, presión, historial, grupo sanguíneo; conjunto etiquetado (x, y).
+
+## Técnicas de IA sugeridas
+
+- Clasificación supervisada binaria + experimento entrena/evalúa/itera.
+
+## Alcance y entregables
+
+- Clasificador de aptitud con evaluación y casos de borde.
+- Checklist de variables mínimas necesarias.
+
+## Métricas sugeridas
+
+Exactitud, sensibilidad, especificidad (priorizar no aceptar sangre no apta).
+
+## Extensiones
+
+Priorización de componentes, trazabilidad donante→receptor.

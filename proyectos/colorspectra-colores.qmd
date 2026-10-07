@@ -1,0 +1,42 @@
+---
+title: "ColorSpectra: clasificación de colores con CNN sintética"
+tipo-ia: visión-CNN
+local: false
+---
+
+# ColorSpectra: clasificación de colores con CNN sintética
+
+## Situación problemática
+
+La clasificación cromática automática es clave en control de calidad,
+reconocimiento visual y robótica. Se quiere probar que una CNN aprenda
+el espacio de color sin rasgos manuales.
+
+## Objetivo
+
+Clasificar imágenes sintéticas de colores puros (60+ clases) con CNN y
+dejar un pipeline reproducible dataset-sintético → entrenamiento,
+escalable a percepción real.
+
+## Datos y entorno
+
+- Dataset sintético propio: ~200 imágenes por color, 50+ colores (~12.000 imágenes 64×64 RGB) en carpetas etiquetadas.
+- Reescalado y aumento con generador de imágenes.
+
+## Técnicas de IA sugeridas
+
+- CNN supervisada de clasificación multiclase.
+- Aumento de datos (brillo, ruido, rotación).
+
+## Alcance y entregables
+
+- Generador del dataset, entrenamiento y evaluación.
+- Análisis de confusiones entre colores cercanos.
+
+## Métricas sugeridas
+
+Exactitud top-1/top-3, matriz de confusión.
+
+## Extensiones
+
+Probar con fotos reales, iluminación variable, detección + clasificación.

@@ -1,0 +1,38 @@
+---
+title: "Calidad del aire en áreas urbanas"
+tipo-ia: regresión/predicción
+local: false
+---
+
+# Calidad del aire en áreas urbanas
+
+## Situación problemática
+
+La contaminación urbana crece y daña salud y medioambiente. Sin
+pronóstico, las autoridades reaccionan tarde a episodios críticos.
+
+## Objetivo
+
+Predecir concentración de contaminantes (PM2.5, PM10, NO₂) desde
+variables ambientales para anticipar episodios y decidir.
+
+## Datos y entorno
+
+- Tabular por observación: temperatura, humedad, tráfico y otras; fuentes públicas/gubernamentales + APIs meteo (+ sintéticos si falta).
+
+## Técnicas de IA sugeridas
+
+- Regresión lineal, árboles, redes neuronales.
+
+## Alcance y entregables
+
+- Prototipo de pronóstico con MSE y R².
+- Umbrales de alerta por contaminante.
+
+## Métricas sugeridas
+
+MSE, R², acierto de alertas.
+
+## Extensiones
+
+Serie temporal (LSTM), varias estaciones, mapa de calor urbano.

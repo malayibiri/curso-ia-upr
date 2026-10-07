@@ -1,0 +1,42 @@
+---
+title: "Sudoku generalizado con A* y enfriamiento simulado"
+tipo-ia: CSP/juegos
+local: false
+---
+
+# Sudoku generalizado con A* y enfriamiento simulado
+
+## Situación problemática
+
+Cuadrícula `n×n` (p. ej. 9×9) a llenar con `1..n` sin repetir en fila,
+columna ni bloque. Se parte de un tablero completo que respeta conteos
+pero aún es inválido; hay que permutar celdas hasta una solución válida.
+
+## Objetivo
+
+Resolver por dos vías y compararlas: A* (sistemático, óptimo, lento en
+grandes) frente a enfriamiento simulado (probabilístico, rápido, sin
+garantía).
+
+## Datos y entorno
+
+- Tablero `n×n` generado; costo = errores (repeticiones) + pasos.
+- Operadores de intercambio de celdas.
+
+## Técnicas de IA sugeridas
+
+- A* sobre espacio de tableros.
+- Simulated annealing con probabilidad de aceptación `P(Δ, T)` y esquema de enfriamiento.
+
+## Alcance y entregables
+
+- Ambos resolvedores y generador de tableros.
+- Comparación de tasa de éxito y tiempo según tamaño.
+
+## Métricas sugeridas
+
+Errores residuales, pasos, tiempo, tasa de resolución.
+
+## Extensiones
+
+Sudokus clásicos con celdas prefijadas, híbrido SA + reinicios.

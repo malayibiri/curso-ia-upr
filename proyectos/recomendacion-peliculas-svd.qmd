@@ -1,0 +1,42 @@
+---
+title: "Recomendación de películas con SVD"
+tipo-ia: recomendación
+local: false
+---
+
+# Recomendación de películas con SVD
+
+## Situación problemática
+
+Mismo contexto de sobrecarga en plataformas de contenido: se requiere
+personalizar sugerencias analizando comportamiento y preferencias
+históricas, con modelos que generalicen bien.
+
+## Objetivo
+
+Predecir la calificación `r(u,i)` que un usuario daría a una película no
+vista y evaluar precisión y generalización del modelo SVD.
+
+## Datos y entorno
+
+- MovieLens 100K (100k ratings, 943 usuarios, 1.682 películas, 1–5) más demográficos de usuario.
+- Pruebas de escalabilidad en MovieLens 1M con KNN/SVC como referencia.
+
+## Técnicas de IA sugeridas
+
+- Factorización de matrices con SVD (factores latentes usuario/ítem).
+- Líneas base: KNN, SVC.
+
+## Alcance y entregables
+
+- Modelo SVD entrenado con partición train/test.
+- Comparación frente a líneas base.
+- Recomendaciones top-N por usuario.
+
+## Métricas sugeridas
+
+RMSE, MAE, cobertura, novedad de la recomendación.
+
+## Extensiones
+
+SVD++ con feedback implícito, sesgos temporales, evaluación con usuarios reales.

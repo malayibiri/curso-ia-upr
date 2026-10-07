@@ -1,0 +1,42 @@
+---
+title: "Qué producir en el Combinado Lácteo"
+tipo-ia: clasificación
+local: true
+---
+
+# Qué producir en el Combinado Lácteo
+
+> Vínculo local: "El Combinado Lácteo de Pinar del Río enfrenta a diario
+> desafíos…".
+
+## Situación problemática
+
+La producción se lleva en Excel y papel; no hay decisiones rápidas de
+producción ni análisis de qué conviene fabricar.
+
+## Objetivo
+
+Maximizar la ganancia decidiendo qué producto(s) producir con la
+disponibilidad de materias primas.
+
+## Datos y entorno
+
+- Materias primas (nombre, cantidad, costo unitario) y productos (nombre, cantidad, precio); ganancia = precio − costo.
+
+## Técnicas de IA sugeridas
+
+- Clasificación supervisada del producto a fabricar; regresión de ganancia; árboles de decisión/regresión y redes como contraste.
+
+## Alcance y entregables
+
+- Modelo que recomienda el plan de producción y estima la ganancia.
+- Análisis de sensibilidad a precios y stocks.
+
+## Métricas sugeridas
+
+Ganancia estimada frente a plan manual, cumplimiento de stocks.
+
+## Extensiones
+
+Optimización lineal exacta como referencia, demanda pronosticada,
+planificación semanal.

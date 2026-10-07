@@ -1,0 +1,40 @@
+---
+title: "Predicción de diabetes con Random Forest"
+tipo-ia: clasificación
+local: false
+---
+
+# Predicción de diabetes con Random Forest
+
+## Situación problemática
+
+La diabetes crónica con detección tardía provoca complicaciones graves.
+Se busca apoyo al diagnóstico con datos históricos etiquetados.
+
+## Objetivo
+
+Predecir diabetes (sí/no) con Random Forest evaluado por exactitud y
+matriz de confusión.
+
+## Datos y entorno
+
+- CSV con glucosa, presión, BMI, edad y otras variables médicas.
+- Limpieza de ceros imposibles (mediana) + estandarización, partición 80/20.
+
+## Técnicas de IA sugeridas
+
+- Random Forest como ensemble robusto a relaciones no lineales.
+- Comparación con un modelo lineal base.
+
+## Alcance y entregables
+
+- Pipeline reproducible y matriz de confusión.
+- Análisis de falsos negativos (los más costosos en salud).
+
+## Métricas sugeridas
+
+Exactitud, sensibilidad, especificidad, F1.
+
+## Extensiones
+
+Validación cruzada, calibración, importancia de variables clínicas.

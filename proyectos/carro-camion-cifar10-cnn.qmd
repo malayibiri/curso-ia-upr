@@ -1,0 +1,39 @@
+---
+title: "Carro frente a camión en imágenes"
+tipo-ia: visión-CNN
+local: false
+---
+
+# Carro frente a camión en imágenes
+
+## Situación problemática
+
+Se necesita un agente offline que, dada una imagen cualquiera del
+usuario, diga su categoría con confianza; útil donde no hay internet o
+por privacidad.
+
+## Objetivo
+
+Entrenar una CNN y desplegar un agente que cargue el modelo y prediga
+imágenes 32×32 con su confianza.
+
+## Datos y entorno
+
+- CIFAR-10 (60.000 imágenes 32×32, 10 clases) filtrado/enfocado a vehículos.
+- GUI de carga de imagen e inferencia.
+
+## Técnicas de IA sugeridas
+
+- CNN secuencial (Conv2D + MaxPool + densas + softmax).
+
+## Alcance y entregables
+
+- Modelo entrenado, GUI de inferencia y reporte de confianza por predicción.
+
+## Métricas sugeridas
+
+Exactitud binaria carro/camión, calibración de la confianza.
+
+## Extensiones
+
+Más clases de vehículos, fotos reales de calle, aumento de datos.

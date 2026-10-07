@@ -1,0 +1,41 @@
+---
+title: "Spam y prioridad por rasgos numéricos"
+tipo-ia: clasificación
+local: false
+---
+
+# Spam y prioridad por rasgos numéricos
+
+## Situación problemática
+
+El spam masivo (publicidad, phishing) lastra productividad y seguridad;
+además conviene priorizar lo legítimo. Todo debe correr en consola.
+
+## Objetivo
+
+Clasificar correos en spam/ham y, si son legítimos, su importancia
+(poco/importante/muy importante) con un doble clasificador
+probabilístico.
+
+## Datos y entorno
+
+- Dataset simulado de 5000 correos con rasgos numéricos: frecuencia de palabras clave, signos, longitud, enlaces, dominio.
+- Partición 70/30 y entrada manual por consola.
+
+## Técnicas de IA sugeridas
+
+- Naive Bayes gaussiano en cascada: primero spam, luego importancia.
+- Reporte de precisión, recall y F1 por clase.
+
+## Alcance y entregables
+
+- Generador/lector del dataset, ambos clasificadores y consola de prueba.
+- Evaluación con matriz de confusión.
+
+## Métricas sugeridas
+
+Precisión, recall, F1 (spam y cada nivel de importancia).
+
+## Extensiones
+
+Añadir rasgos de texto real (BoW), comparar con regresión logística.

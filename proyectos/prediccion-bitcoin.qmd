@@ -1,0 +1,42 @@
+---
+title: "Dirección del precio de Bitcoin con redes neuronales"
+tipo-ia: clasificación
+local: false
+---
+
+# Dirección del precio de Bitcoin con redes neuronales
+
+## Situación problemática
+
+Bitcoin es muy volátil y difícil de predecir; los inversores necesitan
+una ayuda para anticipar si el precio subirá o bajará y decidir
+informadamente.
+
+## Objetivo
+
+Clasificación binaria (1 = sube, 0 = baja) del precio del día siguiente
+a partir de los cierres de los últimos 5 días.
+
+## Datos y entorno
+
+- Cierres diarios BTC (fuente tipo Yahoo Finance), un año de historia.
+- Normalización Min-Max y ventanas deslizantes de 5 días.
+
+## Técnicas de IA sugeridas
+
+- Red feedforward densa (capas ReLU, salida sigmoide).
+- Línea base: predicción ingenua (repite el último signo).
+
+## Alcance y entregables
+
+- Constructor de ventanas, entrenamiento y evaluación.
+- Comparación frente a la línea base y matriz de confusión.
+
+## Métricas sugeridas
+
+Exactitud, F1, retorno simulado de una estrategia simple.
+
+## Extensiones
+
+LSTM/GRU para memoria temporal, más rasgos (volumen, volatilidad),
+evaluación walk-forward.

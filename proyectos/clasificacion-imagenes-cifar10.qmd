@@ -1,0 +1,41 @@
+---
+title: "CIFAR-10 con CNN desde cero"
+tipo-ia: visión-CNN
+local: false
+---
+
+# CIFAR-10 con CNN desde cero
+
+## Situación problemática
+
+Las imágenes son datos de alta dimensionalidad; clasificarlas a mano es
+ineficiente frente a usos como detección en tiempo real o diagnóstico.
+Se necesita automatizar la clasificación.
+
+## Objetivo
+
+Clasificar imágenes en una de las 10 categorías CIFAR-10 con la mayor
+precisión posible, entrenando una CNN desde cero y prediciendo sobre
+imágenes nuevas.
+
+## Datos y entorno
+
+- CIFAR-10: 60.000 imágenes 32×32 RGB (50k train / 10k test), 10 clases.
+- Normalización [0,1] y aumento de datos.
+
+## Técnicas de IA sugeridas
+
+- CNN supervisada (bloques conv+pool, densas, softmax, crossentropy).
+
+## Alcance y entregables
+
+- Entrenamiento con curvas y matriz de confusión.
+- Inferencia sobre imágenes externas con análisis de fallos.
+
+## Métricas sugeridas
+
+Exactitud test, F1 por clase.
+
+## Extensiones
+
+Transfer learning (comparar), visualización Grad-CAM, robustez a ruido.

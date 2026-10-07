@@ -1,0 +1,40 @@
+---
+title: "Logs de firewall pfSense con ML"
+tipo-ia: clasificación
+local: false
+---
+
+# Logs de firewall pfSense con ML
+
+## Situación problemática
+
+Logs de firewall masivos; detectar a mano fuerza bruta y escaneos es
+lento e inseguro.
+
+## Objetivo
+
+Clasificar cada ventana de log en normal / fuerza bruta / peligro (+
+fecha/hora/IP origen) para respuesta rápida.
+
+## Datos y entorno
+
+- Líneas de log agrupadas en secuencias acumulativas (1, 1+2, 1+2+3…)
+  para capturar el patrón temporal.
+
+## Técnicas de IA sugeridas
+
+- Clasificador ML sobre ventanas secuenciales de eventos.
+
+## Alcance y entregables
+
+- Agrupador de logs, clasificador y reporte de incidentes.
+- Evaluación sobre capturas etiquetadas.
+
+## Métricas sugeridas
+
+Precisión/recall por clase, tiempo de detección.
+
+## Extensiones
+
+Dataset público de intrusiones, LSTM sobre secuencias, respuesta
+automática (bloqueo).

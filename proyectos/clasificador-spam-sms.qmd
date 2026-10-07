@@ -1,0 +1,40 @@
+---
+title: "Clasificador de SMS en spam o ham"
+tipo-ia: clasificación
+local: false
+---
+
+# Clasificador de SMS en spam o ham
+
+## Situación problemática
+
+El SMS es cotidiano pero atrae spam (publicidad, fraude); filtrar a mano
+es tedioso, ineficiente y expone al usuario a amenazas.
+
+## Objetivo
+
+Aprender `f: X → {SPAM, NO SPAM}` (bolsa de palabras + clasificador) que
+etiquete mensajes nuevos con la mayor precisión posible.
+
+## Datos y entorno
+
+- SMS Spam Collection: mensajes etiquetados SPAM/HAM.
+- Limpieza y paso a CSV con Pandas.
+
+## Técnicas de IA sugeridas
+
+- Bolsa de palabras + árboles de decisión y Naive Bayes.
+- Comparación entre ambos con las mismas particiones.
+
+## Alcance y entregables
+
+- Pipeline texto → matriz → modelo → etiqueta.
+- Evaluación con matriz de confusión y ejemplos de errores.
+
+## Métricas sugeridas
+
+Precisión, recall (priorizar captar spam), F1.
+
+## Extensiones
+
+TF-IDF, n-gramas, validación cruzada, prueba en español.

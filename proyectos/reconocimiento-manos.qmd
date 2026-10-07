@@ -1,0 +1,42 @@
+---
+title: "Manos y dedos en tiempo real"
+tipo-ia: visión-CNN
+local: false
+---
+
+# Manos y dedos en tiempo real
+
+## Situación problemática
+
+Interfaces para personas con discapacidad motora que usen solo gestos, y
+control industrial donde los guantes hacen fallar la visión tradicional.
+El reto: identificar manos, contar dedos extendidos e indicar lateralidad.
+
+## Objetivo
+
+Dada una imagen (o cámara en vivo), devolver `(n, l)`: número de dedos
+extendidos (0–5) y mano izquierda/derecha, con alta precisión.
+
+## Datos y entorno
+
+- Dataset de manos (izquierda/derecha, 5 dedos, tonos y edades variados).
+- Imágenes RGB ~224×224; cámara web como sensor en vivo.
+- Detección de landmarks (21 puntos) como apoyo.
+
+## Técnicas de IA sugeridas
+
+- CNN de clasificación (arquitecturas tipo ResNet/EfficientNet o CNN propia).
+- Detección en tiempo real con OpenCV/MediaPipe + clasificación.
+
+## Alcance y entregables
+
+- Clasificador entrenado y demo en vivo con cámara.
+- Reporte de precisión por gesto y por mano.
+
+## Métricas sugeridas
+
+Exactitud por clase de conteo, latencia por frame.
+
+## Extensiones
+
+Gestos dinámicos (secuencias), control de un cursor con la mano.

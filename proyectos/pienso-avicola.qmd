@@ -1,0 +1,46 @@
+---
+title: "Distribución de pienso en granjas avícolas"
+tipo-ia: búsqueda-no-informada
+local: true
+---
+
+# Distribución de pienso en granjas avícolas
+
+> Vínculo local: "la distribución de pienso en las granjas que
+> pertenecen a la empresa avícola de Pinar del Rio".
+
+## Situación problemática
+
+La empresa avícola debe distribuir toneladas de pienso a sus granjas
+minimizando el gasto de gasolina, considerando clase de pienso y edad de
+los animales.
+
+## Objetivo
+
+Planificar el reparto que cubra las toneladas demandadas por las granjas
+con el menor costo de transporte.
+
+## Datos y entorno
+
+- Estado: granja actual, toneladas de pienso a bordo, gasolina actual.
+- Estado inicial: empresa principal (depósito).
+- Costo del camino: kilometraje, calidad y cantidad de pienso, gasolina.
+
+## Técnicas de IA sugeridas
+
+- Búsqueda en espacio de estados con costo acumulado.
+- Función sucesor según demanda por granja y consumo por distancia.
+
+## Alcance y entregables
+
+- Modelo formal y resolvedor.
+- Plan de reparto con costo desglosado.
+- Test objetivo: toneladas cubiertas para las granjas pedidas.
+
+## Métricas sugeridas
+
+Toneladas entregadas, gasolina consumida, kilómetros totales.
+
+## Extensiones
+
+Capacidad del camión, varias rutas simultáneas, demanda por tipo de pienso.

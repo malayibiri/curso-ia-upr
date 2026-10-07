@@ -1,0 +1,40 @@
+---
+title: "Predicción de precios de casas"
+tipo-ia: regresión/predicción
+local: false
+---
+
+# Predicción de precios de casas
+
+## Situación problemática
+
+Valorar viviendas (habitaciones, baños, área, año, garaje, jardín,
+ubicación) es crucial para compradores y vendedores, pero hoy es
+subjetivo y lento. Se necesita automatizarlo.
+
+## Objetivo
+
+Estimar el precio (variable continua) desde las características de la
+casa para decidir informadamente en el sector inmobiliario.
+
+## Datos y entorno
+
+- Dataset tabular (entero/flotante/categóricas); prototipo inicial de 10 filas, ampliable con fuentes abiertas.
+- Precios en escala continua.
+
+## Técnicas de IA sugeridas
+
+- Regresión lineal como línea base; comparar con árboles/bosques y regularización.
+
+## Alcance y entregables
+
+- Modelo entrenado con análisis de residuos.
+- Informe de qué características pesan más.
+
+## Métricas sugeridas
+
+RMSE, MAE, R².
+
+## Extensiones
+
+Recoger dataset real amplio, modelos no lineales, mapa de precios por zona.

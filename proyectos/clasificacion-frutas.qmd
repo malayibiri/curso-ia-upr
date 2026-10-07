@@ -1,0 +1,42 @@
+---
+title: "Clasificación automática de frutas (Fruit-360)"
+tipo-ia: visión-CNN
+local: false
+---
+
+# Clasificación automática de frutas (Fruit-360)
+
+## Situación problemática
+
+En agro y comercialización la clasificación manual de frutas es
+subjetiva e inconsistente (fatiga, falta de estándar), afectando la
+calidad antes de distribuir.
+
+## Objetivo
+
+Sistema automático que identifique el tipo de fruta en una imagen
+(manzana, plátano, naranja…) para mejorar precisión, eficiencia y
+velocidad.
+
+## Datos y entorno
+
+- Fruit-360: miles de imágenes etiquetadas por clase.
+- Aumento (rotación, brillo, volteo); imágenes 224×224 normalizadas.
+
+## Técnicas de IA sugeridas
+
+- CNN / deep learning con TensorFlow/Keras; clases detectadas dinámicamente.
+
+## Alcance y entregables
+
+- Clasificador entrenado + script de inferencia sobre fotos propias.
+- Reporte de precisión por fruta.
+
+## Métricas sugeridas
+
+Exactitud, F1 por clase, tiempo de inferencia.
+
+## Extensiones
+
+Detección de defectos/madurez, despliegue en móvil, prueba con fotos
+reales de mercado.

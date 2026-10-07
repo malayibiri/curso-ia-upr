@@ -1,0 +1,40 @@
+---
+title: "Recomendador de cachorros por clientes similares"
+tipo-ia: recomendación
+local: false
+---
+
+# Recomendador de cachorros por clientes similares
+
+## Situación problemática
+
+Un centro de crianza vende cachorros de muchas razas (tamaño, color,
+esperanza de vida, inteligencia, cuidado, obediencia). Los clientes
+tardan en decidir cuál se ajusta a gustos y necesidades.
+
+## Objetivo
+
+Agente que valore decisiones de clientes anteriores y, según el tipo de
+cliente, ofrezca una raza similar a la que eligieron clientes con
+características parecidas.
+
+## Datos y entorno
+
+- Catálogo de razas con atributos; historial de elecciones por tipo de cliente.
+
+## Técnicas de IA sugeridas
+
+- Filtrado colaborativo / basado en contenido con similitud entre clientes.
+
+## Alcance y entregables
+
+- Modelo del problema, recomendador y explicación de la sugerencia.
+- Evaluación con clientes simulados.
+
+## Métricas sugeridas
+
+Aceptación simulada, precisión@N, cobertura del catálogo.
+
+## Extensiones
+
+Pesos por atributo, preguntas para perfilar al cliente, interfaz de compra.

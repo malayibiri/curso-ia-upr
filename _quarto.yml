@@ -10,7 +10,7 @@ website:
         text: "Inicio"
       - href: 01-introduccion/01.qmd
         text: "El curso"
-      - href: 03-proyectos/01.qmd
+      - href: proyectos/index.qmd
         text: "Proyectos"
       - href: tareas/01.qmd
         text: "Tareas"

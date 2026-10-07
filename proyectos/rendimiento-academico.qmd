@@ -1,0 +1,39 @@
+---
+title: "Rendimiento académico de estudiantes"
+tipo-ia: clasificación
+local: false
+---
+
+# Rendimiento académico de estudiantes
+
+## Situación problemática
+
+El rendimiento condiciona progreso y decisiones docentes. Detectar tarde
+a quien no aprobará impide prevención personalizada.
+
+## Objetivo
+
+Clasificación binaria (Aprobado = 1 / No = 0) desde asistencia, estudio
+y parciales.
+
+## Datos y entorno
+
+- Sintético 500 registros: asistencia, horas de estudio, parcial, participación; normalización y balanceo 50/50.
+
+## Técnicas de IA sugeridas
+
+- Regresión logística, árbol, SVM, Random Forest (comparar los 4).
+
+## Alcance y entregables
+
+- Comparación de modelos con exactitud y sensibilidad.
+- Identificación temprana de estudiantes en riesgo (prototipo).
+
+## Métricas sugeridas
+
+Exactitud, sensibilidad, especificidad.
+
+## Extensiones
+
+Datos reales anonimizados, factores socioemocionales, recomendación de
+intervenciones.

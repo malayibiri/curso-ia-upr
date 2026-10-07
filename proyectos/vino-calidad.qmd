@@ -1,0 +1,36 @@
+---
+title: "Calidad del vino desde uva, clima y vinificación"
+tipo-ia: clasificación
+local: false
+---
+
+# Calidad del vino desde uva, clima y vinificación
+
+## Situación problemática
+
+Tipo de uva, clima, técnicas de vinificación y envejecimiento influyen en
+la calidad; la industria necesita predecirla y evaluarla con precisión.
+
+## Objetivo
+
+Modelo que prediga la calidad del vino desde sus factores de elaboración.
+
+## Datos y entorno
+
+- Conjunto de vinos con descriptores de uva, clima, proceso y calidad etiquetada.
+
+## Técnicas de IA sugeridas
+
+- Aprendizaje automático supervisado (clasificación o regresión según la escala de calidad).
+
+## Alcance y entregables
+
+- Predictor de calidad con evaluación y análisis de factores clave.
+
+## Métricas sugeridas
+
+Exactitud/F1 o RMSE según formulación, importancia de variables.
+
+## Extensiones
+
+Comparar con el dataset Wine químico, cata a ciegas frente a modelo.

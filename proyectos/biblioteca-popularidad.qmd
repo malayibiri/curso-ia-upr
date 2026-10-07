@@ -1,0 +1,41 @@
+---
+title: "Popularidad de libros en biblioteca pública"
+tipo-ia: clasificación
+local: false
+---
+
+# Popularidad de libros en biblioteca pública
+
+## Situación problemática
+
+Las bibliotecas públicas gestionan mal la colección: faltan títulos de
+alta demanda mientras otros obsoletos ocupan espacio. La gestión por
+reglas gruesas (año/género) y revisiones manuales no refleja el interés
+real.
+
+## Objetivo
+
+Predecir popularidad = probabilidad de préstamo (popular / no popular)
+para decidir adquisiciones, asignación y reubicación.
+
+## Datos y entorno
+
+- Por libro: título, autor, género, año, ISBN, préstamos, sala, tipo de usuario, reseñas, fechas, prórrogas; umbral popular = >300 préstamos.
+- Datos sintéticos simulados desde fichas e historial.
+
+## Técnicas de IA sugeridas
+
+- Regresión logística, árboles/Random Forests; NLP (BoW, TF-IDF) sobre texto.
+
+## Alcance y entregables
+
+- Clasificador con precisión/recall/F1 y lista de adquisiciones sugeridas.
+
+## Métricas sugeridas
+
+Precisión, recall, F1; rotación simulada de la colección.
+
+## Extensiones
+
+Recomendador al lector, predicción de demanda por sala, series temporales
+de préstamos.

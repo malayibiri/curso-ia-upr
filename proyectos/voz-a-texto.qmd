@@ -1,0 +1,41 @@
+---
+title: "Voz a texto en español"
+tipo-ia: NLP/LLM
+local: false
+---
+
+# Voz a texto en español
+
+## Situación problemática
+
+Los reconocedores tradicionales fallan con acentos, ruido, velocidad de
+habla y alineación audio-texto. Esto limita accesibilidad, transcripción
+y asistentes de voz.
+
+## Objetivo
+
+Mapear secuencias acústicas a secuencias de caracteres en español sin
+alineación previa, con extracción robusta y modelado temporal no
+alineado.
+
+## Datos y entorno
+
+- Audios en español (.wav 16 kHz) con transcripciones; locutora de español neutro.
+- MFCC-40 por frame (25 ms / 10 ms); vocabulario de ~37 símbolos + blank/pad.
+
+## Técnicas de IA sugeridas
+
+- MFCC + CNN + LSTM bidireccional + pérdida CTC.
+
+## Alcance y entregables
+
+- Modelo entrenado que transcribe audios nuevos.
+- Reporte de tasa de error por palabra/caracter.
+
+## Métricas sugeridas
+
+WER, CER, tiempo real de transcripción.
+
+## Extensiones
+
+Más locutores y ruido, modelo de lenguaje externo, streaming.

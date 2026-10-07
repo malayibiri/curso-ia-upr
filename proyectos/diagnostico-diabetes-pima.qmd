@@ -1,0 +1,40 @@
+---
+title: "Diagnóstico de diabetes con red neuronal (Pima)"
+tipo-ia: clasificación
+local: false
+---
+
+# Diagnóstico de diabetes con red neuronal (Pima)
+
+## Situación problemática
+
+La diabetes crónica mal diagnosticada causa complicaciones graves; el
+diagnóstico clínico y de laboratorio es costoso y no siempre accesible.
+El tamizaje temprano es crucial.
+
+## Objetivo
+
+Predecir si un paciente tiene diabetes (0/1) desde 8 variables clínicas
+para abaratar y acelerar el diagnóstico.
+
+## Datos y entorno
+
+- Pima Indians Diabetes: 768 pacientes × 8 rasgos (embarazos, glucosa, presión, piel, insulina, IMC, pedigrí, edad).
+
+## Técnicas de IA sugeridas
+
+- Red neuronal densa (p. ej. 12-8-1, ReLU + sigmoide, Adam, binary crossentropy).
+- Estandarización y partición train/test.
+
+## Alcance y entregables
+
+- Red entrenada con curva de entrenamiento.
+- Matriz de confusión con énfasis en falsos negativos.
+
+## Métricas sugeridas
+
+Exactitud, sensibilidad, especificidad, AUC.
+
+## Extensiones
+
+Regularización/dropout, validación cruzada, comparación con Random Forest.

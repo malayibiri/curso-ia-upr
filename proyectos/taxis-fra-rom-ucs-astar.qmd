@@ -1,0 +1,45 @@
+---
+title: "Ruta óptima de taxi: UCS frente a A*"
+tipo-ia: búsqueda-informada-A*
+local: false
+---
+
+# Ruta óptima de taxi: UCS frente a A*
+
+## Situación problemática
+
+Un servicio de taxi de larga distancia opera sobre una red simplificada
+de 16 ciudades de Europa Central. Se necesita la ruta de menor distancia
+(kilometraje) entre Fráncfort (FRA) y Roma (ROM).
+
+## Objetivo
+
+Hallar la ruta óptima y comparar la eficiencia de dos agentes de costo
+óptimo: búsqueda de costo uniforme (UCS, no informada, solo costo
+acumulado `g`) frente a A* (informada, `f = g + h`).
+
+## Datos y entorno
+
+- Grafo de ciudades (nodos) y carreteras (arcos con distancia real en km).
+- Heurística para A*: distancia en línea recta (euclidiana) a ROM, admisible.
+- Representación de estados con nodo que guarda `g`, `h` y `f`.
+
+## Técnicas de IA sugeridas
+
+- UCS como línea base no informada.
+- A* con heurística euclidiana admisible (garantiza optimalidad con menos expansiones).
+
+## Alcance y entregables
+
+- Algoritmo de búsqueda genérico que funcione como UCS (`h = 0`) y como A*.
+- Demostración de que ambos encuentran la ruta óptima.
+- Comparación del número de nodos expandidos.
+
+## Métricas sugeridas
+
+Costo de la ruta, nodos expandidos/generados, tiempo de ejecución.
+
+## Extensiones
+
+Otras parejas origen-destino, heurísticas alternativas, restricciones
+(peajes, tiempo en vez de distancia).

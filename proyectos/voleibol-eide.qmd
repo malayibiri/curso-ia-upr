@@ -1,0 +1,45 @@
+---
+title: "Agente de voleibol para la EIDE"
+tipo-ia: clasificación
+local: true
+---
+
+# Agente de voleibol para la EIDE
+
+> Vínculo local: "En la provincia de Pinar del Río existe un amplio
+> movimiento del Voleibol donde en gran parte radica en la EIDE (Escuela
+> de iniciación deportiva)".
+
+## Situación problemática
+
+Los entrenamientos por ciclo se registran a mano en tablas B/R/M por
+acción y rol (atacador, central, libero, pasador). El análisis del
+rendimiento por jugador es manual y lento de cara a campeonatos
+nacionales.
+
+## Objetivo
+
+Agente que prediga si el equipo puede ganar en competencia real desde el
+proceso de entrenamiento y proponga un ejemplo de entrenamiento que
+mejore el rendimiento.
+
+## Datos y entorno
+
+- Estadísticas por jugador/acción (saque, remate, bloqueo, recibo, pase), rol y efectividad B/R/M; CSV/JSON por jugador, entrenamiento y acción.
+
+## Técnicas de IA sugeridas
+
+- Clasificación supervisada (victoria/no) + recomendación de plan (qué acciones entrenar por rol).
+
+## Alcance y entregables
+
+- Modelo de datos, predictor y proponente de entrenamiento.
+- Informe por jugador con puntos a mejorar.
+
+## Métricas sugeridas
+
+Exactitud de predicción, mejora simulada de efectividad por rol.
+
+## Extensiones
+
+Serie por ciclo, comparación entre categorías, tablero para el entrenador.

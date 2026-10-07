@@ -1,0 +1,43 @@
+---
+title: "Clasificación de vinos por composición química"
+tipo-ia: clasificación
+local: false
+---
+
+# Clasificación de vinos por composición química
+
+## Situación problemática
+
+La cata experta es subjetiva, no escalable e inconsistente. La industria
+necesita control de calidad, antifraude y apoyo al enólogo de forma
+objetiva y reproducible.
+
+## Objetivo
+
+Clasificar vinos en 3 clases usando solo su química y decidir entre
+Random Forest y KNN con ajuste riguroso de hiperparámetros.
+
+## Datos y entorno
+
+- Wine dataset: 178 muestras, 13 atributos numéricos (alcohol, málico, ceniza, magnesio, fenoles, flavanoides, prolina…), 3 clases.
+- Partición 80/20 estratificada + estandarización.
+
+## Técnicas de IA sugeridas
+
+- Random Forest + búsqueda en rejilla con validación cruzada.
+- KNN + rejilla (k, métrica, pesos, estructura de índice).
+
+## Alcance y entregables
+
+- Pipeline completo preproceso → tuning → evaluación.
+- Comparación con significancia y matriz de confusión.
+- Informe de qué rasgos pesan más.
+
+## Métricas sugeridas
+
+Exactitud, F1 macro, matriz de confusión, tiempo de tuning.
+
+## Extensiones
+
+Curvas de aprendizaje, calibración de probabilidades, prueba en otro
+dataset de vinos.

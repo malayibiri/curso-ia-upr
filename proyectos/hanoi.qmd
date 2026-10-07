@@ -1,0 +1,44 @@
+---
+title: "Torres de Hanói"
+tipo-ia: búsqueda-no-informada
+local: false
+---
+
+# Torres de Hanói
+
+## Situación problemática
+
+Tres bases iguales; en la primera (A) hay 3 aros de mayor a menor
+formando una torre. Hay que reconstruir la misma estructura en la
+tercera base (C) con el menor número de movimientos, moviendo un solo
+aro por vez y sin colocar un aro mayor sobre uno menor.
+
+## Objetivo
+
+Modelar el problema como búsqueda (estado inicial, sucesor, test
+objetivo, costo) y resolverlo con el mínimo de movimientos.
+
+## Datos y entorno
+
+- Estado: contenido ordenado de las tres bases.
+- Aros codificados por tamaño (1 pequeño, 2 mediano, 3 grande).
+- Costo uniforme por movimiento.
+
+## Técnicas de IA sugeridas
+
+- Búsqueda en amplitud (óptima con costo uniforme) o en profundidad.
+- Formulación explícita de la función sucesor con la restricción de tamaños.
+
+## Alcance y entregables
+
+- Modelo formal del problema y resolvedor.
+- Secuencia de movimientos óptima (7 para 3 aros).
+- Generalización a `n` aros con análisis del mínimo `2^n − 1`.
+
+## Métricas sugeridas
+
+Número de movimientos, nodos expandidos.
+
+## Extensiones
+
+Versión recursiva frente a búsqueda, Hanói con 4 bases (Frame-Stewart).

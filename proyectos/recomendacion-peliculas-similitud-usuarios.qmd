@@ -1,0 +1,43 @@
+---
+title: "Recomendación de películas por similitud de usuarios"
+tipo-ia: recomendación
+local: false
+---
+
+# Recomendación de películas por similitud de usuarios
+
+## Situación problemática
+
+Sobrecarga de contenido en plataformas de streaming: el usuario no puede
+explorar manualmente todo el catálogo y necesita descubrir películas
+afines a sus gustos desde su historial.
+
+## Objetivo
+
+Recomendar películas no vistas que probablemente gusten, a partir de las
+calificaciones de usuarios similares (filtrado colaborativo basado en
+usuarios).
+
+## Datos y entorno
+
+- MovieLens 100K: 100.000 calificaciones, 943 usuarios × 1.682 películas, escala 1–5.
+- Matriz usuario–película (ausencias como 0); metadatos de título/género.
+
+## Técnicas de IA sugeridas
+
+- Similitud de coseno entre vectores de usuario.
+- Alternativas: correlación de Pearson, factorización de matrices.
+
+## Alcance y entregables
+
+- Predictor de interés para pares (usuario, película no vista).
+- Lista top-N recomendada con justificación (vecinos más similares).
+- Evaluación por retención (hold-out de ratings).
+
+## Métricas sugeridas
+
+RMSE/MAE en predicción, precisión@N en recomendación.
+
+## Extensiones
+
+Filtrado basado en ítems, híbrido con contenido (género), manejo del arranque en frío.

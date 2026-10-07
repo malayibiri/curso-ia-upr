@@ -1,0 +1,37 @@
+---
+title: "Adivina el animal"
+tipo-ia: agente-lógico/experto
+local: false
+---
+
+# Adivina el animal
+
+## Situación problemática
+
+Mostrar cómo representar conocimiento complejo con estructuras simples y
+simular deducción y aprendizaje humano en consola.
+
+## Objetivo
+
+Adivinar el animal pensado mediante preguntas de opción múltiple y
+ampliar la base cuando falla, con persistencia entre partidas.
+
+## Datos y entorno
+
+- Base inicial anidada (medio → hábitat → patas → piel → … → animal) + archivo autogenerado que crece con el juego.
+
+## Técnicas de IA sugeridas
+
+- Árbol de decisión simbólico; aprendizaje incremental por inserción de rama (nuevo animal + rasgo distintivo).
+
+## Alcance y entregables
+
+- Juego en consola con persistencia y estadísticas de aciertos.
+
+## Métricas sugeridas
+
+Tasa de acierto, preguntas medias por partida, crecimiento de la base.
+
+## Extensiones
+
+Preguntas generadas por rasgos, modo 2 jugadores, interfaz gráfica.

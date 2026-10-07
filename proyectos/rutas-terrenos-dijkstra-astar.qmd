@@ -1,0 +1,43 @@
+---
+title: "Rutas en mapa con terrenos: Dijkstra frente a A*"
+tipo-ia: búsqueda-informada-A*
+local: false
+---
+
+# Rutas en mapa con terrenos: Dijkstra frente a A*
+
+## Situación problemática
+
+Una ciudad discretizada en matriz donde cada celda tiene un costo de
+entrada (≥ 1) o es obstáculo infranqueable. Un robot de reparto se mueve
+en 4 direcciones desde el inicio hasta la meta y se exige la ruta de
+costo mínimo (suma de celdas destino).
+
+## Objetivo
+
+Implementar Dijkstra y A* sobre el mismo mapa y justificar cuándo elegir
+cada uno.
+
+## Datos y entorno
+
+- Matriz de costos, celda inicio y celda meta.
+- Movimientos en 4 direcciones, sin diagonales.
+
+## Técnicas de IA sugeridas
+
+- Dijkstra (UCS) como óptimo no informado.
+- A* con heurística Manhattan multiplicada por el costo mínimo del mapa (admisible).
+
+## Alcance y entregables
+
+- Ambos algoritmos con traza del camino.
+- Comparación en mapas con distintas densidades de obstáculos.
+- Justificación escrita de la elección según el caso.
+
+## Métricas sugeridas
+
+Costo del camino, nodos expandidos, tiempo.
+
+## Extensiones
+
+Terrenos dinámicos, movimiento en 8 direcciones, suavizado del camino.

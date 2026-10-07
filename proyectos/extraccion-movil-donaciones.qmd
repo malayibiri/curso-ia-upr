@@ -1,0 +1,41 @@
+---
+title: "Donaciones del centro móvil de sangre"
+tipo-ia: regresión/predicción
+local: true
+---
+
+# Donaciones del centro móvil de sangre
+
+> Vínculo local: "Optimización de Donaciones de Sangre en Pinar del Río"
+> y "Centro de Extracción Móvil del Banco de Sangre de Pinar del Río…".
+
+## Situación problemática
+
+El centro móvil debe abastecer al banco con recursos limitados y muchos
+consultorios por visitar; la mala planificación reduce donaciones.
+
+## Objetivo
+
+Determinar donaciones por día y maximizar consultorios visitados
+optimizando recursos.
+
+## Datos y entorno
+
+- X: personal, suministros/alimentos, distancias, densidad poblacional, potencial de donantes por consultorio; Y: donaciones/día.
+
+## Técnicas de IA sugeridas
+
+- Supervisado (regresión lineal/logística, árboles, redes) + programación lineal/heurísticos para el ruteo.
+
+## Alcance y entregables
+
+- Predictor de donaciones y plan de visitas semanal.
+- Análisis de cuellos de botella (personal, distancia, suministros).
+
+## Métricas sugeridas
+
+Error cuadrático medio, donaciones totales simuladas, consultorios cubiertos.
+
+## Extensiones
+
+Ruteo con ventanas horarias, pronóstico estacional, coordinación con demanda.

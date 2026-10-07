@@ -1,0 +1,42 @@
+---
+title: "Pingüinos Palmer con Random Forest"
+tipo-ia: clasificación
+local: false
+---
+
+# Pingüinos Palmer con Random Forest
+
+## Situación problemática
+
+La identificación manual experta de pingüinos en la Antártida es costosa
+y lenta. Se quiere automatizarla con medidas físicas no invasivas para
+el monitoreo de biodiversidad.
+
+## Objetivo
+
+Clasificar la especie (Adelie/Chinstrap/Gentoo) con F1 > 0.85 y
+desplegar una demo web con inferencia rápida y validación visual.
+
+## Datos y entorno
+
+- Palmer Penguins (344 registros): longitud/profundidad del pico, aleta, masa, sexo, isla.
+- Imputación mediana/moda, codificación mixta, partición 80/20.
+
+## Técnicas de IA sugeridas
+
+- Random Forest (100 árboles, Gini, bagging, voto mayoritario).
+- EDA previa en notebook y app de demostración.
+
+## Alcance y entregables
+
+- Notebook de EDA + pipeline entrenable.
+- Demo web con predicción y explicación de rasgos.
+- Reporte de F1 y errores por especie.
+
+## Métricas sugeridas
+
+F1 macro, matriz de confusión, latencia de inferencia.
+
+## Extensiones
+
+Comparar con gradient boosting, análisis de importancia de rasgos.

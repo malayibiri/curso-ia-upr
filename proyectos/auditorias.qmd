@@ -1,0 +1,38 @@
+---
+title: "Auditorías empresariales con IA"
+tipo-ia: clasificación
+local: false
+---
+
+# Auditorías empresariales con IA
+
+## Situación problemática
+
+Auditorías manuales lentas, caras y sesgadas ante grandes volúmenes
+financieros. Se necesita automatizar cumplimiento, fraude y riesgo.
+
+## Objetivo
+
+Sistema que cargue registros, detecte transacciones sospechosas y genere
+reportes y recomendaciones; comparar modelos.
+
+## Datos y entorno
+
+- Genéricos: estados/balances, procedimientos internos, normativa, logs (reales y sintéticos).
+
+## Técnicas de IA sugeridas
+
+- Detección de anomalías (redes + clustering), NLP sobre contratos/normativa, redes profundas de riesgo, sistemas expertos.
+
+## Alcance y entregables
+
+- Prototipo de carga → detección → reporte.
+- Comparación de enfoques con casos simulados.
+
+## Métricas sugeridas
+
+Precisión/recall de anomalías, tiempo frente a auditoría manual.
+
+## Extensiones
+
+Dataset financiero realista, explicación de alertas, monitoreo continuo.

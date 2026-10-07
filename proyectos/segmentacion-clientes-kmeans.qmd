@@ -1,0 +1,45 @@
+---
+title: "Segmentación de clientes con K-Means"
+tipo-ia: clustering
+local: true
+---
+
+# Segmentación de clientes con K-Means
+
+> Vínculo local: trabajo fechado "Pinar del Río, Cuba" y llevado al
+> negocio real L'Luis.
+
+## Situación problemática
+
+Las empresas acumulan compras, visitas e ingresos pero lanzan campañas
+genéricas que desperdician recursos. Hay que descubrir grupos
+homogéneos (VIP, jóvenes gastadores, conservadores…) sin etiquetas
+previas.
+
+## Objetivo
+
+Agrupar 200 clientes en 5 segmentos accionables, perfilarlos y proponer
+estrategias de marketing por segmento, con visualizaciones 2D/3D.
+
+## Datos y entorno
+
+- Mall Customer Segmentation: ID, género, edad 18–70, ingreso anual, score de gasto 1–99.
+- Codificación + estandarización; codo + Silhouette para elegir k.
+
+## Técnicas de IA sugeridas
+
+- K-Means no supervisado (distancia euclidiana, inercia/WCSS, Davies-Bouldin) + EDA.
+
+## Alcance y entregables
+
+- Segmentación, perfiles por segmento y plan de marketing por segmento.
+- Caso aplicado al negocio local con enfoque RFM.
+
+## Métricas sugeridas
+
+Silhouette, Davies-Bouldin, interpretabilidad de segmentos.
+
+## Extensiones
+
+DBSCAN/jerárquico como contraste, seguimiento temporal de segmentos,
+campaña A/B por segmento.

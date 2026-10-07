@@ -1,0 +1,40 @@
+---
+title: "Flappy Bird con Deep Q-Network"
+tipo-ia: RL/juegos
+local: false
+---
+
+# Flappy Bird con Deep Q-Network
+
+## Situación problemática
+
+Juego de timing preciso con estados continuos, horizonte largo y
+recompensa dispersa. Ideal para probar aprendizaje por ensayo y error
+sin reglas programadas.
+
+## Objetivo
+
+Jugar de forma autónoma con DQN, evaluando la curva de aprendizaje con
+métricas y visualizaciones.
+
+## Datos y entorno
+
+- Entorno propio desde cero; estado 8-dim (altura/velocidad, distancias al tubo/hueco…); acciones {caer, saltar}.
+- Recompensa: +1/frame, +10 tubo, −100 colisión.
+
+## Técnicas de IA sugeridas
+
+- Deep Q-Network (red que aproxima Q) con experiencia repetida y red objetivo.
+
+## Alcance y entregables
+
+- Módulos de juego, agente, entrenamiento y visualización.
+- Informe con curva de recompensa y videos del agente.
+
+## Métricas sugeridas
+
+Recompensa media por episodio, tubos superados, estabilidad del entrenamiento.
+
+## Extensiones
+
+Double/Dueling DQN, comparación con política evolutiva, velocidad variable.

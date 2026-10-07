@@ -1,0 +1,38 @@
+---
+title: "Demanda de componentes sanguíneos"
+tipo-ia: regresión/predicción
+local: false
+---
+
+# Demanda de componentes sanguíneos
+
+## Situación problemática
+
+Predecir la demanda de glóbulos, plaquetas y plasma fresco es vital pero
+variable; la caducidad limitada y la logística recepción → distribución
+exigen precisión para no romper stock.
+
+## Objetivo
+
+Predecir la demanda por componente para optimizar inventario y
+disponibilidad oportuna.
+
+## Datos y entorno
+
+- Históricos, tendencias y variables externas; fecha de extracción, tipo de componente, tiempo de almacenamiento.
+
+## Técnicas de IA sugeridas
+
+- Supervisado: regresión lineal, bosques aleatorios, redes neuronales.
+
+## Alcance y entregables
+
+- Predictor de demanda con evaluación y política de stock sugerida.
+
+## Métricas sugeridas
+
+MAE/RMSE por componente, roturas de stock simuladas, caducidades.
+
+## Extensiones
+
+Pronóstico por día/semana, coordinación con el centro móvil de extracción.

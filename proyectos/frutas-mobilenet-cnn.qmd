@@ -1,0 +1,39 @@
+---
+title: "Clasificador de frutas por imagen (transfer learning)"
+tipo-ia: visión-CNN
+local: false
+---
+
+# Clasificador de frutas por imagen (transfer learning)
+
+## Situación problemática
+
+Clasificar fotos de frutas sin entrenar una red desde cero, aprovechando
+modelos preentrenados.
+
+## Objetivo
+
+Entrenar y evaluar un clasificador y predecir imágenes arbitrarias del
+usuario con interfaz de inferencia.
+
+## Datos y entorno
+
+- Carpetas por clase (manzana, plátano, naranja, fresa, piña…), train/test separados.
+- Imágenes 224×224 normalizadas; Keras/TensorFlow.
+
+## Técnicas de IA sugeridas
+
+- MobileNetV2 preentrenada congelada + capa densa + dropout + softmax.
+
+## Alcance y entregables
+
+- Modelo `.keras` entrenado y script/GUI de predicción.
+- Evaluación con matriz de confusión.
+
+## Métricas sugeridas
+
+Exactitud test, F1 por clase.
+
+## Extensiones
+
+Ajuste fino (fine-tuning), cuantización para móvil, más clases.

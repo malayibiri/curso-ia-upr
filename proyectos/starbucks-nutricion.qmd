@@ -1,0 +1,39 @@
+---
+title: "Perfil nutricional: colesterol frente a azúcares"
+tipo-ia: regresión/predicción
+local: false
+---
+
+# Perfil nutricional: colesterol frente a azúcares
+
+## Situación problemática
+
+Presión regulatoria y de consumidores por el perfil nutricional de
+bebidas y horneados. Se sospecha correlación colesterol–azúcares que
+exigiría reformular sin perder calidad.
+
+## Objetivo
+
+Modelar `Azúcares = b0 + b1·Colesterol + ε` para entender la relación,
+fijar límites, priorizar productos fuera de rango y controlar calidad.
+
+## Datos y entorno
+
+- Tabla nutricional 242×18: categoría, bebida, preparación, calorías, grasas, sodio, carbohidratos, colesterol, fibra, azúcares, proteína, vitaminas, cafeína.
+- EDA con correlaciones, histogramas, boxplots y medidas de centro/dispersión.
+
+## Técnicas de IA sugeridas
+
+- Regresión lineal simple; MSE/R²; EDA con pandas/seaborn/matplotlib.
+
+## Alcance y entregables
+
+- EDA completo, modelo ajustado y lista de productos fuera de rango.
+
+## Métricas sugeridas
+
+R², MSE, intervalos de confianza de la pendiente.
+
+## Extensiones
+
+Regresión múltiple, clasificación de "apto/no apto", reformulación simulada.

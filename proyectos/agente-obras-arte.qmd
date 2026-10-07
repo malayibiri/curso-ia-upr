@@ -1,0 +1,42 @@
+---
+title: "Pintor y técnica de obras de arte"
+tipo-ia: visión-CNN
+local: false
+---
+
+# Pintor y técnica de obras de arte
+
+## Situación problemática
+
+Crecimiento exponencial de imágenes de arte en línea; identificar
+autoría y técnica manualmente es un desafío para el acceso y la historia
+cultural. Se necesitan herramientas automatizadas.
+
+## Objetivo
+
+Dada una imagen de pintura, identificar al pintor y la técnica empleada
+(óleo, acuarela, acrílico…), democratizando el acceso al conocimiento
+artístico.
+
+## Datos y entorno
+
+- Dataset de obras (imagen + autor, obra, técnica y reseña); fuentes tipo WikiArt/museos.
+- Versiones normal y en grises redimensionadas.
+
+## Técnicas de IA sugeridas
+
+- CNN para extracción de características visuales + clasificación multiclase.
+- Stack TensorFlow/Keras.
+
+## Alcance y entregables
+
+- Clasificador de pintor y de técnica con evaluación separada.
+- Galería de aciertos y errores comentados.
+
+## Métricas sugeridas
+
+Exactitud top-1/top-3 por tarea, matriz de confusión de técnicas.
+
+## Extensiones
+
+Estilo frente a autor, búsqueda de obras similares, explicación visual.

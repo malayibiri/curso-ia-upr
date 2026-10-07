@@ -1,0 +1,40 @@
+---
+title: "El pique: predicción de actividad de peces"
+tipo-ia: regresión/predicción
+local: false
+---
+
+# El pique: predicción de actividad de peces
+
+## Situación problemática
+
+Anticipar cuándo y dónde están activos los peces define una jornada
+exitosa o infructuosa; además la sobreexplotación amenaza la
+sostenibilidad. Se trabaja con la Federación de Pesca.
+
+## Objetivo
+
+Predecir la actividad (cuándo/dónde pescar) para eficiencia y gestión
+responsable.
+
+## Datos y entorno
+
+- Clima, temperatura del agua, profundidad, hora/día, corrientes, época del año, hábitat, históricos de capturas.
+- Preproceso con normalización y partición train/test.
+
+## Técnicas de IA sugeridas
+
+- Supervisado: regresión logística, árboles de decisión, redes neuronales.
+
+## Alcance y entregables
+
+- Predictor de actividad con experimento de evaluación.
+- Recomendación de ventana/lugar de pesca.
+
+## Métricas sugeridas
+
+Exactitud/F1 de actividad, error de predicción por zona.
+
+## Extensiones
+
+Datos de sensores en tiempo real, cuotas sostenibles, mapa de calor.

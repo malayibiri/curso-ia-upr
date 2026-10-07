@@ -1,0 +1,40 @@
+---
+title: "Spam en español con Naive Bayes desde cero"
+tipo-ia: NLP/LLM
+local: false
+---
+
+# Spam en español con Naive Bayes desde cero
+
+## Situación problemática
+
+Clasificar correos como spam/ham por su texto, sin modelos
+preentrenados, como ejercicio completo de NLP + ML supervisado con
+reportes y visualizaciones.
+
+## Objetivo
+
+Entrenar un clasificador binario con pipeline completo (preproceso →
+entrenamiento → métricas → reporte reutilizable).
+
+## Datos y entorno
+
+- Corpus en español (`id, mensaje, etiqueta`), versión pequeña (180) y grande (1500) balanceadas.
+- Bolsa de palabras con normalización, tokenización y stopwords.
+
+## Técnicas de IA sugeridas
+
+- Naive Bayes multinomial desde cero + suavizado de Laplace + log-probabilidades.
+
+## Alcance y entregables
+
+- Entrenamiento, persistencia del modelo y script de uso sobre mensajes nuevos.
+- Reporte JSON de métricas y gráficas.
+
+## Métricas sugeridas
+
+Exactitud, precisión, recall, F1.
+
+## Extensiones
+
+TF-IDF, validación cruzada, comparación con scikit-learn.

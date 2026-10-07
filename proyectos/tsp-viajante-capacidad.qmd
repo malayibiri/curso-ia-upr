@@ -1,0 +1,45 @@
+---
+title: "Viajante genérico y variante con capacidad"
+tipo-ia: serie-temporal/optimización
+local: false
+---
+
+# Viajante genérico y variante con capacidad
+
+## Situación problemática
+
+El problema del viajante (TSP) es NP-duro: visitar N ciudades una vez y
+volver al origen con la ruta mínima. En logística aparece una variante
+con capacidad: un camión con carga limitada reparte y debe volver al
+almacén al vaciarse (entregas completas o parciales).
+
+## Objetivo
+
+Resolver ambas variantes (hasta ~1000 nodos en la versión heurística)
+con una consola interactiva que muestre rutas, distancias y registro de
+entregas y retornos.
+
+## Datos y entorno
+
+- Instancias con distancias configurables y etiquetas de ciudades.
+- Parámetros por consola (número de nodos, capacidad, modo).
+
+## Técnicas de IA sugeridas
+
+- Fuerza bruta para `n ≤ 10` como referencia exacta.
+- Voraz del vecino más cercano + mejora local 2-opt.
+- Variante con capacidad: voraz con restricciones + búsqueda local.
+
+## Alcance y entregables
+
+- resolvedor de ambas variantes con la misma interfaz.
+- Consola interactiva con visualización de rutas.
+- Comparación de calidad frente a tamaño.
+
+## Métricas sugeridas
+
+Distancia total, tiempo, número de retornos al almacén, gap frente al óptimo (en instancias pequeñas).
+
+## Extensiones
+
+Ventanas de tiempo, varios camiones (VRP), costo por distancia real en mapa.

@@ -1,0 +1,44 @@
+---
+title: "Recomendador para concesionario de vehículos"
+tipo-ia: recomendación
+local: true
+---
+
+# Recomendador para concesionario de vehículos
+
+> Vínculo local: "En un consercionario de vehículos ubicado en la
+> provincia de Pinar del Rio se venden varios modelos de varias marcas".
+
+## Situación problemática
+
+Gran variedad de modelos, marcas y colores. Los clientes tardan en
+decidirse y a veces regresan a cambiar el vehículo porque no cumple los
+requisitos del "auto de sus sueños".
+
+## Objetivo
+
+Agente inteligente que decida por el cliente: la oferta más recomendada
+y aceptable que cumpla la mayoría de sus estándares, para una compra
+rápida y fiable.
+
+## Datos y entorno
+
+- Catálogo (modelo, marca, color, características) e historial/preferencias de clientes.
+
+## Técnicas de IA sugeridas
+
+- Recomendación basada en contenido y colaborativa; reglas de compatibilidad con requisitos mínimos.
+
+## Alcance y entregables
+
+- Recomendador con justificación por oferta.
+- Evaluación de aceptación simulada.
+
+## Métricas sugeridas
+
+Satisfacción de requisitos (%), aceptación, tiempo de decisión.
+
+## Extensiones
+
+Restricciones de presupuesto, comparación lado a lado, aprendizaje con
+feedback post-compra.

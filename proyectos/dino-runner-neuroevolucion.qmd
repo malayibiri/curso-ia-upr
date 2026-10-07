@@ -1,0 +1,40 @@
+---
+title: "Dino Runner por neuroevolución"
+tipo-ia: RL/juegos
+local: false
+---
+
+# Dino Runner por neuroevolución
+
+## Situación problemática
+
+Entorno 2D con obstáculos donde el comportamiento debe emerger sin
+supervisión humana ni datos etiquetados: paradigma alternativo al
+gradiente.
+
+## Objetivo
+
+Evolucionar 500 agentes con redes feedforward que aprendan a navegar y
+evadir, con función de fitness, persistencia de modelos e interfaz
+visual en tiempo real.
+
+## Datos y entorno
+
+- Simulador propio (posición/velocidad, obstáculos, distancia); hiperparámetros de red y del GA; persistencia de mejores individuos.
+
+## Técnicas de IA sugeridas
+
+- Red neuronal feedforward + algoritmo genético (selección, cruce, mutación de pesos).
+
+## Alcance y entregables
+
+- Simulador, evolución y visualización en tiempo real.
+- Curva de fitness por generación y campeón persistido.
+
+## Métricas sugeridas
+
+Fitness máximo/medio por generación, supervivencia del campeón, tiempo por generación.
+
+## Extensiones
+
+NEAT (topologías evolutivas), obstáculos variables, comparación con DQN.

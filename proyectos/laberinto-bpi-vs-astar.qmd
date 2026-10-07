@@ -1,0 +1,44 @@
+---
+title: "Laberinto: búsqueda en profundidad iterativa frente a A*"
+tipo-ia: búsqueda-informada-A*
+local: false
+---
+
+# Laberinto: búsqueda en profundidad iterativa frente a A*
+
+## Situación problemática
+
+Laberinto en cuadrícula (`0` = libre, `1` = pared) con inicio y destino.
+Se quiere medir si la guía heurística compensa frente a la búsqueda
+ciega por profundidad iterativa (BPI/IDDFS).
+
+## Objetivo
+
+Resolver el mismo mapa con BPI y con A*-Manhattan y comparar camino,
+movimientos y tiempo.
+
+## Datos y entorno
+
+- Matriz del mapa, inicio, destino y profundidad máxima.
+- Visualización del laberinto y del camino.
+- Medición con temporizador de alta resolución.
+
+## Técnicas de IA sugeridas
+
+- BPI/IDDFS (DFS recursivo con límite creciente).
+- A* con heurística Manhattan y cola de prioridad.
+
+## Alcance y entregables
+
+- Ambos resolvedores sobre la misma representación.
+- Reporte comparativo (en la edición original: BPI ~1.9 ms frente a A* ~0.13 ms).
+- Pruebas sobre varios mapas.
+
+## Métricas sugeridas
+
+Longitud del camino, movimientos, tiempo de ejecución.
+
+## Extensiones
+
+Probar con mapas más grandes, añadir costo uniforme (UCS) como tercer
+comparando.

@@ -1,0 +1,44 @@
+---
+title: "Acopio de leche en vaquerías"
+tipo-ia: búsqueda-no-informada
+local: false
+---
+
+# Acopio de leche en vaquerías
+
+## Situación problemática
+
+En el Combinado Lácteo se desea acopiar la leche de varias vaquerías
+con un número limitado de camiones cisterna, en un tiempo determinado,
+con el menor consumo de combustible posible.
+
+## Objetivo
+
+Planificar la tarea de acopio de forma óptima: recoger toda la leche a
+tiempo con los camiones disponibles minimizando combustible.
+
+## Datos y entorno
+
+- Estados: posición de cada camión, leche acopiada, leche pendiente por vaquería.
+- Estado inicial: camiones vacíos en el Combinado, vaquerías en espera.
+- Función sucesor con restricciones de capacidad, distancia/tiempo y tiempo límite.
+
+## Técnicas de IA sugeridas
+
+- Búsqueda en espacio de estados con costo (combustible/tiempo).
+- Heurística admisible para orientar (p. ej. leche pendiente / capacidad).
+
+## Alcance y entregables
+
+- Modelo formal (estados, sucesor, test, costo).
+- resolvedor y plan de rutas por camión.
+- Análisis del plan frente al tiempo límite.
+
+## Métricas sugeridas
+
+Litros acopiados, combustible total, tiempo total, cumplimiento del límite.
+
+## Extensiones
+
+Ventanas de recogida por vaquería, flota heterogénea, comparación con
+voraz por cercanía.

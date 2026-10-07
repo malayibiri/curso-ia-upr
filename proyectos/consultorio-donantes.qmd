@@ -1,0 +1,38 @@
+---
+title: "Donantes potenciales en consultorio médico"
+tipo-ia: clasificación
+local: false
+---
+
+# Donantes potenciales en consultorio médico
+
+## Situación problemática
+
+El consultorio (vinculado al banco de sangre) gestiona selección y
+control de donantes (normales/especiales, activos/pasivos), historias,
+dietas, reacciones y reportes. Necesita identificar quién puede donar.
+
+## Objetivo
+
+Predecir quiénes pueden ser donantes potenciales según su estado de salud.
+
+## Datos y entorno
+
+- Donantes (ID, nacimiento, género, grupo/Rh, contacto, dirección) + historia clínica (chequeos, resultados, reacciones, diagnóstico, tratamiento).
+
+## Técnicas de IA sugeridas
+
+- Clasificación supervisada: regresión logística, árboles de decisión, SVM.
+
+## Alcance y entregables
+
+- Clasificador con experimento de evaluación y ficha por donante.
+
+## Métricas sugeridas
+
+Exactitud, sensibilidad, precisión.
+
+## Extensiones
+
+Recordatorios de donación, planificación de jornadas, conexión con
+demanda del servicio.

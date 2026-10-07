@@ -1,0 +1,42 @@
+---
+title: "Rendimiento agrícola desde rasgos del cultivo"
+tipo-ia: clasificación
+local: false
+---
+
+# Rendimiento agrícola desde rasgos del cultivo
+
+## Situación problemática
+
+Se quieren decisiones de cultivo con pocos recursos (PCs modestas, sin
+librerías pesadas) y modelos interpretables que muestren su razonamiento
+paso a paso.
+
+## Objetivo
+
+Predecir el rendimiento (Alto/Medio/Bajo) desde rasgos del cultivo y
+comparar árbol ID3 frente a k-NN en precisión.
+
+## Datos y entorno
+
+- Dataset propio de 40–60 registros: área, agua, suelo, cultivo, riego, fertilización → rendimiento.
+- Implementación en Python puro con consola.
+
+## Técnicas de IA sugeridas
+
+- Árbol ID3 (entropía, ganancia de información) con traza explicable.
+- k-NN euclidiano con codificación de categóricas y voto mayoritario.
+
+## Alcance y entregables
+
+- Ambos clasificadores con el mismo formato de datos.
+- Comparación de precisión y ejemplos de razonamiento paso a paso.
+- Informe que justifique la elección según el caso.
+
+## Métricas sugeridas
+
+Exactitud, matriz de confusión por clase, tiempo de inferencia.
+
+## Extensiones
+
+Poda del árbol, validación cruzada, más registros y rasgos climáticos.

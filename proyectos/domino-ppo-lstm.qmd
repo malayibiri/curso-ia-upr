@@ -1,0 +1,39 @@
+---
+title: "Dominó competitivo con PPO recurrente"
+tipo-ia: RL/juegos
+local: false
+---
+
+# Dominó competitivo con PPO recurrente
+
+## Situación problemática
+
+Dominó con información parcial (mano propia y mesa visibles; mano rival
+y pozo ocultos). El agente debe inferir fichas ocultas y planificar a
+varios turnos.
+
+## Objetivo
+
+Entrenar un agente competitivo con PPO recurrente y self-play, con GUI
+para jugar contra humanos.
+
+## Datos y entorno
+
+- Motor propio de 2–4 jugadores; entorno tipo Gymnasium (obs ~169-dim, 55 acciones).
+- Recompensa escasa (+1/−1/0) con penalización por paso; entornos paralelos y millones de pasos; self-play curricular.
+
+## Técnicas de IA sugeridas
+
+- PPO recurrente (actor-crítico + LSTM), GAE, self-play generacional con umbral de promoción.
+
+## Alcance y entregables
+
+- Entrenamiento reproducible, GUI jugable y evaluación frente a baselines (aleatorio, heurístico).
+
+## Métricas sugeridas
+
+Win-rate frente a baselines y generaciones previas, duración media de partida.
+
+## Extensiones
+
+Parejas (4 jugadores), modelado explícito del oponente, torneo entre versiones.

@@ -1,0 +1,40 @@
+---
+title: "Bradicardia: aviso temprano al paciente"
+tipo-ia: clasificación
+local: false
+---
+
+# Bradicardia: aviso temprano al paciente
+
+## Situación problemática
+
+La bradicardia (< 60 lpm en reposo adulto) puede impedir bombear
+sangre oxigenada suficiente, con mareo, fatiga y falta de aliento.
+
+## Objetivo
+
+Agente que valore síntomas previos y, al superar el 80% de los
+síntomas, diagnostique la condición para que el paciente acuda
+urgentemente al médico.
+
+## Datos y entorno
+
+- Lista de síntomas previos ponderados; entrada por cuestionario del paciente.
+
+## Técnicas de IA sugeridas
+
+- Clasificación por umbral de síntomas + reglas de decisión; escala a modelo supervisado con historial.
+
+## Alcance y entregables
+
+- Cuestionario, motor de decisión y mensaje de aviso.
+- Evaluación con casos simulados.
+
+## Métricas sugeridas
+
+Sensibilidad (no perder casos), especificidad, falsos positivos.
+
+## Extensiones
+
+Datos de pulsómetro, serie temporal de frecuencia, integración con
+historia clínica.

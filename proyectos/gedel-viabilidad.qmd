@@ -1,0 +1,39 @@
+---
+title: "Viabilidad de proyectos de desarrollo territorial"
+tipo-ia: clasificación
+local: false
+---
+
+# Viabilidad de proyectos de desarrollo territorial
+
+## Situación problemática
+
+La gestión de proyectos de desarrollo local en Excel causa mala
+organización, accesibilidad y análisis: errores, retrabajo y retrasos
+que afectan la efectividad del desarrollo.
+
+## Objetivo
+
+Predecir la viabilidad futura del proyecto (Bueno/Regular/Malo) por
+etapa del ciclo de vida.
+
+## Datos y entorno
+
+- Variables: municipio, tipo de proyecto, estado, años de economía, fuentes y montos de financiamiento (CUP/USD), empleos generados.
+
+## Técnicas de IA sugeridas
+
+- Clasificación supervisada; árbol de decisión como modelo base e interpretable.
+
+## Alcance y entregables
+
+- Clasificador por etapa con experimento train/test.
+- Informe de qué variables anticipan la viabilidad.
+
+## Métricas sugeridas
+
+Exactitud, F1 por clase, matriz de confusión.
+
+## Extensiones
+
+Serie por etapa (modelos secuenciales), tablero de seguimiento, más municipios.

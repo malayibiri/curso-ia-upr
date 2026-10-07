@@ -1,0 +1,41 @@
+---
+title: "Detección de rostros en imágenes"
+tipo-ia: visión-CNN
+local: false
+---
+
+# Detección de rostros en imágenes
+
+## Situación problemática
+
+Detectar rostros con precisión y eficiencia (tiempo real) es difícil por
+variabilidad de tamaño, pose, iluminación, expresión y fondos complejos.
+Es clave para seguridad, biometría y fotografía.
+
+## Objetivo
+
+Clasificar si una imagen o región contiene rostro humano y localizarlo,
+mejorando precisión y reduciendo tiempo.
+
+## Datos y entorno
+
+- WIDER FACE: 32.203 imágenes, 393.703 rostros, con cajas delimitadoras.
+- Preproceso a resolución de trabajo (p. ej. 300×300).
+
+## Técnicas de IA sugeridas
+
+- CNN supervisada de detección, adaptable y reentrenable.
+
+## Alcance y entregables
+
+- Detector entrenado con ejemplos de localización.
+- Evaluación de precisión frente a tiempo.
+
+## Métricas sugeridas
+
+Precisión/recall de detección, IoU medio, FPS.
+
+## Extensiones
+
+Rostros pequeños/ocluídos, seguimiento en video, comparación con
+detectores clásicos.

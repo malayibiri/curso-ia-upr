@@ -1,0 +1,47 @@
+---
+title: "Creador de horarios académicos"
+tipo-ia: CSP/juegos
+local: false
+---
+
+# Creador de horarios académicos
+
+## Situación problemática
+
+Hay que asignar clases a pares (aula, franja horaria) sin choques: un
+profesor no puede estar en dos sitios a la vez, un aula tampoco, la
+capacidad del aula debe cubrir los estudiantes, el tipo de aula
+(laboratorio/teoría) debe ser compatible y hay que respetar las
+disponibilidades de profesores y aulas.
+
+## Objetivo
+
+Generar asignaciones factibles u óptimas desde una descripción JSON y
+comparar A* (óptimo pero lento) con búsqueda tabú (rápida, sin garantía
+de optimalidad).
+
+## Datos y entorno
+
+- JSON con franjas horarias, aulas (`id`, capacidad, tipo, franjas no disponibles) y eventos (profesor, estudiantes, tipo de aula, restricciones).
+- Generador de instancias configurables.
+
+## Técnicas de IA sugeridas
+
+- A* con heurística (p. ej. mínimo restante / MRV).
+- Búsqueda tabú (lista tabú con tenure, máximo de iteraciones).
+
+## Alcance y entregables
+
+- Lector de instancias JSON y validador de restricciones.
+- Ambos resolvedores con reporte de factibilidad y costo.
+- Comparación de tiempo frente a calidad en varias instancias.
+
+## Métricas sugeridas
+
+Porcentaje de instancias resueltas, choques residuales, tiempo de
+cómputo, escalabilidad con número de eventos.
+
+## Extensiones
+
+Preferencias blandas (compactar horario del profesor), replanificación
+ante cambios, visualización del calendario.

@@ -1,0 +1,40 @@
+---
+title: "Dígitos manuscritos con CNN"
+tipo-ia: visión-CNN
+local: false
+---
+
+# Dígitos manuscritos con CNN
+
+## Situación problemática
+
+El reconocimiento de dígitos manuscritos tiene usos en automatización
+industrial, seguridad, cheques, digitalización y votación; hacerlo
+manual no escala.
+
+## Objetivo
+
+Asignar la etiqueta 0–9 a cada imagen manuscrita con alta precisión,
+minimizando la pérdida de clasificación.
+
+## Datos y entorno
+
+- Carpetas 0–9 con imágenes en grises 28×28 normalizadas [0,1], estilo MNIST/USPS.
+- Aumento: rotación, desplazamiento, brillo, zoom.
+
+## Técnicas de IA sugeridas
+
+- CNN multiclase (convolución + pooling + densas + softmax).
+
+## Alcance y entregables
+
+- CNN entrenada con curvas de entrenamiento/validación.
+- Matriz de confusión y ejemplos de fallos.
+
+## Métricas sugeridas
+
+Exactitud, F1 por dígito, análisis de confusiones (3↔8, 1↔7…).
+
+## Extensiones
+
+Probar en MNIST real, visualización de filtros, defensa ante ruido.

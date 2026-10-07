@@ -1,0 +1,45 @@
+---
+title: "Roturas en la red de transmisión ETECSA"
+tipo-ia: clasificación
+local: true
+---
+
+# Roturas en la red de transmisión ETECSA
+
+> Vínculo local: "División Territorial de ETECSA en la provincia"
+> (Pinar del Río) y "la Empresa de Telecomunicaciones de Cuba S.A.
+> (ETECSA)… en todo el territorio de la República de Cuba".
+
+## Situación problemática
+
+La Unidad de Transmisión analiza manualmente alarmas de equipos. De ello
+dependen rendimiento de la red, mantenimiento y disponibilidad
+ininterrumpida de servicios.
+
+## Objetivo
+
+Agente que use tipos y severidad de alarma (menor, mayor, crítica) para
+predecir los equipos más propensos a romperse.
+
+## Datos y entorno
+
+- Gestor de alarmas: fecha, equipo, tipo, causa probable, severidad, zona, urgencia, repeticiones.
+- Pipeline: recolección → quitar sesgo → limpieza; generación de sintéticos con anonimización.
+
+## Técnicas de IA sugeridas
+
+- Clasificación supervisada (regresión logística, reglas, red neuronal a comparar).
+
+## Alcance y entregables
+
+- Predictor por equipo con ranking de riesgo.
+- Protocolo de datos anonimizados.
+
+## Métricas sugeridas
+
+Precisión/recall de roturas, anticipación media (horas antes), falsas alarmas.
+
+## Extensiones
+
+Datos en tiempo real, mantenimiento preventivo programado, mapa de riesgo
+por zona.

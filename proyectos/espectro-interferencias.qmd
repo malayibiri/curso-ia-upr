@@ -1,0 +1,39 @@
+---
+title: "Interferencias en el espectro radioeléctrico"
+tipo-ia: clasificación
+local: false
+---
+
+# Interferencias en el espectro radioeléctrico
+
+## Situación problemática
+
+Espectro finito compartido por operadoras (móvil/TV/radio); condiciones
+técnicas y ambientales generan interferencias que degradan el servicio
+(~20% de problemas en zonas densas, según UIT). Hay que prever cuándo
+desplegar medios de detección.
+
+## Objetivo
+
+Predecir necesidad de detección (0/1) para optimizar recursos y calidad.
+
+## Datos y entorno
+
+- Tabla de interferencias: fecha, hora, frecuencia MHz, empresa, nivel dB, clima, potencia, ancho de banda, ubicación.
+- Fuentes: monitores/estaciones base + APIs meteo + históricos.
+
+## Técnicas de IA sugeridas
+
+- Regresión logística (seleccionada) frente a árboles, Random Forest y NN; escalado, SMOTE, GridSearchCV.
+
+## Alcance y entregables
+
+- Clasificador con matriz de confusión, ROC/AUC y plan de despliegue.
+
+## Métricas sugeridas
+
+Exactitud, F1, ROC/AUC.
+
+## Extensiones
+
+Predicción de nivel (regresión), mapa de interferencias, alertas en vivo.

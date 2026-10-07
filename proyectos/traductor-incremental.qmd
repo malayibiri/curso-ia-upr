@@ -1,0 +1,39 @@
+---
+title: "Traductor multilingüe incremental"
+tipo-ia: NLP/LLM
+local: false
+---
+
+# Traductor multilingüe incremental
+
+## Situación problemática
+
+Traducir palabras y frases entre idiomas sin servicios externos, con un
+diccionario que mejora con el uso en lugar de modelos estadísticos
+complejos.
+
+## Objetivo
+
+Sistema extensible con diccionario ponderado por calidad, historial,
+persistencia, exportación y GUI con autoguardado.
+
+## Datos y entorno
+
+- Diccionario multinivel origen → destino → texto → {traducción, score medio, nº evaluaciones} + historial fechado en JSON.
+
+## Técnicas de IA sugeridas
+
+- Aprendizaje incremental por refuerzo del usuario (promedio de puntuaciones, ranking por calidad, fusión de diccionarios).
+
+## Alcance y entregables
+
+- Traductor con GUI por pestañas, persistencia y reportes.
+- Evaluación de calidad percibida por los usuarios.
+
+## Métricas sugeridas
+
+Score medio por par de idiomas, cobertura del diccionario, uso (nº evaluaciones).
+
+## Extensiones
+
+Detección de idioma, memoria de traducción por frases, importación de glosarios.

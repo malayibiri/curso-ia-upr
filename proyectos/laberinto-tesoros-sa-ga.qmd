@@ -1,0 +1,50 @@
+---
+title: "Laberinto de tesoros con recocido simulado y algoritmo genético"
+tipo-ia: metaheurísticas
+local: false
+---
+
+# Laberinto de tesoros con recocido simulado y algoritmo genético
+
+## Situación problemática
+
+Un laberinto contiene un punto de inicio `S`, una salida `E` y varios
+tesoros `T1..Tn` separados por paredes. Hay que partir de `S`, recoger
+todos los tesoros pasando por cada uno exactamente una vez y llegar a
+`E` con la distancia total mínima. Para `n` tesoros existen `n!` órdenes
+posibles, lo que hace inviable la búsqueda exhaustiva incluso con valores
+moderados de `n`.
+
+## Objetivo
+
+Encontrar el orden óptimo de recolección y comparar empíricamente dos
+metaheurísticas: recocido simulado (SA) y algoritmo genético (GA), en
+calidad de solución, tiempo de ejecución y recursos.
+
+## Datos y entorno
+
+- Rejilla discreta con movimientos en 4 direcciones; celdas `S`, `E`, `Tn`, `X` (pared).
+- Laberintos predefinidos más generador aleatorio (filas, columnas, número de tesoros, densidad de paredes).
+- Matriz de distancias entre puntos de interés (`S`, `E`, tesoros) precalculada con A*.
+
+## Técnicas de IA sugeridas
+
+- A* con heurística Manhattan (admisible) para el camino entre cada par de puntos.
+- Recocido simulado: perturbación por intercambio, aceptación `P = e^(-ΔE/T)`, enfriamiento controlado.
+- Algoritmo genético: selección por torneo, cruce OX, mutación por intercambio, elitismo.
+
+## Alcance y entregables
+
+- Implementación de ambas metaheurísticas sobre la misma matriz de distancias.
+- Comparación automática entre algoritmos con varias configuraciones.
+- Interfaz interactiva para experimentar con laberintos y parámetros.
+
+## Métricas sugeridas
+
+Distancia total de la ruta, tiempo de ejecución, consumo de CPU/memoria,
+número de evaluaciones hasta converger.
+
+## Extensiones
+
+Escalar a decenas de tesoros, añadir costo por tipo de terreno, comparar
+con 2-opt o búsqueda tabú como línea base.

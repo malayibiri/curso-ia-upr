@@ -1,0 +1,38 @@
+---
+title: "Asistente bibliotecario con NLP"
+tipo-ia: NLP/LLM
+local: false
+---
+
+# Asistente bibliotecario con NLP
+
+## Situación problemática
+
+Organizar y manejar material intelectual es engorroso por cantidad,
+variedad y distinción entre artículos; buscar por tema o contenido es
+difícil y la colección cambia constantemente.
+
+## Objetivo
+
+Asistente virtual que clasifique libros por contenido, portada o tema y
+apoye búsquedas directas y por tema.
+
+## Datos y entorno
+
+- Descripciones y contenidos de libros con género/temática; actualización continua de la colección.
+
+## Técnicas de IA sugeridas
+
+- NLP: análisis de descripción/contenido + clasificación supervisada por género/tema.
+
+## Alcance y entregables
+
+- Clasificador reentrenable, buscador por tema y demo de catalogación.
+
+## Métricas sugeridas
+
+Exactitud por género, precisión@N en búsqueda.
+
+## Extensiones
+
+OCR de portadas, recomendador al lector, chatbot de referencia.

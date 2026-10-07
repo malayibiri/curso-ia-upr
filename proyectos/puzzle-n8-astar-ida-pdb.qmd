@@ -1,0 +1,45 @@
+---
+title: "N-Puzzle con A*, IDA* y bases de patrones"
+tipo-ia: búsqueda-informada-A*
+local: false
+---
+
+# N-Puzzle con A*, IDA* y bases de patrones
+
+## Situación problemática
+
+Tablero con fichas numeradas y un hueco (8-puzzle 3×3, 15-puzzle 4×4)
+que hay que ordenar hasta el estado meta. El espacio de estados crece
+exponencialmente y además existen configuraciones irresolubles que deben
+filtrarse antes de buscar.
+
+## Objetivo
+
+Resolver el N-Puzzle con búsqueda informada y comparar A*, A*
+ponderado, IDA* e IDA* con base de patrones (PDB) en varias
+configuraciones.
+
+## Datos y entorno
+
+- Estado como lista/tupla (`0` = hueco), tamaños 3 y 4.
+- Chequeo de solvencia por inversiones y fila del hueco.
+- Métricas por ejecución: movimientos, nodos, tiempo.
+
+## Técnicas de IA sugeridas
+
+- A*, Weighted A*, IDA*, IDA*+PDB.
+- Heurísticas: fichas mal colocadas, distancia Manhattan + conflicto lineal, PDB.
+
+## Alcance y entregables
+
+- resolvedor con varios algoritmos conmutables y heurísticas conmutables.
+- Experimentos comparativos sobre el mismo banco de instancias.
+- Análisis de cuándo compensa cada variante.
+
+## Métricas sugeridas
+
+Longitud de la solución, nodos expandidos, tiempo, memoria (A* frente a IDA*).
+
+## Extensiones
+
+PDB aditivas, 24-puzzle, búsqueda bidireccional.

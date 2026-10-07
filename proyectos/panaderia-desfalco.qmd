@@ -1,0 +1,40 @@
+---
+title: "Detector de desfalco en panadería"
+tipo-ia: agente-lógico/experto
+local: false
+---
+
+# Detector de desfalco en panadería
+
+## Situación problemática
+
+Posible desfalco de bienes en una panadería: faltantes sin venta,
+reembolsos o cancelaciones raras al cierre, depósitos menores que las
+ventas, accesos fuera de horario.
+
+## Objetivo
+
+Monitorear la operación y sugerir acciones: auditoría, revisión,
+control o entrevistas.
+
+## Datos y entorno
+
+- Ventas diarias, inventario frente a entregas, efectivo frente a depósitos, consumo de materiales frente a vendidos, horarios/accesos, opinión de la comunidad, calidad final.
+
+## Técnicas de IA sugeridas
+
+- Reglas de discrepancia (umbrales por indicador) + recomendador de acciones.
+- Escala a detección de anomalías supervisada cuando haya serie histórica.
+
+## Alcance y entregables
+
+- Esquema de indicadores, motor de reglas y reporte de alertas.
+- Sugerencia de acción por tipo de discrepancia.
+
+## Métricas sugeridas
+
+Alertas verdaderas/falsas (con casos simulados), cobertura de indicadores.
+
+## Extensiones
+
+Serie temporal real de ventas, tablero de monitoreo, auditoría con ML.

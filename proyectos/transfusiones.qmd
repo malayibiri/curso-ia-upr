@@ -1,0 +1,41 @@
+---
+title: "Necesidad de transfusión por paciente"
+tipo-ia: clasificación
+local: false
+---
+
+# Necesidad de transfusión por paciente
+
+## Situación problemática
+
+Hospital con cientos de transfusiones; el control en papel es laborioso
+y propenso a error humano, lo que compromete precisión y pone vidas en
+riesgo. Se quiere apoyar la decisión médica primaria.
+
+## Objetivo
+
+Predecir cantidad/necesidad de sangre por paciente (caso guía "Oscar":
+¿recibió sangre? binario [0,1]), con un modelo ajustable a cualquier
+paciente.
+
+## Datos y entorno
+
+- Revisiones periódicas: sexo, tipo de sangre (one-hot), chequeos semanales.
+- Pipeline: recolección → quitar sesgo → limpieza → escalado → one-hot.
+
+## Técnicas de IA sugeridas
+
+- Clasificación binaria: regresión logística, árboles, Random Forest, SVM.
+
+## Alcance y entregables
+
+- Clasificador entrenado con matriz de confusión y análisis de errores.
+- Protocolo adaptable a nuevos pacientes.
+
+## Métricas sugeridas
+
+Exactitud, sensibilidad (crítica en salud), especificidad, Gini.
+
+## Extensiones
+
+Cantidades (regresión), alertas tempranas, integración con historia clínica.

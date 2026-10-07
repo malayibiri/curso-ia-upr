@@ -1,0 +1,44 @@
+---
+title: "Comparación A* frente a IDA* en el 8-puzzle"
+tipo-ia: búsqueda-informada-A*
+local: false
+---
+
+# Comparación A* frente a IDA* en el 8-puzzle
+
+## Situación problemática
+
+El 8-puzzle (tablero 3×3, 8 fichas + hueco) se resuelve de forma óptima
+con A*, pero su consumo de memoria es exponencial. Se quiere cuantificar
+el trade-off frente a IDA*, que combina A* con profundización iterativa
+y usa memoria lineal.
+
+## Objetivo
+
+Implementar ambos algoritmos y compararlos en pasos de solución, nodos
+explorados y tiempo de ejecución.
+
+## Datos y entorno
+
+- Estado como tupla de 9 (`0` = hueco); banco de estados iniciales de varias profundidades.
+- Heurísticas Manhattan y fichas mal colocadas.
+- Pruebas automatizadas y CSV de resultados.
+
+## Técnicas de IA sugeridas
+
+- A* con cola de prioridad.
+- IDA* (umbral `f`, profundización por costo).
+
+## Alcance y entregables
+
+- Ambos resolvedores con la misma interfaz.
+- Batería de experimentos y gráficas comparativas.
+- Pruebas unitarias de movimientos y solvencia.
+
+## Métricas sugeridas
+
+Nodos explorados, tiempo, longitud de solución, memoria aproximada.
+
+## Extensiones
+
+Añadir heurística de conflicto lineal, medir con 15-puzzle.

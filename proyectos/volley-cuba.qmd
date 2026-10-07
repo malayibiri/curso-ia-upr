@@ -1,0 +1,43 @@
+---
+title: "Resultado del equipo nacional de voleibol"
+tipo-ia: clasificación
+local: true
+---
+
+# Resultado del equipo nacional de voleibol
+
+> Vínculo local: "El Equipo Nacional de Volleyball de Cuba enfrenta
+> desafíos…".
+
+## Situación problemática
+
+Seguimiento de rendimiento, planificación y gestión con hojas y
+registros manuales generan decisiones subóptimas y frenan la evolución
+estratégica.
+
+## Objetivo
+
+Predecir el resultado de juego y jugada para decisiones informadas y
+detección de tendencias.
+
+## Datos y entorno
+
+- Equipo (provincia, entrenador, jugadores, edad, experiencia), jugador (rol, posición, talla, stats), juego (rival, fecha, sede, torneo, resultado, duración), jugada (saque/recibo/bloqueo, responsable, efectividad/error).
+- Históricos + ficticios (Cuba frente a Brasil/Argentina/Puerto Rico/Italia).
+
+## Técnicas de IA sugeridas
+
+- Clasificación supervisada: resultado (victoria/derrota/empate/pospuesto) y punto (favor/contra/error no forzado).
+
+## Alcance y entregables
+
+- Predictor de juego y de jugada con evaluación.
+- Informe de tendencias por rival y rol.
+
+## Métricas sugeridas
+
+Exactitud por etiqueta, F1, calibración.
+
+## Extensiones
+
+Alineaciones óptimas, análisis video, comparación con el agente de la EIDE.

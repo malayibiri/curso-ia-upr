@@ -1,0 +1,43 @@
+---
+title: "Agente de diagnóstico para motos"
+tipo-ia: agente-lógico/experto
+local: false
+---
+
+# Agente de diagnóstico para motos
+
+## Situación problemática
+
+Una moto con computadora interna percibe fallas de sus componentes. Se
+quiere un agente que busque inteligentemente las fallas y proponga
+soluciones según la conducción y el estado.
+
+## Objetivo
+
+Agente resolvente-problemas que revise cada función (encendido,
+aceleración, frenos, luces, suspensión, aerodinámica…), encuentre el
+problema, lo solucione si es posible y si no entregue un reporte con
+detalles y operaciones para un mecánico humano.
+
+## Datos y entorno
+
+- Percepciones: estado de cada pieza/función desde la computadora interna.
+- Modelo de dependencia entre piezas y funciones.
+
+## Técnicas de IA sugeridas
+
+- Formulación explícita (estado inicial, sucesor, test objetivo, costo).
+- Búsqueda de la secuencia de revisión/diagnóstico + ejecución del reporte.
+
+## Alcance y entregables
+
+- Modelo del agente y simulador de fallas.
+- Reportes de diagnóstico sobre varios casos.
+
+## Métricas sugeridas
+
+Fallos detectados, falsos positivos, casos resueltos sin mecánico.
+
+## Extensiones
+
+Prioridades por criticidad, historial de fallas, explicación del diagnóstico.

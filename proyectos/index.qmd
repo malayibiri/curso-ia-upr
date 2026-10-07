@@ -1,0 +1,139 @@
+---
+title: "Proyectos del curso"
+format: html
+---
+
+# Proyectos del curso
+
+Banco de enunciados reconstruidos a partir de proyectos de ediciones
+pasadas de la asignatura. Cada ficha describe la **situación
+problemática y el objetivo** (no la solución), con el detalle suficiente
+para reutilizarla como proyecto docente. Los textos están anonimizados:
+no se publican nombres de estudiantes, cursos ni años.
+
+## Proyectos con vínculo local
+
+Plantean una situación problemática de Pinar del Río o Cuba:
+
+| Proyecto | Tipo de problema IA |
+|---|---|
+| [Segmentación de clientes con K-Means](segmentacion-clientes-kmeans.qmd) | clustering |
+| [Agente de voleibol para la EIDE](voleibol-eide.qmd) | clasificación |
+| [Predicción de roturas en la red ETECSA](etecsa-alarmas.qmd) | clasificación |
+| [Qué producir en el Combinado Lácteo](lacteo-que-producir.qmd) | clasificación |
+| [Aptitud de sangre donada](banco-sangre-aptitud.qmd) | clasificación |
+| [Resultado del equipo nacional de voleibol](volley-cuba.qmd) | clasificación |
+| [Donaciones del centro móvil de sangre](extraccion-movil-donaciones.qmd) | regresión / predicción |
+| [Distribución de pienso avícola](pienso-avicola.qmd) | búsqueda |
+| [Recomendador para concesionario de vehículos](concesionario-vehiculos.qmd) | recomendación |
+
+## Todos los proyectos por tipo de problema IA
+
+### Búsqueda y optimización combinatoria
+
+| Proyecto | Enunciado corto |
+|---|---|
+| [Laberinto de tesoros con SA y GA](laberinto-tesoros-sa-ga.qmd) | Orden óptimo de recolección (TSP en laberinto) con recocido simulado vs algoritmo genético. |
+| [Ruta de taxi Fráncfort → Roma](taxis-fra-rom-ucs-astar.qmd) | Ruta óptima UCS vs A* y comparación de nodos expandidos. |
+| [Creador de horarios académicos](creador-horarios-astar-tabu.qmd) | Timetabling con A* vs búsqueda tabú. |
+| [N-Puzzle con A*, IDA* y PDB](puzzle-n8-astar-ida-pdb.qmd) | Resolver 8/15-puzzle y comparar A*, Weighted A*, IDA*, IDA*+PDB. |
+| [Comparación A* vs IDA* en 8-puzzle](8-puzzle-comparison-astar-ida.qmd) | Trade-off memoria/tiempo entre A* e IDA*. |
+| [Rutas en mapa con terrenos](rutas-terrenos-dijkstra-astar.qmd) | Dijkstra vs A* en grid con costos de terreno. |
+| [Laberinto: BPI vs A*](laberinto-bpi-vs-astar.qmd) | Búsqueda ciega iterativa frente a heurística. |
+| [Sudoku n×n: A* vs enfriamiento simulado](sudoku-nxn-astar-vs-sa.qmd) | Sistemático óptimo frente a probabilístico rápido. |
+| [TSP genérico y con capacidad](tsp-viajante-capacidad.qmd) | Viajante clásico y variante logística con camión de capacidad limitada. |
+| [Torres de Hanói](hanoi.qmd) | Mover la torre con el mínimo de movimientos. |
+| [Acopio de leche en vaquerías](lacteo-acopio-leche.qmd) | Rutas de camiones cisterna con tiempo límite y mínimo combustible. |
+| [Distribución de pienso avícola](pienso-avicola.qmd) | Reparto a granjas minimizando gasolina. |
+
+### Clasificación y predicción (aprendizaje supervisado)
+
+| Proyecto | Enunciado corto |
+|---|---|
+| [Rendimiento agrícola por suelos](agente-suelos-rendimiento.qmd) | ID3 vs k-NN con dataset propio y modelos interpretables. |
+| [Clasificación de vinos (química)](vinos-rf-knn.qmd) | Random Forest vs KNN con tuning sobre Wine dataset. |
+| [Spam por rasgos numéricos](spam-numerico-naive-bayes.qmd) | Doble Naive Bayes: spam/ham + prioridad. |
+| [Pingüinos Palmer](penguin-palmer-rf.qmd) | Random Forest sobre medidas biométricas + demo web. |
+| [Diabetes (tabular)](diabetes-rf.qmd) | Random Forest sobre variables médicas. |
+| [Recomendación de películas (usuarios)](recomendacion-peliculas-similitud-usuarios.qmd) | Filtrado colaborativo con similitud de coseno (MovieLens 100K). |
+| [Recomendación de películas (SVD)](recomendacion-peliculas-svd.qmd) | Factorización de matrices y predicción de rating. |
+| [Dirección del precio de Bitcoin](prediccion-bitcoin.qmd) | Clasificación binaria sube/baja desde 5 cierres. |
+| [Spam SMS](clasificador-spam-sms.qmd) | BoW + árboles / Naive Bayes. |
+| [Diabetes Pima con red neuronal](diagnostico-diabetes-pima.qmd) | Red densa 12-8-1 sobre 8 variables clínicas. |
+| [Agente de voleibol para la EIDE](voleibol-eide.qmd) | Predecir victoria y proponer entrenamiento. |
+| [Roturas en red ETECSA](etecsa-alarmas.qmd) | Predecir equipos propensos a romperse desde alarmas. |
+| [Viabilidad de proyectos GEDEL](gedel-viabilidad.qmd) | Clasificar Bueno/Regular/Malo por etapa. |
+| [Qué producir en el Combinado Lácteo](lacteo-que-producir.qmd) | Decidir producción que maximice ganancia. |
+| [Necesidad de transfusión](transfusiones.qmd) | Clasificación binaria ajustable a cualquier paciente. |
+| [Aptitud de sangre donada](banco-sangre-aptitud.qmd) | Clasificar muestras aptas desde datos del donante. |
+| [Donantes potenciales en consultorio](consultorio-donantes.qmd) | Predecir quién puede donar según salud. |
+| [Resultado del voleibol nacional](volley-cuba.qmd) | Predecir resultado de juego/jugada. |
+| [Popularidad de libros en biblioteca](biblioteca-popularidad.qmd) | Clasificar popular/no popular para gestión de colección. |
+| [Interferencias en espectro radioeléctrico](espectro-interferencias.qmd) | Predecir necesidad de detección. |
+| [Rendimiento académico](rendimiento-academico.qmd) | Aprobado/no desde asistencia, estudio y parciales. |
+| [Auditorías empresariales](auditorias.qmd) | Detectar transacciones sospechosas y recomendar. |
+| [Logs de firewall pfSense](pfsense-logs.qmd) | Clasificar ventanas de log: normal/fuerza bruta/peligro. |
+| [Calidad del vino](vino-calidad.qmd) | Predecir calidad desde uva, clima y vinificación. |
+| [Diagnóstico de bradicardia](bradicardia.qmd) | Avisar al paciente al superar 80% de síntomas. |
+| [Clasificador de libros de biblioteca](asistente-bibliotecario.qmd) | Clasificar por contenido/portada/tema con NLP. |
+
+### Regresión y series
+
+| Proyecto | Enunciado corto |
+|---|---|
+| [Precios de casas](prediccion-precios-casas.qmd) | Estimar precio continuo desde características. |
+| [El pique: actividad de peces](pesca-pique.qmd) | Predecir cuándo/dónde pescar. |
+| [Demanda de componentes sanguíneos](servicio-sangre-demanda.qmd) | Predecir demanda para optimizar inventario. |
+| [Donaciones del centro móvil](extraccion-movil-donaciones.qmd) | Donaciones/día y consultorios a visitar. |
+| [Calidad del aire urbano](calidad-aire.qmd) | Pronosticar PM2.5/PM10/NO₂. |
+| [Nutrición Starbucks](starbucks-nutricion.qmd) | Relación colesterol→azúcares con regresión simple. |
+
+### Visión por computadora
+
+| Proyecto | Enunciado corto |
+|---|---|
+| [Clasificador de frutas](frutas-mobilenet-cnn.qmd) | Transfer learning con MobileNetV2. |
+| [Carro vs camión (CIFAR-10)](carro-camion-cifar10-cnn.qmd) | CNN offline con GUI de inferencia. |
+| [CIFAR-10 desde cero](clasificacion-imagenes-cifar10.qmd) | CNN entrenada desde cero, 10 categorías. |
+| [Pintor y técnica de obras](agente-obras-arte.qmd) | Identificar autor y técnica de pinturas. |
+| [Detección de rostros](deteccion-rostros.qmd) | Clasificación binaria + localización (WIDER FACE). |
+| [Clasificación de frutas (Fruit-360)](clasificacion-frutas.qmd) | Sistema automático para agro/comercialización. |
+| [Manos y dedos en tiempo real](reconocimiento-manos.qmd) | Contar dedos e identificar mano con cámara. |
+| [ColorSpectra: colores sintéticos](colorspectra-colores.qmd) | CNN sobre dataset sintético de 60+ colores. |
+| [Dígitos manuscritos](digitos-manuscritos.qmd) | CNN 0–9 estilo MNIST con aumento de datos. |
+
+### Lenguaje, habla y agentes
+
+| Proyecto | Enunciado corto |
+|---|---|
+| [Spam en español desde cero](spam-texto-naive-bayes-scratch.qmd) | Naive Bayes multinomial + BoW en español. |
+| [Traductor incremental](traductor-incremental.qmd) | Diccionario ponderado que mejora con evaluación del usuario. |
+| [Voz a texto en español](voz-a-texto.qmd) | MFCC + CNN + LSTM bidireccional + CTC. |
+| [Adivina el animal](adivina-animal-arbol.qmd) | Árbol interactivo que aprende animales nuevos. |
+| [Diagnóstico de motos](moto-diagnostico.qmd) | Agente que busca fallas y propone solución o reporte. |
+| [Desfalco en panadería](panaderia-desfalco.qmd) | Reglas de discrepancia + recomendación de auditoría. |
+
+### Juegos y aprendizaje por refuerzo
+
+| Proyecto | Enunciado corto |
+|---|---|
+| [Dino Runner por neuroevolución](dino-runner-neuroevolucion.qmd) | Evolucionar 500 agentes feedforward con GA. |
+| [Dominó competitivo con PPO+LSTM](domino-ppo-lstm.qmd) | RL profundo con información parcial y self-play. |
+| [Flappy Bird con DQN](flappy-bird-dqn.qmd) | Deep Q-Network desde simulador propio. |
+
+### Recomendación y no supervisado
+
+| Proyecto | Enunciado corto |
+|---|---|
+| [Recomendador de cachorros](crianza-perros.qmd) | Sugerir raza según clientes similares. |
+| [Recomendador para concesionario](concesionario-vehiculos.qmd) | Sugerir vehículo según gustos y necesidades. |
+| [Segmentación de clientes](segmentacion-clientes-kmeans.qmd) | K-Means en 5 segmentos accionables para marketing. |
+
+## Notas metodológicas
+
+- Enunciados reconstruidos desde informes de estudiantes; se conserva el
+  problema y el objetivo, no la solución ni sus resultados.
+- Versiones duplicadas (v1/v2, docx+pdf, borradores) se unificaron en la
+  variante más completa.
+- Se descartaron resúmenes de capítulos y scripts sin problema de IA
+  (p. ej. contador de palabras, organizador de descargas).
